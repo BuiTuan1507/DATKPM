@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-class LoginScreen extends StatefulWidget {
+class RegisterScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = new GlobalKey<FormState>();
   String email;
   String password;
@@ -20,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
     queryData = MediaQuery.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Chợ sinh viên", style: TextStyle(fontSize: 22, color: Colors.black),),
+        title: Text("Đăng ký", style: TextStyle(fontSize: 22, color: Colors.black),),
         centerTitle: true,
         backgroundColor: Colors.amber,
       ),
@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Container(
                           alignment: Alignment.centerLeft,
                           padding: EdgeInsets.only(top: 20,bottom: 5,left: 20,right: 20),
-                          child: Text("Đăng nhập", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 29, color: Colors.amber),),
+                          child: Text("Đăng ký", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 29, color: Colors.amber),),
                         )
                       ],
                     ),
@@ -45,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Container(
                           alignment: Alignment.centerLeft,
                           padding: EdgeInsets.only(top: 20,bottom: 5,left: 20,right: 20),
-                          child: Text("Chào bạn quay lại", style: TextStyle(fontSize: 21, fontWeight: FontWeight.w300, color: Colors.black38),),
+                          child: Text("Tạo tài khoản ngay", style: TextStyle(fontSize: 21, fontWeight: FontWeight.w300, color: Colors.black38),),
 
                         )
                       ],
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Container(
               padding: EdgeInsets.all(12),
               child: new Form(
-                key: _formKey,
+                  key: _formKey,
                   child: new ListView(
                     shrinkWrap: true,
                     children: <Widget>[
@@ -76,12 +76,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           keyboardType: TextInputType.emailAddress,
                           autofocus: false,
                           decoration: new InputDecoration(
-                            labelText: 'Email',
-                            labelStyle: TextStyle(
-                              fontSize: 20,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black45),
+                              labelText: 'Nhập Email của bạn',
+                              labelStyle: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black45),
                               focusedBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.green)),
                               icon: new Icon(
@@ -103,11 +103,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           autofocus: false,
                           decoration: new InputDecoration(
 
-                            suffixIcon: (_obscureText == true) ? InkWell(onTap: _toggle,child: Icon(Icons.visibility,size: 28,color: Colors.grey,),)
-                                : InkWell(onTap: _toggle,child: Icon(Icons.visibility_off,size: 28,color: Colors.grey,),) ,
-                              labelText: 'Mật khẩu',
+                              suffixIcon: (_obscureText == true) ? InkWell(onTap: _toggle,child: Icon(Icons.visibility,size: 28,color: Colors.grey,),)
+                                  : InkWell(onTap: _toggle,child: Icon(Icons.visibility_off,size: 28,color: Colors.grey,),) ,
+                              labelText: 'Nhập mật khẩu',
                               labelStyle: TextStyle(
-                                fontSize: 20,
+                                  fontSize: 18,
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black45),
@@ -128,18 +128,18 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             Container(height: 40,),
             InkWell(
-              onTap: (){},
+                onTap: (){},
                 child: Container(
-                  height: 50,
-                  width: queryData.size.width*0.9,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.amber
-                  ),
-                  child: Center(
-                      child: Text('Đăng nhập',
+                    height: 50,
+                    width: queryData.size.width*0.9,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.amber
+                    ),
+                    child: Center(
+                      child: Text('Đăng ký',
                           style: new TextStyle(fontSize: 20.0, color: Colors.white)),
-                      )
+                    )
 
                 )
             ),
@@ -149,7 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
             InkWell(
               onTap: (){},
               child: Center(
-                child: Text("Bạn quên mật khẩu", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 19,color: Colors.blue[800]),),
+                child: Text("Bằng cách ấn đăng ký, bạn đồng ý với điều khoản của chúng tôi", textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18,color: Colors.black),),
               ),
             ),
             Container(
@@ -158,13 +158,13 @@ class _LoginScreenState extends State<LoginScreen> {
             Row(
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(left: 40,right: 10),
-                  child: Text("Bạn chưa có tài khoản ?",style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: Colors.black),)
+                    padding: EdgeInsets.only(left: 60,right: 10),
+                    child: Text("Bạn chưa có tài khoản ?",style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: Colors.black),)
                 ),
                 InkWell(
                   onTap: (){},
                   child: Center(
-                    child: Text("Đăng ký ngay", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500,color: Colors.blue[800]),),
+                    child: Text("Đăng nhập", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500,color: Colors.blue[800]),),
                   ),
                 )
               ],

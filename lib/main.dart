@@ -1,4 +1,7 @@
+import 'package:app_giao_do_an/home_app_screen.dart';
 import 'package:app_giao_do_an/hone_app.dart';
+import 'package:app_giao_do_an/login_screen.dart';
+import 'package:app_giao_do_an/register_screen.dart';
 import 'package:app_giao_do_an/route.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Cho BK',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -37,7 +40,7 @@ class MyApp extends StatelessWidget {
       ),
         onGenerateRoute: RouterNav.generateRoute,
         navigatorKey: navigatorKey,
-      home: HomeApp(),
+      home: HomeAppScreen(),
     );
   }
 }
