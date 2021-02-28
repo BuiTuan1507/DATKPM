@@ -1,17 +1,19 @@
 import 'package:app_giao_do_an/route.dart';
 import 'package:flutter/material.dart';
-class Order extends StatefulWidget {
+class Favorite extends StatefulWidget {
   @override
-  _OrderState createState() => _OrderState();
+  _FavoriteState createState() => _FavoriteState();
 }
 
-class _OrderState extends State<Order> {
+class _FavoriteState extends State<Favorite> {
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
           body: SingleChildScrollView(
-              child: Text("order", style: TextStyle(fontSize: 30),)
+              child: Text("favorite", style: TextStyle(fontSize: 30),)
           ),
         ));
   }

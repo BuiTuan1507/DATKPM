@@ -1,17 +1,17 @@
 import 'package:app_giao_do_an/route.dart';
 import 'package:flutter/material.dart';
-class Order extends StatefulWidget {
+class NotificationApp extends StatefulWidget {
   @override
-  _OrderState createState() => _OrderState();
+  _NotificationAppState createState() => _NotificationAppState();
 }
 
-class _OrderState extends State<Order> {
+class _NotificationAppState extends State<NotificationApp> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
           body: SingleChildScrollView(
-              child: Text("order", style: TextStyle(fontSize: 30),)
+              child: Text("notification", style: TextStyle(fontSize: 30),)
           ),
         ));
   }
