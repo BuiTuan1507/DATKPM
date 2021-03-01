@@ -282,10 +282,12 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
               thickness: 15,
               color: Colors.grey[300],
             ),
+            Container(height: 15,),
             Container(
               padding: EdgeInsets.only(left: 20),
-              child: Text("Khám phá sản phẩm", style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.black),),
+              child: Text("Khám phá sản phẩm", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),textAlign: TextAlign.left,),
             ),
+            Container(height: 15,),
             Container(
               child: GridView.count(
                 scrollDirection: Axis.vertical,
@@ -293,8 +295,8 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                 padding: EdgeInsets.all(5),
                 crossAxisCount: 4,
                 crossAxisSpacing: 15.0,
-                mainAxisSpacing: 15.0,
-                childAspectRatio: 0.8,
+                mainAxisSpacing: 5.0,
+                childAspectRatio: 0.6,
                 children: <Widget>[
                   SizedBox(
                     width: 120,
@@ -302,15 +304,20 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                     child: Column(
                       children: <Widget>[
                         Container(
-                          height: 60,
-                          width: 60,
+                          height: 80,
+                          width: 80,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          child: Image.asset('assets/bds.jpg',fit: BoxFit.cover,),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset('assets/bds.jpg',fit: BoxFit.cover,),
+                          )
+
                         ),
+                        Container(height: 7,),
                         Container(
-                          child: Text("Bất động sản", style: TextStyle(fontSize: 18)),
+                          child: Text("Phòng trọ", style: TextStyle(fontSize: 18),textAlign: TextAlign.center,),
                         )
                       ],
                     ),
@@ -321,15 +328,20 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                     child: Column(
                       children: <Widget>[
                         Container(
-                          height: 60,
-                          width: 60,
+                          height: 80,
+                          width: 80,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          child: Image.asset('assets/bds.jpg',fit: BoxFit.cover,),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset('assets/doan.jpg',fit: BoxFit.cover,),
+                          )
+                          
                         ),
+                        Container(height: 7,),
                         Container(
-                          child: Text("Bất động sản", style: TextStyle(fontSize: 18)),
+                          child: Text("Đồ ăn", style: TextStyle(fontSize: 18),textAlign: TextAlign.center,),
                         )
                       ],
                     ),
@@ -340,15 +352,21 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                     child: Column(
                       children: <Widget>[
                         Container(
-                          height: 60,
-                          width: 60,
+                          height: 80,
+                          width: 80,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          child: Image.asset('assets/bds.jpg',fit: BoxFit.cover,),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            
+                            child:  Image.asset('assets/dodientu.jpg',fit: BoxFit.cover,),
+                          )
+                         ,
                         ),
+                        Container(height: 7,),
                         Container(
-                          child: Text("Bất động sản", style: TextStyle(fontSize: 18)),
+                          child: Text("Đồ điện tử", style: TextStyle(fontSize: 18),textAlign: TextAlign.center,),
                         )
                       ],
                     ),
@@ -359,26 +377,157 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                     child: Column(
                       children: <Widget>[
                         Container(
-                          height: 60,
-                          width: 60,
+                          height: 80,
+                          width: 80,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          child: Image.asset('assets/bds.jpg',fit: BoxFit.cover,),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset('assets/sach.jpg',fit: BoxFit.cover,),
+                          ) 
+                          ,
                         ),
+                        Container(height: 7,),
                         Container(
-                          child: Text("Bất động sản", style: TextStyle(fontSize: 18)),
+                          child: Text("Giáo trình", style: TextStyle(fontSize: 18),textAlign: TextAlign.center,),
                         )
                       ],
                     ),
                   ),
+                  SizedBox(
+                    width: 120,
 
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: 80,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset('assets/thu.jpg',fit: BoxFit.cover,),
+                          )
+                          ,
+                        ),
+                        Container(height: 7,),
+                        Container(
+                          child: Text("Thú cưng", style: TextStyle(fontSize: 18),textAlign: TextAlign.center,),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: 120,
+
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: 80,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: ClipRRect(
+                            child: Image.asset('assets/vieclam.jpg',fit: BoxFit.cover,),
+                            borderRadius: BorderRadius.circular(20),
+                          ) 
+                          ,
+                        ),
+                        Container(height: 7,),
+                        Container(
+                          child: Text("Việc làm", style: TextStyle(fontSize: 18),textAlign: TextAlign.center,),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: 120,
+
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: 80,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: ClipRRect(
+                            child: Image.asset('assets/xe.jpg',fit: BoxFit.cover,),
+                            borderRadius: BorderRadius.circular(20),
+                          ) 
+                          ,
+                        ),
+                        Container(height: 7,),
+                        Container(
+                          child: Text("Xe", style: TextStyle(fontSize: 18),textAlign: TextAlign.center,),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: 120,
+
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: 80,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: ClipRRect(
+                            child: Image.asset('assets/dogiadung.jpg',fit: BoxFit.cover,),
+                            borderRadius: BorderRadius.circular(20),
+                          ) 
+                         ,
+                        ),
+                        Container(height: 7,),
+                        Container(
+                          child: Text("Đồ gia dụng", style: TextStyle(fontSize: 18),textAlign: TextAlign.center,),
+                        )
+                      ],
+                    ),
+                  ),
                 ],
 
               ),
-            )
+            ),
+            Container(
+              height: 15,
+
+            ),
+            Divider(
+              indent: 5,
+              endIndent: 5,
+              thickness: 15,
+              color: Colors.grey[300],
+            ),
+            Container(height: 15,),
+            Container(
+              child: Text(
+                "Tin đăng mới", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
+              ),
+            ),
+
           ],
         ),
+      ),
+    );
+  }
+  Widget showItem(){
+    return new Card(
+      margin: EdgeInsets.all(6),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(18.0),
+        side: BorderSide(color: Colors.black)
+      ),
+      color: Colors.white,
+      child: InkWell(
+        onTap: (){},
+        child: Container(),
       ),
     );
   }

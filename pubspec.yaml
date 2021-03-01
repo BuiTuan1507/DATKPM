@@ -55,6 +55,13 @@ flutter:
     - h1.jpg
     - h2.jpg
     - bds.jpg
+    - doan.jpg
+    - dodientu.jpg
+    - dogiadung.jpg
+    - sach.jpg
+    - thu.jpg
+    - vieclam.jpg
+    - xe.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
