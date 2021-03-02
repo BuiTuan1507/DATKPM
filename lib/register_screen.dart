@@ -162,7 +162,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: Text("Bạn chưa có tài khoản ?",style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: Colors.black),)
                 ),
                 InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.pop(context);
+                  },
                   child: Center(
                     child: Text("Đăng nhập", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500,color: Colors.blue[800]),),
                   ),

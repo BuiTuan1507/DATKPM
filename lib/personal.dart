@@ -41,7 +41,7 @@ class _PersonalState extends State<Personal> {
                           Container(
                             alignment: Alignment.centerLeft,
                             padding: EdgeInsets.only(left: 10),
-                            child:(isLogin == false) ? Text("Đăng nhập / Đăng ký", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),) : Text(name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),),
+                            child:Text(name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),),
 
                           ),
 
@@ -56,7 +56,7 @@ class _PersonalState extends State<Personal> {
                           Container(
                             alignment: Alignment.centerLeft,
                             padding: EdgeInsets.only(left: 10),
-                            child: (isLogin == false ) ? Text("Điểm đánh giá của tôi", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 17),) : Text(name, style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),),
+                            child: Text("Điểm đánh giá của tôi : 80", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 17),)
                           )
 
                         ],
@@ -269,6 +269,42 @@ class _PersonalState extends State<Personal> {
                     padding: EdgeInsets.only(top: 10, bottom: 10),
                     child: Text("Cài đặt", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
                   )
+                ],
+              ),
+              Container(height: 10,),
+              Row(
+                children: <Widget>[
+                  Container(width: 15,),
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, LOGIN);
+                    },
+                    child: Container(
+
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(100)
+                        ),
+                        child: Center(
+                          child:Icon(Icons.exit_to_app,color: Colors.white,),
+                        )
+
+                    ),
+                  ),
+
+                  Container(width: 20,),
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, LOGIN);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.only(top: 10, bottom: 10),
+                      child: Text("Đăng xuất", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
+                    ),
+                  ),
+
                 ],
               ),
               Container(height: 10,),

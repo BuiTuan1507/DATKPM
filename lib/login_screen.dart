@@ -1,3 +1,4 @@
+import 'package:app_giao_do_an/route.dart';
 import 'package:flutter/material.dart';
 class LoginScreen extends StatefulWidget {
   @override
@@ -162,7 +163,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Text("Bạn chưa có tài khoản ?",style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: Colors.black),)
                 ),
                 InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.pushNamed(context, REGISTER);
+                  },
                   child: Center(
                     child: Text("Đăng ký ngay", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500,color: Colors.blue[800]),),
                   ),

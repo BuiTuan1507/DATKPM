@@ -46,11 +46,11 @@ class _HomeAppState extends State<HomeApp> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
-            title: Text('Giỏ hàng'),
+            title: Text('Bán',style: TextStyle(color: Colors.black),),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_border),
-            title: Text('Đã lưu'),
+            title: Text('Đăng tin'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
@@ -62,6 +62,8 @@ class _HomeAppState extends State<HomeApp> {
           ),
         ],
         currentIndex: _selectedIndex,
+        showUnselectedLabels: true,
+
         selectedItemColor: Colors.amber[800],
         unselectedItemColor: Colors.black,
         selectedLabelStyle: TextStyle(color: Colors.amber[800]),

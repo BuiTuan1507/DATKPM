@@ -2,6 +2,7 @@ import 'package:app_giao_do_an/favorite.dart';
 import 'package:app_giao_do_an/home_app_screen.dart';
 import 'package:app_giao_do_an/hone_app.dart';
 import 'package:app_giao_do_an/login_screen.dart';
+import 'package:app_giao_do_an/notification.dart';
 import 'package:app_giao_do_an/order.dart';
 import 'package:app_giao_do_an/register_screen.dart';
 import 'package:app_giao_do_an/route.dart';
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
       ),
         onGenerateRoute: RouterNav.generateRoute,
         navigatorKey: navigatorKey,
-      home: Favorite(),
+      home: HomeApp(),
     );
   }
 }
