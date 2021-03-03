@@ -9,6 +9,11 @@ class _ProfileState extends State<Profile> {
   String name = 'hello';
   int follow = 0;
   int followed = 0;
+  String danhgia = 'Chưa có đánh giá';
+  String timeJoin = '28/02/2021';
+  String location = 'Chưa cung cấp';
+  String feedback = 'Chưa có thông tin';
+  int numberOfNews = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,11 +107,84 @@ class _ProfileState extends State<Profile> {
               ),
               Container(
                 padding: EdgeInsets.only(top: 10,bottom: 7,),
-                child: Text('Đánh giá',style: TextStyle(fontSize: 17),),
+                child: Text('Đánh giá :',style: TextStyle(fontSize: 17),),
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 10, bottom: 7, left: 15),
+                child: Text(danhgia, style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),),
               )
             ],
-          )
+          ),
+          Row(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(left: 15,top: 10,bottom: 7,right: 10),
+                child: Icon(Icons.calendar_today,size: 26,),
 
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 10,bottom: 7,),
+                child: Text('Ngày tham gia :',style: TextStyle(fontSize: 17),),
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 10, bottom: 7, left: 15),
+                child: Text(timeJoin  , style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),),
+              )
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(left: 15,top: 10,bottom: 7,right: 10),
+                child: Icon(Icons.location_on,size: 26,),
+
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 10,bottom: 7,),
+                child: Text('Địa chỉ : ',style: TextStyle(fontSize: 17),),
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 10, bottom: 7, left: 15),
+                child: Text(location  , style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),),
+              )
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(left: 15,top: 10,bottom: 7,right: 10),
+                child: Icon(Icons.insert_comment,size: 26,),
+
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 10,bottom: 7,),
+                child: Text('Phản hồi chat : ',style: TextStyle(fontSize: 17),),
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 10, bottom: 7, left: 15),
+                child: Text(feedback, style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),),
+              )
+            ],
+          ),
+          Divider(
+            thickness: 7,
+            color: Colors.grey[300],
+          ),
+          Row(
+            children: <Widget>[
+              Container(
+                child: Text("Đang bán",style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.black),),
+              ),
+              Container(
+                child: Text(" - ${numberOfNews} tin",style: TextStyle(fontSize: 17),),
+              ),
+
+            ],
+          ),
+          Divider(
+            thickness: 1,
+            color: Colors.grey[300],
+          )
         ],
       ),
     );
