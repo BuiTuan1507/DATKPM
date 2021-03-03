@@ -7,6 +7,7 @@ import 'package:app_giao_do_an/order.dart';
 import 'package:app_giao_do_an/profile.dart';
 import 'package:app_giao_do_an/register_screen.dart';
 import 'package:app_giao_do_an/route.dart';
+import 'package:app_giao_do_an/update_profile.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
       ),
         onGenerateRoute: RouterNav.generateRoute,
         navigatorKey: navigatorKey,
-      home: Profile(),
+      home: UpdateProfile(),
     );
   }
 }

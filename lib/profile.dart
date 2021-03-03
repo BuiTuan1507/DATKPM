@@ -14,6 +14,7 @@ class _ProfileState extends State<Profile> {
   String location = 'Chưa cung cấp';
   String feedback = 'Chưa có thông tin';
   int numberOfNews = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -173,9 +174,11 @@ class _ProfileState extends State<Profile> {
           Row(
             children: <Widget>[
               Container(
+                padding:EdgeInsets.only(left: 15,top: 10,bottom: 10),
                 child: Text("Đang bán",style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.black),),
               ),
               Container(
+                padding: EdgeInsets.only(top: 10,bottom: 10),
                 child: Text(" - ${numberOfNews} tin",style: TextStyle(fontSize: 17),),
               ),
 
@@ -184,7 +187,36 @@ class _ProfileState extends State<Profile> {
           Divider(
             thickness: 1,
             color: Colors.grey[300],
-          )
+          ),
+          (numberOfNews == 0) ?
+              Column(
+                children: <Widget>[
+                  Container(
+                    height: 25,
+                  ),
+                  Center(
+                    child: Text('Bạn chưa có tin nào đang đăng', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400, color: Colors.grey[500]),),
+                  ),
+                  Container(
+                    height: 10,
+                  ),
+                  InkWell(
+                    onTap: (){},
+                    child: Container(
+                      padding: EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(3),
+                          color: Colors.amber[800]
+                      ),
+                      child: Text('Đăng tin', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.white),),
+                    ),
+                  )
+
+                ],
+              ) :
+              Container(
+                height: 0,
+              )
         ],
       ),
     );
