@@ -1,3 +1,6 @@
+
+
+import 'package:app_giao_do_an/change_info.dart';
 import 'package:app_giao_do_an/login_screen.dart';
 import 'package:app_giao_do_an/notification.dart';
 import 'package:app_giao_do_an/favorite.dart';
@@ -14,6 +17,7 @@ const String NOTIFICATION = '/notification';
 const String PERSONAL = '/personal';
 const String LOGIN = '/login';
 const String REGISTER = '/register';
+const String CHANGEINFO = '/changeInfo';
 class NavService {
   static GlobalKey<NavigatorState> navigatorKey =
   new GlobalKey<NavigatorState>();
@@ -38,6 +42,10 @@ class RouterNav {
         return MaterialPageRoute(builder: (context) => LoginScreen());
       case REGISTER :
         return MaterialPageRoute(builder: (context) => RegisterScreen());
+      case CHANGEINFO :
+        var argument = settings.arguments as Map;
+        return MaterialPageRoute(builder: (context) =>ChangeInfo(name: argument['name'],email: argument['email'],
+          password: argument['password'],address: argument['address'],dateOfBird:argument['dateOfBirth'],sex: argument['sex'],),);
       default:
         return MaterialPageRoute(builder: (context) => HomeApp());
     }
