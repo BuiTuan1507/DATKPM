@@ -57,7 +57,8 @@ class RouterNav {
       case UPDATEPROFILE :
         return MaterialPageRoute(builder: (context) => UpdateProfile());
       case PRODUCTTYPE :
-        return MaterialPageRoute(builder: (context) => ProductType());
+        var argument1 = settings.arguments as Map;
+        return MaterialPageRoute(builder: (context) => ProductType(catalogF: argument1['catalogF'],));
         default:
         return MaterialPageRoute(builder: (context) => HomeApp());
     }

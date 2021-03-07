@@ -5,6 +5,12 @@ import 'package:flutter/material.dart';
 
 class ProductType extends StatefulWidget {
   String hintSearchText;
+  int catalogF = 0;
+  ProductType(
+      {Key key,
+        this.catalogF,
+      })
+      : super(key: key);
   @override
   _ProductTypeState createState() => _ProductTypeState();
 }
@@ -12,8 +18,11 @@ class ProductType extends StatefulWidget {
 class _ProductTypeState extends State<ProductType> {
   Item item1 = new Item('1','nha xa','assets/h1.jpg',20,'Ha noi',true);
   bool isFavorite = false;
+  var catalogE = ['Đồ điện tử','Điện thoại','Máy tính bảng', 'Lap top', 'Máy tính để bàn', 'Phụ kiện'];
+
   @override
   Widget build(BuildContext context) {
+
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     TextEditingController searchController;
@@ -38,7 +47,7 @@ class _ProductTypeState extends State<ProductType> {
                 color: Colors.black,
               ),
               //hintText: widget.hintSearchText,
-              hintText: 'Đồ điện tử',
+              hintText: catalogE[widget.catalogF],
               hintStyle: TextStyle(
                   fontSize: 18,
                   color: Colors.black45,
@@ -95,7 +104,7 @@ class _ProductTypeState extends State<ProductType> {
 
                         },
                         child: Container(
-                          child: Text('Đồ điện tử', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: Colors.black),),
+                          child: Text(catalogE[widget.catalogF], style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: Colors.black),),
                         ),
                       ),
                       InkWell(
