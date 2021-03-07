@@ -1,9 +1,10 @@
 import 'package:app_giao_do_an/model/item.dart';
+import 'package:app_giao_do_an/route.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'constant.dart';
+import '../../constant.dart';
 class HomeAppScreen extends StatefulWidget {
   @override
   _HomeAppScreenState createState() => _HomeAppScreenState();
@@ -11,7 +12,7 @@ class HomeAppScreen extends StatefulWidget {
 
 class _HomeAppScreenState extends State<HomeAppScreen> {
   TextEditingController searchController;
-  Item item1 = new Item('1','nha xa','assets/h1.jpg',20,'Ha noi');
+  Item item1 = new Item('1','nha xa','assets/h1.jpg',20,'Ha noi',true);
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData;
@@ -148,6 +149,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
               scrollDirection: Axis.horizontal,
 
               child:Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(
                     width: 100,
@@ -363,31 +365,39 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: 120,
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, PRODUCTTYPE);
+                      print(2);
+                    },
+                    child: SizedBox(
+                      width: 120,
 
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          height: 80,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            height: 80,
+                            width: 80,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+
+                              child:  Image.asset('assets/dodientu.jpg',fit: BoxFit.cover,),
+                            ),
                           ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            
-                            child:  Image.asset('assets/dodientu.jpg',fit: BoxFit.cover,),
-                          )
-                         ,
-                        ),
-                        Container(height: 7,),
-                        Container(
-                          child: Text("Đồ điện tử", style: TextStyle(fontSize: 18),textAlign: TextAlign.center,),
-                        )
-                      ],
+                          Container(height: 7,),
+                          Container(
+                            child: Text("Đồ điện tử", style: TextStyle(fontSize: 18),textAlign: TextAlign.center,),
+                          ) ,
+
+
+                        ],
+                      ),
                     ),
                   ),
+
                   SizedBox(
                     width: 120,
 

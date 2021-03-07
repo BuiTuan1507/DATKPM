@@ -1,13 +1,16 @@
 
 
-import 'package:app_giao_do_an/change_info.dart';
-import 'package:app_giao_do_an/login_screen.dart';
-import 'package:app_giao_do_an/notification.dart';
-import 'package:app_giao_do_an/favorite.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/add/change_info.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/login_register/login_screen.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/notificati/notification.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/sell/favorite.dart';
 import 'package:app_giao_do_an/hone_app.dart';
-import 'package:app_giao_do_an/order.dart';
-import 'package:app_giao_do_an/personal.dart';
-import 'package:app_giao_do_an/register_screen.dart';
+import 'package:app_giao_do_an/screen/add/profile.dart';
+import 'package:app_giao_do_an/screen/add/update_profile.dart';
+import 'package:app_giao_do_an/screen/homeapp/product_type.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/shop/order.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/add/personal.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/login_register/register_screen.dart';
 import 'package:flutter/material.dart';
 
 const String HOME_APP = '/homeApp';
@@ -18,6 +21,9 @@ const String PERSONAL = '/personal';
 const String LOGIN = '/login';
 const String REGISTER = '/register';
 const String CHANGEINFO = '/changeInfo';
+const String PROFILE = '/profile';
+const String UPDATEPROFILE  = '/updateProfle';
+const String PRODUCTTYPE = '/productType';
 class NavService {
   static GlobalKey<NavigatorState> navigatorKey =
   new GlobalKey<NavigatorState>();
@@ -45,8 +51,14 @@ class RouterNav {
       case CHANGEINFO :
         var argument = settings.arguments as Map;
         return MaterialPageRoute(builder: (context) =>ChangeInfo(name: argument['name'],email: argument['email'],
-          password: argument['password'],address: argument['address'],dateOfBird:argument['dateOfBirth'],sex: argument['sex'],),);
-      default:
+          password: argument['password'],address: argument['address'],dateOfBirth:argument['dateOfBirth'],sex: argument['sex'],),);
+      case PROFILE :
+        return MaterialPageRoute(builder: (context) => Profile());
+      case UPDATEPROFILE :
+        return MaterialPageRoute(builder: (context) => UpdateProfile());
+      case PRODUCTTYPE :
+        return MaterialPageRoute(builder: (context) => ProductType());
+        default:
         return MaterialPageRoute(builder: (context) => HomeApp());
     }
   }

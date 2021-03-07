@@ -6,5 +6,6 @@ class Item{
   int cost;
   DateTime time;
   String address;
-  Item(this.id, this.name, this.image, this.cost, this.address);
+  bool isStore;
+  Item(this.id, this.name, this.image, this.cost, this.address, this.isStore);
 }

@@ -1,24 +1,19 @@
-import 'package:app_giao_do_an/needpay.dart';
-import 'package:app_giao_do_an/onsale.dart';
-import 'package:app_giao_do_an/other.dart';
-import 'package:app_giao_do_an/refuse.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/notificati/activity_user.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/notificati/new_infomation.dart';
 import 'package:app_giao_do_an/route.dart';
 import 'package:flutter/material.dart';
-class Order extends StatefulWidget {
+class NotificationApp extends StatefulWidget {
   @override
-  _OrderState createState() => _OrderState();
+  _NotificationAppState createState() => _NotificationAppState();
 }
 
-class _OrderState extends State<Order> {
-  int _dangBan = 0; // so luong tin dang rao
-  int _tuChoi = 0; // tin dang bi tu choi
-  int _canThanhToan = 0; // tin dang can thanh toan khi co nguoi mua
+class _NotificationAppState extends State<NotificationApp> {
+  int _tinMoi = 0; // so luong tin dang rao
 
-  int _khac = 0 ; //tin bi an
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 2,
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.amber,
@@ -53,27 +48,16 @@ class _OrderState extends State<Order> {
                   Tab(
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("Đang bán" + " (${_dangBan.toString()})",style: TextStyle(fontSize: 18),),
+                      child: Text("Hoạt động" + "",style: TextStyle(fontSize: 18),),
                     ),
                   ),
                   Tab(
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("Bị từ chối" + " (${_tuChoi.toString()})",style: TextStyle(fontSize: 18)),
+                      child: Text("Tin mới" + " (${_tinMoi.toString()})",style: TextStyle(fontSize: 18)),
                     ),
                   ),
-                  Tab(
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text("Thanh toán" + " (${_canThanhToan.toString()})",style: TextStyle(fontSize: 18)),
-                    ),
-                  ),
-                  Tab(
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text("Khác" + " (${_khac.toString()})",style: TextStyle(fontSize: 18)),
-                    ),
-                  ),
+
 
                 ]
 
@@ -81,10 +65,8 @@ class _OrderState extends State<Order> {
           ),
           body: TabBarView(
             children: [
-              OnSale(),
-              RefuseItem(),
-              NeedPay(),
-              OtherApp()
+              ActivityUser(),
+              NewInfomation()
             ],
           )
       ),

@@ -1,13 +1,14 @@
-import 'package:app_giao_do_an/favorite.dart';
-import 'package:app_giao_do_an/home_app_screen.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/sell/favorite.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/homeapp/home_app_screen.dart';
 import 'package:app_giao_do_an/hone_app.dart';
-import 'package:app_giao_do_an/login_screen.dart';
-import 'package:app_giao_do_an/notification.dart';
-import 'package:app_giao_do_an/order.dart';
-import 'package:app_giao_do_an/profile.dart';
-import 'package:app_giao_do_an/register_screen.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/login_register/login_screen.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/notificati/notification.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/shop/order.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/add/profile.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/login_register/register_screen.dart';
 import 'package:app_giao_do_an/route.dart';
-import 'package:app_giao_do_an/update_profile.dart';
+import 'package:app_giao_do_an/screen/homeapp/product_type.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/add/update_profile.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
       ),
         onGenerateRoute: RouterNav.generateRoute,
         navigatorKey: navigatorKey,
-      home: UpdateProfile(),
+      home: HomeApp(),
     );
   }
 }

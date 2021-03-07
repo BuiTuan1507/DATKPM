@@ -76,24 +76,36 @@ class _PersonalState extends State<Personal> {
               Row(
                 children: <Widget>[
                   Container(width: 15,),
-                  Container(
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, PROFILE);
+                    },
+                    child:Container(
 
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(100)
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(100)
+                        ),
+                        child: Center(
+                          child:Icon(Icons.person,color: Colors.white,),
+                        )
+
                     ),
-                    child: Center(
-                      child:Icon(Icons.person,color: Colors.white,),
-                      )
-
                   ),
+
                   Container(width: 20,),
-                  Container(
-                    padding: EdgeInsets.only(top: 10, bottom: 10),
-                    child: Text("Trang cá nhân", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, PROFILE);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.only(top: 10, bottom: 10),
+                      child: Text("Trang cá nhân", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
+                    ),
                   )
+
                 ],
               ),
               Container(height: 10,),

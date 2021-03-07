@@ -1,19 +1,24 @@
-import 'package:app_giao_do_an/activity_user.dart';
-import 'package:app_giao_do_an/new_infomation.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/shop/needpay.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/shop/onsale.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/shop/other.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/shop/refuse.dart';
 import 'package:app_giao_do_an/route.dart';
 import 'package:flutter/material.dart';
-class NotificationApp extends StatefulWidget {
+class Order extends StatefulWidget {
   @override
-  _NotificationAppState createState() => _NotificationAppState();
+  _OrderState createState() => _OrderState();
 }
 
-class _NotificationAppState extends State<NotificationApp> {
-  int _tinMoi = 0; // so luong tin dang rao
+class _OrderState extends State<Order> {
+  int _dangBan = 0; // so luong tin dang rao
+  int _tuChoi = 0; // tin dang bi tu choi
+  int _canThanhToan = 0; // tin dang can thanh toan khi co nguoi mua
 
+  int _khac = 0 ; //tin bi an
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 4,
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.amber,
@@ -48,16 +53,27 @@ class _NotificationAppState extends State<NotificationApp> {
                   Tab(
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("Hoạt động" + "",style: TextStyle(fontSize: 18),),
+                      child: Text("Đang bán" + " (${_dangBan.toString()})",style: TextStyle(fontSize: 18),),
                     ),
                   ),
                   Tab(
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("Tin mới" + " (${_tinMoi.toString()})",style: TextStyle(fontSize: 18)),
+                      child: Text("Bị từ chối" + " (${_tuChoi.toString()})",style: TextStyle(fontSize: 18)),
                     ),
                   ),
-
+                  Tab(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text("Thanh toán" + " (${_canThanhToan.toString()})",style: TextStyle(fontSize: 18)),
+                    ),
+                  ),
+                  Tab(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text("Khác" + " (${_khac.toString()})",style: TextStyle(fontSize: 18)),
+                    ),
+                  ),
 
                 ]
 
@@ -65,8 +81,10 @@ class _NotificationAppState extends State<NotificationApp> {
           ),
           body: TabBarView(
             children: [
-              ActivityUser(),
-              NewInfomation()
+              OnSale(),
+              RefuseItem(),
+              NeedPay(),
+              OtherApp()
             ],
           )
       ),

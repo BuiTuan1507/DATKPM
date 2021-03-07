@@ -1,3 +1,4 @@
+import 'package:app_giao_do_an/route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 class Profile extends StatefulWidget {
@@ -63,7 +64,9 @@ class _ProfileState extends State<Profile> {
                       Row(
                         children: <Widget>[
                           InkWell(
-                            onTap: (){},
+                            onTap: (){
+                              Navigator.pushNamed(context, UPDATEPROFILE);
+                            },
                             child:Container(
                               padding: EdgeInsets.all(10),
                               decoration: BoxDecoration(
