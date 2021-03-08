@@ -157,22 +157,185 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
               )
             ],
           ),
-            Container(height: 15,),
+            Container(height: 2,),
+            Divider(
+              thickness: 1,
+              color: Colors.grey[400],
+            ),
+            Row(
+
+              children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.all(12),
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage('assets/ramdom.jpg'),
+                      radius: 25,
+                    ),
+                  ),
+                SizedBox(
+                  width: queryData.size.width*0.55,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.only(bottom: 6,right: 10),
+                        child: Text(
+                          'Cửa hàng điện thoại bán đồ dởm ', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),textAlign: TextAlign.left,
+                        ),
+                      ),
+                      Container(
+
+                        alignment: Alignment.centerLeft,
+                        child: Text('Hoạt động' + ' 1 ' + 'giờ trước',style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400,color: Colors.grey[400]),),
+                      )
+                    ],
+                  ),
+                ),
+
+
+                InkWell(
+                  onTap: (){},
+                  child: Container(
+                    padding: EdgeInsets.all(7),
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 1, color: Colors.amber),
+                        borderRadius: BorderRadius.circular(20)
+                    ),
+                    child: Center(
+                      child: Text('Xem trang',style: TextStyle(fontWeight: FontWeight.w400,fontSize: 17,color: Colors.amber),),
+                    ),
+                  ),
+                )
+
+              ],
+            ),
+            IntrinsicHeight(
+              child: Row(
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.only(left: 50,top: 12,bottom: 6,right: 50),
+                        child: Text('Cửa hàng',style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, ),),
+                      ),
+                      Container(
+                        child: Icon(Icons.business_center,size: 28,),
+                      )
+                    ],
+                  ),
+                  VerticalDivider(
+                    indent: 20,
+                    thickness: 2,
+                    color: Colors.grey[500],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.only(left: 50,top: 12,bottom: 6,right: 50),
+                        child: Text('Đánh giá',style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, )),
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Container(
+                            child: Text('4.0 ',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.red )),
+                          ),
+                          Container(
+                            child: Icon(Icons.star,size:28,color: Colors.amber,),
+                          ),
+                          Container(
+                            child: Text(' (321)',style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, )),
+                          )
+                        ],
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+            Container(height: 10,),
             Divider(
               thickness: 1,
               color: Colors.grey[400],
             ),
             Row(
               children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.all(12),
-                    child: CircleAvatar(
-                      backgroundImage: AssetImage('assets/ramdom.jpg'),
-                      radius: 20,
-                    ),
-                  )
+                Flexible(
+                  child: Container(
+                    padding: EdgeInsets.only(top: 12,left: 12,right: 12,bottom: 12),
+                    child: Text('Chuyên bán đồ rởm, đồ kém chất lượng, hàng Trung quốc kém chất lượng. Ai có nhu cầu mua xin liên hệ 09xx.xxx.xxx'
+                      ,style: TextStyle(fontSize: 19, fontWeight: FontWeight.w400),
+                      overflow: TextOverflow.fade,textAlign: TextAlign.left,),
+                  ),
+                )
+
               ],
-            )
+            ),
+            Container(height: 10,),
+            Divider(
+
+              thickness: 1,
+              color: Colors.grey[400],
+            ),
+            Container(
+              height: 10,
+            ),
+            Column(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(left: 15),
+                  child: Text('Thông tin sản phẩm',style:TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.grey[400]) ,),
+                ),
+                Container(
+                  padding: EdgeInsets.only(left: 15,top: 15,bottom: 10,right: 12),
+                  child: Text('Điện thoại IP 12, máy mới dùng 1 tháng, còn nguyên bảo hành, các thiết bị'
+                      ,style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),),
+                ),
+              ],
+            ),
+            Divider(
+
+              thickness: 1,
+              color: Colors.grey[400],
+            ),
+            Row(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(left: 12),
+                  child: Text('Khu vực' ,style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.grey[400]),),
+                )
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.all(12),
+                  child: Icon(Icons.location_on,size: 28,),
+                ),
+                Flexible(
+                  child: Container(
+                    child: Text('Phường Mai Động, Quận Hoàng Mai, Hà Nội', style:TextStyle(fontSize: 19, fontWeight: FontWeight.w400, color:Colors.black45)),
+                  ),
+                )
+
+              ],
+            ),
+            Container(
+              height: 15,
+            ),
+            Container(
+              padding: EdgeInsets.all(15),
+              child: RichText(
+                text:  TextSpan(
+                    style: TextStyle(fontSize: 17,color: Colors.black),
+                    children: <TextSpan>[
+                      TextSpan(text: 'Tin đăng đã được kiểm duyệt . Nếu gặp bất cứ vấn đề gì, xin vui lòng liên hệ'),
+                      TextSpan(text: ' 0922121212',style: TextStyle(fontWeight: FontWeight.w400,fontSize: 21,color: Colors.blue),),
+                    ]
+
+                ),
+              ),
+            ),
+
           ],
 
         ),
