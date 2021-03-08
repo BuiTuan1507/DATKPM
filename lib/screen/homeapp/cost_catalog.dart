@@ -25,7 +25,7 @@ class _CostCatalogState extends State<CostCatalog> {
       appBar: AppBar(
         backgroundColor: Colors.amber,
         centerTitle: true,
-        title: Text('Chọn danh mục', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),),
+        title: Text('Chọn giá', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),),
       ),
       body: Column(
         children: <Widget>[
@@ -42,13 +42,32 @@ class _CostCatalogState extends State<CostCatalog> {
               },
               min: 1,
               max: 200,
-              //divisions: 5,
+              divisions: 8,
               //label: '$costSearch',
             ),
           ),
           Container(
             child: Text('${_formatMoney(costSearch.round())}', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400),),
-          )
+          ),
+          Container(height: 40,),
+          InkWell(
+              onTap: (){},
+              child: Container(
+                  height: 50,
+                  width: 120,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.amber
+                  ),
+                  child: Center(
+                    child: Text('Tìm kiếm',
+                        style: new TextStyle(fontSize: 20.0, color: Colors.white)),
+                  )
+
+              )
+          ),
+
+
         ],
       ),
     );

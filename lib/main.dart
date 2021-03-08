@@ -9,6 +9,8 @@ import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_a
 import 'package:app_giao_do_an/route.dart';
 import 'package:app_giao_do_an/screen/homeapp/cost_catalog.dart';
 import 'package:app_giao_do_an/screen/homeapp/electronic_catalog.dart';
+import 'package:app_giao_do_an/screen/homeapp/item_electronic_detail.dart';
+import 'package:app_giao_do_an/screen/homeapp/priority_catalog.dart';
 import 'package:app_giao_do_an/screen/homeapp/product_type.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/add/update_profile.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +50,7 @@ class MyApp extends StatelessWidget {
       ),
         onGenerateRoute: RouterNav.generateRoute,
         navigatorKey: navigatorKey,
-      home: CostCatalog(),
+      home: ItemElectronicDetail(),
     );
   }
 }
