@@ -1,31 +1,29 @@
 import 'package:app_giao_do_an/model/item.dart';
+import 'package:app_giao_do_an/route.dart';
 import 'package:badges/badges.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-class ProductType extends StatefulWidget {
+class VehicleProductType extends StatefulWidget {
   String hintSearchText;
-  int catalogF = 0;
-  ProductType(
+  int catalogV = 0;
+  VehicleProductType(
       {Key key,
-        this.catalogF,
+        this.catalogV,
       })
       : super(key: key);
   @override
-  _ProductTypeState createState() => _ProductTypeState();
+  _VehicleProductTypeState createState() => _VehicleProductTypeState();
 }
 
-class _ProductTypeState extends State<ProductType> {
+class _VehicleProductTypeState extends State<VehicleProductType> {
+
   Item item1 = new Item('1','nha xa','assets/h1.jpg',20,'Ha noi',true);
   bool isFavorite = false;
-  var catalogE = ['Đồ điện tử','Điện thoại','Máy tính bảng', 'Lap top', 'Máy tính để bàn', 'Phụ kiện'];
-
+  var catalogE = ['Xe cộ','Xe máy','Xe điện', 'Xe đạp','Phụ kiện'];
   @override
   Widget build(BuildContext context) {
-
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
-    TextEditingController searchController;
+    TextEditingController _searchController;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -39,7 +37,7 @@ class _ProductTypeState extends State<ProductType> {
               border: Border.all(color: Colors.black54, width: 0.5),
               color: Colors.white),
           child: TextField(
-            controller: searchController,
+            controller: _searchController,
             textAlign: TextAlign.left,
             decoration: InputDecoration(
               prefixIcon: Icon(
@@ -47,7 +45,7 @@ class _ProductTypeState extends State<ProductType> {
                 color: Colors.black,
               ),
               //hintText: widget.hintSearchText,
-              hintText: catalogE[widget.catalogF],
+              hintText: catalogE[0],
               hintStyle: TextStyle(
                   fontSize: 18,
                   color: Colors.black45,
@@ -100,11 +98,11 @@ class _ProductTypeState extends State<ProductType> {
                   child: Row(
                     children: <Widget>[
                       InkWell(
-                        onTap: (){
-
-                        },
+                        //onTap: (){
+                         // Navigator.pushNamed(context, ELECTRONICCATALOG);
+                        //},
                         child: Container(
-                          child: Text(catalogE[widget.catalogF], style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: Colors.black),),
+                          child: Text(catalogE[0], style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: Colors.black),),
                         ),
                       ),
                       InkWell(
@@ -125,7 +123,7 @@ class _ProductTypeState extends State<ProductType> {
                     children: <Widget>[
                       InkWell(
                         onTap: (){
-
+                          Navigator.pushNamed(context, COSTCATALOG);
                         },
                         child: Container(
                           child: Text('Giá', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: Colors.black),),
@@ -149,7 +147,7 @@ class _ProductTypeState extends State<ProductType> {
                     children: <Widget>[
                       InkWell(
                         onTap: (){
-
+                          Navigator.pushNamed(context, PRIORITYCATALOG);
                         },
                         child: Container(
                           child: Text('Ưu tiên', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: Colors.black),),
@@ -187,14 +185,14 @@ class _ProductTypeState extends State<ProductType> {
                               border: Border.all(width: 1, color: Colors.black45)
                           ),
                           child: Center(
-                            child: Icon(Icons.phone_android, color: Colors.black,size: 26,),
+                            child: Icon(Icons.motorcycle, color: Colors.black,size: 26,),
                           ),
                         ),
                         Container(
                           height: 7,
                         ),
                         Container(
-                          child: Text('Điện thoại', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
+                          child: Text('Xe máy', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
                         )
                       ],
                     ),
@@ -213,7 +211,7 @@ class _ProductTypeState extends State<ProductType> {
                               border: Border.all(width: 1, color: Colors.black45)
                           ),
                           child: Center(
-                            child: Icon(Icons.tablet, color: Colors.black,size: 26,),
+                            child: Icon(Icons.directions_bike, color: Colors.black,size: 26,),
                           ),
                         ),
                         Container(
@@ -221,7 +219,7 @@ class _ProductTypeState extends State<ProductType> {
                         ),
                         Container(
                           //margin: EdgeInsets.only(left: 20),
-                          child: Text('Máy tính bảng', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),textAlign: TextAlign.center,),
+                          child: Text('Máy điện', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),textAlign: TextAlign.center,),
                         )
                       ],
                     ),
@@ -238,14 +236,14 @@ class _ProductTypeState extends State<ProductType> {
                               border: Border.all(width: 1, color: Colors.black45)
                           ),
                           child: Center(
-                            child: Icon(Icons.laptop, color: Colors.black,size: 26,),
+                            child: Icon(Icons.directions_bike, color: Colors.black,size: 26,),
                           ),
                         ),
                         Container(
                           height: 7,
                         ),
                         Container(
-                          child: Text('Lap top', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
+                          child: Text('Xe đạp', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
                         )
                       ],
                     ),
@@ -262,43 +260,19 @@ class _ProductTypeState extends State<ProductType> {
                               border: Border.all(width: 1, color: Colors.black45)
                           ),
                           child: Center(
-                            child: Icon(Icons.computer, color: Colors.black,size: 26,),
+                            child: Icon(Icons.settings_applications, color: Colors.black,size: 26,),
                           ),
                         ),
                         Container(
                           height: 7,
                         ),
                         Container(
-                          child: Text('Máy tính để bàn', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),textAlign: TextAlign.center,),
+                          child: Text('Phụ kiện xe', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),textAlign: TextAlign.center,),
                         )
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: 100,
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              border: Border.all(width: 1, color: Colors.black45)
-                          ),
-                          child: Center(
-                            child: Icon(Icons.headset, color: Colors.black,size: 26,),
-                          ),
-                        ),
-                        Container(
-                          height: 7,
-                        ),
-                        Container(
 
-                          child: Text('Phụ kiện',textAlign: TextAlign.center ,style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
-                        )
-                      ],
-                    ),
-                  )
                 ],
               ),
             ),
@@ -348,15 +322,21 @@ class _ProductTypeState extends State<ProductType> {
                     padding: EdgeInsets.all(12),
                     child: Row(
                       children: <Widget>[
-                        Container(
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(6.0),
-                            child: Image.asset('assets/h1.jpg',fit: BoxFit.cover,
-                              height: 120,
-                              width: 140,
+                        InkWell(
+                          onTap: (){
+                            Navigator.pushNamed(context, ITEMELECTRONICDETAIL);
+                          },
+                          child:Container(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(6.0),
+                              child: Image.asset('assets/h1.jpg',fit: BoxFit.cover,
+                                height: 120,
+                                width: 140,
+                              ),
                             ),
                           ),
                         ),
+
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -373,7 +353,7 @@ class _ProductTypeState extends State<ProductType> {
                               Row(
                                 children: <Widget>[
                                   Container(
-                                    padding:EdgeInsets.only(left: 15),
+                                      padding:EdgeInsets.only(left: 15),
                                       child: (item1.isStore == true) ? (Icon(Icons.store, size: 25,)) : (Icon(Icons.person_pin))),
                                   Container(
                                     padding: EdgeInsets.only(left: 15,right: 70),
@@ -394,8 +374,7 @@ class _ProductTypeState extends State<ProductType> {
             )
           ],
         ),
-      )
-
+      ),
     );
   }
 }

@@ -156,19 +156,25 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                     width: 100,
                     child: Column(
                       children: <Widget>[
-                        Container(
+                        InkWell(
+                          onTap:(){
+                            Navigator.pushNamed(context,PROFILE );
+                          },
+                          child:Container(
 
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.circular(100)
-                            ),
-                            child: Center(
-                              child:Icon(Icons.person,color: Colors.white,),
-                            )
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(100)
+                              ),
+                              child: Center(
+                                child:Icon(Icons.person,color: Colors.white,),
+                              )
 
+                          ),
                         ),
+
                         Container(
                           child: Text("Trang cá nhân", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18, color: Colors.black,),textAlign: TextAlign.center,),
                         )
@@ -179,21 +185,24 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                     width: 100,
                     child: Column(
                       children: <Widget>[
-                        Container(
+                        InkWell(
+                          onTap:(){},
+                          child: Container(
 
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.circular(100)
-                            ),
-                            child: Center(
-                              child:Icon(Icons.person,color: Colors.white,),
-                            )
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius: BorderRadius.circular(100)
+                              ),
+                              child: Center(
+                                child:Icon(Icons.favorite,color: Colors.white,),
+                              )
 
+                          ),
                         ),
                         Container(
-                          child: Text("Trang cá nhân", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18, color: Colors.black,),textAlign: TextAlign.center,),
+                          child: Text("Tin đã lưu", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18, color: Colors.black,),textAlign: TextAlign.center,),
                         )
                       ],
                     ),
@@ -202,19 +211,25 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                     width: 100,
                     child: Column(
                       children: <Widget>[
-                        Container(
+                        InkWell(
+                          onTap:(){
 
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.circular(100)
-                            ),
-                            child: Center(
-                              child:Icon(Icons.person,color: Colors.white,),
-                            )
+                          },
+                          child: Container(
 
-                        ),
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(100)
+                              ),
+                              child: Center(
+                                child:Icon(Icons.person,color: Colors.white,),
+                              )
+
+                          ),
+                        )
+                        ,
                         Container(
                           child: Text("Trang cá nhân", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18, color: Colors.black,),textAlign: TextAlign.center,),
                         )
@@ -368,7 +383,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                   ),
                   InkWell(
                     onTap: (){
-                      Navigator.pushNamed(context, PRODUCTTYPE);
+                      Navigator.pushNamed(context, PRODUCTTYPE,arguments: {'catalogF':0});
                       print(2);
                     },
                     child: SizedBox(

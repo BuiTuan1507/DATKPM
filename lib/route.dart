@@ -7,7 +7,11 @@ import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_a
 import 'package:app_giao_do_an/hone_app.dart';
 import 'package:app_giao_do_an/screen/add/profile.dart';
 import 'package:app_giao_do_an/screen/add/update_profile.dart';
-import 'package:app_giao_do_an/screen/homeapp/product_type.dart';
+import 'package:app_giao_do_an/screen/homeapp/cost_catalog.dart';
+import 'package:app_giao_do_an/screen/homeapp/electronic_catalog.dart';
+import 'package:app_giao_do_an/screen/homeapp/item_electronic_detail.dart';
+import 'package:app_giao_do_an/screen/homeapp/priority_catalog.dart';
+import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/homeapp/product/electronic_product_type.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/shop/order.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/add/personal.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/login_register/register_screen.dart';
@@ -24,6 +28,10 @@ const String CHANGEINFO = '/changeInfo';
 const String PROFILE = '/profile';
 const String UPDATEPROFILE  = '/updateProfle';
 const String PRODUCTTYPE = '/productType';
+const String ELECTRONICCATALOG= '/electronicCatalog';
+const String COSTCATALOG = '/costCatalog';
+const String PRIORITYCATALOG = '/priorityCatalog';
+const String ITEMELECTRONICDETAIL = '/itemElectronicDetail';
 class NavService {
   static GlobalKey<NavigatorState> navigatorKey =
   new GlobalKey<NavigatorState>();
@@ -59,7 +67,15 @@ class RouterNav {
       case PRODUCTTYPE :
         var argument1 = settings.arguments as Map;
         return MaterialPageRoute(builder: (context) => ProductType(catalogF: argument1['catalogF'],));
-        default:
+      case ELECTRONICCATALOG :
+        return MaterialPageRoute(builder: (context) => ElectronicCatalog());
+      case COSTCATALOG :
+        return MaterialPageRoute(builder: (context) => CostCatalog());
+      case PRIORITYCATALOG :
+        return MaterialPageRoute(builder: (context) => PriorityCatalog());
+      case ITEMELECTRONICDETAIL :
+        return MaterialPageRoute(builder: (context) => ItemElectronicDetail());
+      default:
         return MaterialPageRoute(builder: (context) => HomeApp());
     }
   }
