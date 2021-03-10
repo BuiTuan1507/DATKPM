@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "517911159821",
+    "project_id": "appdoan-53f1b",
+    "storage_bucket": "appdoan-53f1b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517911159821:android:63de19accf235b20eaa144",
+        "android_client_info": {
+          "package_name": "com.example.app_giao_do_an"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517911159821-a9293o3pn3dipshujtjt7h1s2lpov47q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAG_zoAGlmdYgjlOgSvLbAlxEKDgaQhmU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517911159821-a9293o3pn3dipshujtjt7h1s2lpov47q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

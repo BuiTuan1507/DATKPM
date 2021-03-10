@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 class RegisterScreen extends StatefulWidget {
   @override
@@ -13,6 +15,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
     setState(() {
       _obscureText = !_obscureText;
     });
+  }
+  void register() async{
+    final Firestore _firebaseAuth = Firestore.instance;
+   _firebaseAuth.collection('User').add(
+     {
+       'email':'hello',
+       'password':'ueu'
+     }
+
+   );
   }
   @override
   Widget build(BuildContext context) {
@@ -128,7 +140,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             Container(height: 40,),
             InkWell(
-                onTap: (){},
+                onTap: (){register();},
                 child: Container(
                     height: 50,
                     width: queryData.size.width*0.9,
