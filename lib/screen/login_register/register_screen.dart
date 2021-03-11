@@ -1,7 +1,13 @@
+import 'package:app_giao_do_an/service/Auth.dart';
+import 'package:app_giao_do_an/service/BaseAuth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 class RegisterScreen extends StatefulWidget {
+  RegisterScreen({this.auth, this.loginCallback});
+
+  final BaseAuth auth;
+  final VoidCallback loginCallback;
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
@@ -11,20 +17,62 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String email;
   String password;
   bool _obscureText = true;
+  String errorMessage = '';
+  bool isLoading;
   void _toggle() {
     setState(() {
       _obscureText = !_obscureText;
     });
   }
-  void register() async{
-    final Firestore _firebaseAuth = Firestore.instance;
-   _firebaseAuth.collection('User').add(
-     {
-       'email':'hello',
-       'password':'ueu'
-     }
+  bool validateAndSave() {
+    final form = _formKey.currentState;
+    if (form.validate()) {
+      form.save();
+      return true;
+    }
+    return false;
+  }
 
-   );
+  void submit() async {
+    setState(() {
+      errorMessage = '';
+      isLoading = true;
+    });
+    if (validateAndSave()) {
+      String userId = '';
+      try {
+
+        userId = await widget.auth.signUp(email, password);
+        setState(() {
+          isLoading = false;
+        });
+        print(userId);
+        if (userId.length > 0 && userId != null) {
+          widget.loginCallback();
+          final firestoreInstance = Firestore.instance;
+          firestoreInstance.collection('User').document(userId).setData(
+            {
+              'uuid': userId,
+              'email': email,
+              'password':password
+            }
+          );
+
+        }
+      } catch (e) {
+        setState(() {
+          isLoading = false;
+          //errorMessage = e.message;
+          _formKey.currentState.reset();
+        });
+      }
+    }
+  }
+  @override
+  void initState() {
+    errorMessage = "";
+    isLoading = false;
+    super.initState();
   }
   @override
   Widget build(BuildContext context) {
@@ -139,8 +187,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
             Container(height: 40,),
+            (isLoading)
+                ? Center(child: CircularProgressIndicator(),)
+                : Container(height: 0, width: 0,),
             InkWell(
-                onTap: (){register();},
+                onTap: (){
+                  submit();
+                },
                 child: Container(
                     height: 50,
                     width: queryData.size.width*0.9,
@@ -182,7 +235,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 )
               ],
+            ),
+            (errorMessage.length > 0 && errorMessage != null) ?
+            Center(
+              child: Text(
+                errorMessage, style: TextStyle(
+                  fontSize: 14, color: Colors.red, height: 1.0),
+              ),
+            ) :
+            Container(
+              height: 0,
             )
+
 
 
 

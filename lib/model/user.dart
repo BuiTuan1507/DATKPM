@@ -7,6 +7,6 @@ class User{
   String phoneNumber;
   String email;
   String password;
-
-  User(this.uuid,this.phoneNumber, this.password);
+  DateTime timeOnline;
+  User(this.uuid,this.email, this.password);
 }

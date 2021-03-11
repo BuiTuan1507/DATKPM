@@ -1,8 +1,15 @@
 import 'package:app_giao_do_an/route.dart';
+import 'package:app_giao_do_an/service/BaseAuth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 class Personal extends StatefulWidget {
+  Personal({Key key, this.auth, this.userId, this.logoutCallback})
+      : super(key: key);
+
+  final BaseAuth auth;
+  final VoidCallback logoutCallback;
+  final String userId;
   @override
   _PersonalState createState() => _PersonalState();
 }
@@ -11,6 +18,15 @@ class _PersonalState extends State<Personal> {
   String name= "objjur";
   int point = 0;
   bool isLogin = false;
+  signOut() async {
+    try {
+      await widget.auth.signOut();
+      widget.logoutCallback();
+      print('logout');
+    } catch (e) {
+      print(e);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData;
@@ -289,7 +305,8 @@ class _PersonalState extends State<Personal> {
                   Container(width: 15,),
                   InkWell(
                     onTap: (){
-                      Navigator.pushNamed(context, LOGIN);
+                      signOut();
+                      //Navigator.pushNamed(context, LOGIN);
                     },
                     child: Container(
 
@@ -309,7 +326,8 @@ class _PersonalState extends State<Personal> {
                   Container(width: 20,),
                   InkWell(
                     onTap: (){
-                      Navigator.pushNamed(context, LOGIN);
+                      signOut();
+                      //Navigator.pushNamed(context, LOGIN);
                     },
                     child: Container(
                       padding: EdgeInsets.only(top: 10, bottom: 10),

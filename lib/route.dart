@@ -51,11 +51,17 @@ class RouterNav {
       case NOTIFICATION:
         return MaterialPageRoute(builder: (context) => NotificationApp());
       case PERSONAL:
-        return MaterialPageRoute(builder: (context) => Personal());
+        var _argument = settings.arguments as Map;
+        return MaterialPageRoute(builder: (context) => Personal(
+          logoutCallback: _argument['logoutCallback'], auth: _argument['auth'], userId: _argument['userId'],
+        ));
       case LOGIN :
         return MaterialPageRoute(builder: (context) => LoginScreen());
       case REGISTER :
-        return MaterialPageRoute(builder: (context) => RegisterScreen());
+        var _argument = settings.arguments as Map;
+        return MaterialPageRoute(builder: (context) => RegisterScreen(
+          auth: _argument['auth'],loginCallback: _argument['logoutCallback'],
+        ));
       case CHANGEINFO :
         var argument = settings.arguments as Map;
         return MaterialPageRoute(builder: (context) =>ChangeInfo(name: argument['name'],email: argument['email'],

@@ -4,10 +4,17 @@ import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_a
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/shop/order.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/add/personal.dart';
 import 'package:app_giao_do_an/route.dart';
+import 'package:app_giao_do_an/service/BaseAuth.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class HomeApp extends StatefulWidget {
+  HomeApp({Key key, this.auth, this.userId, this.logoutCallback})
+      : super(key: key);
+
+  final BaseAuth auth;
+  final VoidCallback logoutCallback;
+  final String userId;
   @override
   _HomeAppState createState() => _HomeAppState();
 }
@@ -16,13 +23,7 @@ class _HomeAppState extends State<HomeApp> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  List<Widget> _widgetOptions = <Widget>[
-    HomeAppScreen(),
-    Order(),
-    Favorite(),
-    NotificationApp(),
-    Personal()
-  ];
+
 
   void _onItemTapped(int index) {
     setState(() {
@@ -32,6 +33,13 @@ class _HomeAppState extends State<HomeApp> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> _widgetOptions = <Widget>[
+      HomeAppScreen(),
+      Order(),
+      Favorite(),
+      NotificationApp(),
+      Personal(auth: widget.auth,logoutCallback: widget.logoutCallback,userId: widget.userId,)
+    ];
     return Scaffold(
 
       body: SafeArea(
