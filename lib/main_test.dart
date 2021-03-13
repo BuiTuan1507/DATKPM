@@ -14,6 +14,7 @@ import 'package:app_giao_do_an/screen/homeapp/priority_catalog.dart';
 import 'package:app_giao_do_an/screen/homeapp/product/vehicle_product_type.dart';
 import 'package:app_giao_do_an/screen/login_register/register_screen.dart';
 import 'package:app_giao_do_an/screen/sell/add_post.dart';
+import 'package:app_giao_do_an/screen/sell/category_post.dart';
 import 'package:app_giao_do_an/screen/sell/contact_infomation.dart';
 import 'package:app_giao_do_an/screen/sell/product_infomation.dart';
 import 'package:app_giao_do_an/service/Auth.dart';
@@ -24,5 +25,5 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
-  home: AddPost(),
+  home: CategoryPost(),
 ));

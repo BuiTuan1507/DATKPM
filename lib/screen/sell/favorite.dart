@@ -35,6 +35,9 @@ class _FavoriteState extends State<Favorite> {
                  child: Text("Phòng trọ",style: TextStyle(fontSize: 19, fontWeight: FontWeight.w500),),
                ),
                InkWell(
+                 onTap: (){
+                   Navigator.pushNamed(context, CATEGORYPOST,arguments: {'selectType':1});
+                 },
                  child: Container(
 
                    child: Icon(Icons.arrow_forward_ios, size: 24,color: Colors.black45,),
@@ -62,6 +65,9 @@ class _FavoriteState extends State<Favorite> {
                   child: Text("Xe cộ",style: TextStyle(fontSize: 19, fontWeight: FontWeight.w500),),
                 ),
                 InkWell(
+                  onTap: (){
+                    Navigator.pushNamed(context, CATEGORYPOST,arguments: {'selectType': 2});
+                  },
                   child: Container(
 
                     child: Icon(Icons.arrow_forward_ios, size: 24,color: Colors.black45,),
@@ -89,6 +95,9 @@ class _FavoriteState extends State<Favorite> {
                   child: Text("Đồ điện tử",style: TextStyle(fontSize: 19, fontWeight: FontWeight.w500),),
                 ),
                 InkWell(
+                  onTap: (){
+                    Navigator.pushNamed(context, CATEGORYPOST,arguments: {'selectType':4});
+                  },
                   child: Container(
 
                     child: Icon(Icons.arrow_forward_ios, size: 24,color: Colors.black45,),
@@ -116,6 +125,9 @@ class _FavoriteState extends State<Favorite> {
                   child: Text("Giáo trình",style: TextStyle(fontSize: 19, fontWeight: FontWeight.w500),),
                 ),
                 InkWell(
+                  onTap: (){
+                    Navigator.pushNamed(context, CATEGORYPOST,arguments: {'selectType':8});
+                  },
                   child: Container(
 
                     child: Icon(Icons.arrow_forward_ios, size: 24,color: Colors.black45,),
@@ -143,6 +155,9 @@ class _FavoriteState extends State<Favorite> {
                   child: Text("Thú cưng",style: TextStyle(fontSize: 19, fontWeight: FontWeight.w500),),
                 ),
                 InkWell(
+                  onTap: (){
+                    Navigator.pushNamed(context, CATEGORYPOST,arguments: {'selectType':3});
+                  },
                   child: Container(
 
                     child: Icon(Icons.arrow_forward_ios, size: 24,color: Colors.black45,),
@@ -170,6 +185,9 @@ class _FavoriteState extends State<Favorite> {
                   child: Text("Đồ gia dụng",style: TextStyle(fontSize: 19, fontWeight: FontWeight.w500),),
                 ),
                 InkWell(
+                  onTap: (){
+                    Navigator.pushNamed(context, CATEGORYPOST,arguments: {'selectType':6});
+                  },
                   child: Container(
 
                     child: Icon(Icons.arrow_forward_ios, size: 24,color: Colors.black45,),
@@ -197,6 +215,9 @@ class _FavoriteState extends State<Favorite> {
                   child: Text("Đồ ăn",style: TextStyle(fontSize: 19, fontWeight: FontWeight.w500),),
                 ),
                 InkWell(
+                  onTap: (){
+                    Navigator.pushNamed(context, CATEGORYPOST,arguments: {'selectType': 5});
+                  },
                   child: Container(
 
                     child: Icon(Icons.arrow_forward_ios, size: 24,color: Colors.black45,),
@@ -224,6 +245,9 @@ class _FavoriteState extends State<Favorite> {
                   child: Text("Việc làm",style: TextStyle(fontSize: 19, fontWeight: FontWeight.w500),),
                 ),
                 InkWell(
+                  onTap: (){
+                    Navigator.pushNamed(context, CATEGORYPOST,arguments: {'selectType':8});
+                  },
                   child: Container(
 
                     child: Icon(Icons.arrow_forward_ios, size: 24,color: Colors.black45,),

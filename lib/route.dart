@@ -12,6 +12,7 @@ import 'package:app_giao_do_an/screen/homeapp/electronic_catalog.dart';
 import 'package:app_giao_do_an/screen/homeapp/item_electronic_detail.dart';
 import 'package:app_giao_do_an/screen/homeapp/priority_catalog.dart';
 import 'package:app_giao_do_an/screen/sell/add_post.dart';
+import 'package:app_giao_do_an/screen/sell/category_post.dart';
 import 'package:app_giao_do_an/screen/sell/contact_infomation.dart';
 import 'package:app_giao_do_an/screen/sell/product_infomation.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/homeapp/product/electronic_product_type.dart';
@@ -38,6 +39,7 @@ const String ITEMELECTRONICDETAIL = '/itemElectronicDetail';
 const String PRODUCTINFOMATION = '/productInfomation';
 const String CONTACTINFOMATION = '/contactInfomation';
 const String ADDPOST = '/addPost';
+const String CATEGORYPOST = '/categoryPost';
 class NavService {
   static GlobalKey<NavigatorState> navigatorKey =
   new GlobalKey<NavigatorState>();
@@ -93,6 +95,9 @@ class RouterNav {
         return MaterialPageRoute(builder: (context) => ProductInfomation());
       case ADDPOST :
         return MaterialPageRoute(builder: (context) => AddPost());
+      case CATEGORYPOST:
+        var _agrument = settings.arguments as Map;
+        return MaterialPageRoute(builder: (context) => CategoryPost(selectedType: _agrument['selectType'],));
       default:
         return MaterialPageRoute(builder: (context) => HomeApp());
     }
