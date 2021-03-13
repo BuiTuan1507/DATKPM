@@ -32,7 +32,7 @@ class _FavoriteState extends State<Favorite> {
                Container(
                  width: queryData.size.width*0.72,
                  padding: EdgeInsets.only(top: 10,bottom: 7),
-                 child: Text("Bất động sản",style: TextStyle(fontSize: 19, fontWeight: FontWeight.w500),),
+                 child: Text("Phòng trọ",style: TextStyle(fontSize: 19, fontWeight: FontWeight.w500),),
                ),
                InkWell(
                  child: Container(
@@ -108,12 +108,12 @@ class _FavoriteState extends State<Favorite> {
 
                 Container(
                   padding: EdgeInsets.only(left: 20,top: 10, bottom: 7, right:20 ),
-                  child: Icon(Icons.videogame_asset,size: 33,color: Colors.black45,),
+                  child: Icon(Icons.book,size: 33,color: Colors.black45,),
                 ),
                 Container(
                   width: queryData.size.width*0.72,
                   padding: EdgeInsets.only(top: 10,bottom: 7),
-                  child: Text("Giải trí, thể thao",style: TextStyle(fontSize: 19, fontWeight: FontWeight.w500),),
+                  child: Text("Giáo trình",style: TextStyle(fontSize: 19, fontWeight: FontWeight.w500),),
                 ),
                 InkWell(
                   child: Container(
@@ -216,12 +216,12 @@ class _FavoriteState extends State<Favorite> {
 
                 Container(
                   padding: EdgeInsets.only(left: 20,top: 10, bottom: 7, right:20 ),
-                  child: Icon(Icons.streetview,size: 33,color: Colors.black45,),
+                  child: Icon(Icons.work,size: 33,color: Colors.black45,),
                 ),
                 Container(
                   width: queryData.size.width*0.72,
                   padding: EdgeInsets.only(top: 10,bottom: 7),
-                  child: Text("Thời trang",style: TextStyle(fontSize: 19, fontWeight: FontWeight.w500),),
+                  child: Text("Việc làm",style: TextStyle(fontSize: 19, fontWeight: FontWeight.w500),),
                 ),
                 InkWell(
                   child: Container(

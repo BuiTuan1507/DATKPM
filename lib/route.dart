@@ -11,6 +11,9 @@ import 'package:app_giao_do_an/screen/homeapp/cost_catalog.dart';
 import 'package:app_giao_do_an/screen/homeapp/electronic_catalog.dart';
 import 'package:app_giao_do_an/screen/homeapp/item_electronic_detail.dart';
 import 'package:app_giao_do_an/screen/homeapp/priority_catalog.dart';
+import 'package:app_giao_do_an/screen/sell/add_post.dart';
+import 'package:app_giao_do_an/screen/sell/contact_infomation.dart';
+import 'package:app_giao_do_an/screen/sell/product_infomation.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/homeapp/product/electronic_product_type.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/shop/order.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/add/personal.dart';
@@ -32,6 +35,9 @@ const String ELECTRONICCATALOG= '/electronicCatalog';
 const String COSTCATALOG = '/costCatalog';
 const String PRIORITYCATALOG = '/priorityCatalog';
 const String ITEMELECTRONICDETAIL = '/itemElectronicDetail';
+const String PRODUCTINFOMATION = '/productInfomation';
+const String CONTACTINFOMATION = '/contactInfomation';
+const String ADDPOST = '/addPost';
 class NavService {
   static GlobalKey<NavigatorState> navigatorKey =
   new GlobalKey<NavigatorState>();
@@ -81,6 +87,12 @@ class RouterNav {
         return MaterialPageRoute(builder: (context) => PriorityCatalog());
       case ITEMELECTRONICDETAIL :
         return MaterialPageRoute(builder: (context) => ItemElectronicDetail());
+      case CONTACTINFOMATION :
+        return MaterialPageRoute(builder: (context) => ContactInfomation());
+      case PRODUCTINFOMATION :
+        return MaterialPageRoute(builder: (context) => ProductInfomation());
+      case ADDPOST :
+        return MaterialPageRoute(builder: (context) => AddPost());
       default:
         return MaterialPageRoute(builder: (context) => HomeApp());
     }
