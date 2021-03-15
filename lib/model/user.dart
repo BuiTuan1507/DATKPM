@@ -8,5 +8,6 @@ class User{
   String email;
   String password;
   DateTime timeOnline;
+  int coinApp;
   User(this.uuid,this.email, this.password);
 }

@@ -15,6 +15,7 @@ import 'package:app_giao_do_an/screen/sell/add_post.dart';
 import 'package:app_giao_do_an/screen/sell/category_post.dart';
 import 'package:app_giao_do_an/screen/sell/contact_infomation.dart';
 import 'package:app_giao_do_an/screen/sell/product_infomation.dart';
+import 'package:app_giao_do_an/screen/sell/status_product_post.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/homeapp/product/electronic_product_type.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/shop/order.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/add/personal.dart';
@@ -40,6 +41,7 @@ const String PRODUCTINFOMATION = '/productInfomation';
 const String CONTACTINFOMATION = '/contactInfomation';
 const String ADDPOST = '/addPost';
 const String CATEGORYPOST = '/categoryPost';
+const String STATUSPRODUCTPOST = '/statusProductPost';
 class NavService {
   static GlobalKey<NavigatorState> navigatorKey =
   new GlobalKey<NavigatorState>();
@@ -92,12 +94,19 @@ class RouterNav {
       case CONTACTINFOMATION :
         return MaterialPageRoute(builder: (context) => ContactInfomation());
       case PRODUCTINFOMATION :
-        return MaterialPageRoute(builder: (context) => ProductInfomation());
+        var _agrument = settings.arguments as Map;
+        return MaterialPageRoute(builder: (context) =>
+            ProductInfomation(selectType:_agrument['selectedType'],selectCategory: _agrument['selectedCategory'],statusProduct:_agrument['statusProduct'] ));
       case ADDPOST :
-        return MaterialPageRoute(builder: (context) => AddPost());
+        var _agrument = settings.arguments as Map;
+        return MaterialPageRoute(builder: (context) =>
+            AddPost(selectType:_agrument['selectedType'],selectCategory: _agrument['selectedCategory'],statusProduct:_agrument['statusProduct'] ,));
       case CATEGORYPOST:
         var _agrument = settings.arguments as Map;
         return MaterialPageRoute(builder: (context) => CategoryPost(selectedType: _agrument['selectType'],));
+      case STATUSPRODUCTPOST :
+        var _agrument = settings.arguments as Map;
+        return MaterialPageRoute(builder: (context) => StatusProductPost(selectType:_agrument['selectedType'],selectCategory: _agrument['selectedCategory'],));
       default:
         return MaterialPageRoute(builder: (context) => HomeApp());
     }

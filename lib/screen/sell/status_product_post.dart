@@ -1,11 +1,16 @@
+import 'package:app_giao_do_an/route.dart';
 import 'package:flutter/material.dart';
 class StatusProductPost extends StatefulWidget {
+  String selectType;
+  String selectCategory;
+  StatusProductPost({Key key, this.selectType, this.selectCategory})
+      : super(key: key);
   @override
   _StatusProductPostState createState() => _StatusProductPostState();
 }
 
 class _StatusProductPostState extends State<StatusProductPost> {
-  int statusProduct ;
+  String statusProduct ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +27,7 @@ class _StatusProductPostState extends State<StatusProductPost> {
           ListTile(
 
             leading: Radio(
-              value: 0,
+              value: 'Còn mới',
               groupValue: statusProduct,
               onChanged: (value) {
                 setState(() {
@@ -40,7 +45,7 @@ class _StatusProductPostState extends State<StatusProductPost> {
           ListTile(
 
             leading: Radio(
-              value: 1,
+              value: 'Đã cũ',
               groupValue: statusProduct,
               onChanged: (value) {
                 setState(() {
@@ -54,7 +59,10 @@ class _StatusProductPostState extends State<StatusProductPost> {
 
           Container(height: 40,),
           InkWell(
-
+              onTap: (){
+                Navigator.pushNamed(context, ADDPOST,
+                    arguments: {'selectedType':widget.selectType,'selectedCategory':widget.selectCategory,'statusProduct':statusProduct});
+              },
               child: Container(
                   height: 50,
                   width: 120,

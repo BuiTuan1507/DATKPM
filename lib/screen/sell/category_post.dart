@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:app_giao_do_an/route.dart';
 class CategoryPost extends StatefulWidget {
   int selectedType;
   CategoryPost({Key key, this.selectedType})
@@ -10,6 +10,7 @@ class CategoryPost extends StatefulWidget {
 
 class _CategoryPostState extends State<CategoryPost> {
   var selectCategory = [];
+  var selectedType;
   var _categoryHome = ['Chung cư', 'Phòng trọ', 'Homestay'];
   var _categoryVehicle = ['Xe cộ', 'Xe máy', 'Xe điện', 'Xe đạp', 'Phụ kiện'];
   var _categoryElectronic = [
@@ -30,27 +31,35 @@ class _CategoryPostState extends State<CategoryPost> {
     switch(widget.selectedType){
       case 1:
         selectCategory = _categoryHome;
+        selectedType = 'Bất động sản';
         break;
       case 2:
         selectCategory = _categoryVehicle;
+        selectedType = 'Xe cộ';
         break;
       case 3 :
         selectCategory = _categoryAnimal;
+        selectedType = 'Thú cưng';
         break;
       case 4:
         selectCategory = _categoryElectronic;
+        selectedType = 'Đồ điện tử';
         break;
       case 5:
         selectCategory = _categoryFood;
+        selectedType = 'Đồ ăn';
         break;
       case 6:
         selectCategory = _categoryHouseware;
+        selectedType = 'Đồ gia dụng';
         break;
       case 7 :
         selectCategory = _categoryJob;
+        selectedType = 'Việc làm';
         break;
       case 8:
         selectCategory = _categoryBook;
+        selectedType = 'Giáo trình';
         break;
     }
     // TODO: implement initState
@@ -90,6 +99,9 @@ class _CategoryPostState extends State<CategoryPost> {
                               child: Text(selectCategory[index],style: TextStyle(fontSize: 19, fontWeight: FontWeight.w500),),
                             ),
                             InkWell(
+                              onTap: (){
+                                Navigator.pushNamed(context, STATUSPRODUCTPOST,arguments: {'selectedType':selectedType,'selectedCategory':selectCategory[index]});
+                              },
                               child: Container(
 
                                 child: Icon(Icons.arrow_forward_ios, size: 24,color: Colors.black45,),

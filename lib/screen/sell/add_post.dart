@@ -2,6 +2,11 @@ import 'package:app_giao_do_an/screen/sell/contact_infomation.dart';
 import 'package:app_giao_do_an/screen/sell/product_infomation.dart';
 import 'package:flutter/material.dart';
 class AddPost extends StatefulWidget {
+  String selectType;
+  String selectCategory;
+  String statusProduct;
+  AddPost({Key key, this.selectType, this.selectCategory, this.statusProduct})
+      : super(key: key);
   @override
   _AddPostState createState() => _AddPostState();
 }
@@ -47,7 +52,7 @@ class _AddPostState extends State<AddPost> {
           ),
           body: TabBarView(
             children: [
-              ProductInfomation(),
+              ProductInfomation(selectCategory: widget.selectCategory,selectType: widget.selectType ,statusProduct: widget.statusProduct,),
               ContactInfomation()
             ],
           )

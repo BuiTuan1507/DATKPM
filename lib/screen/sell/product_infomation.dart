@@ -2,6 +2,11 @@ import 'package:app_giao_do_an/route.dart';
 import 'package:app_giao_do_an/screen/sell/contact_infomation.dart';
 import 'package:flutter/material.dart';
 class ProductInfomation extends StatefulWidget {
+  String selectType;
+  String selectCategory;
+  String statusProduct;
+  ProductInfomation({Key key, this.selectType, this.selectCategory, this.statusProduct})
+      : super(key: key);
   @override
   _ProductInfomationState createState() => _ProductInfomationState();
 }
@@ -13,9 +18,7 @@ class _ProductInfomationState extends State<ProductInfomation> {
   TextEditingController descriptionProduct = TextEditingController();
   String tittleP ;
   String addressP;
-  String type = 'Điện tử';
-  String category = 'Phụ kiện';
-  String status = 'Mới';
+
   String description ;
   int price;
   @override
@@ -98,7 +101,32 @@ class _ProductInfomationState extends State<ProductInfomation> {
                 Container(
                   width: queryData.size.width*0.6,
                   padding: EdgeInsets.all(12),
-                  child: Text(type + ', ' + category,style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black),),
+                  child: Text(widget.selectType,style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black),),
+                ),
+              ],
+            ),
+
+            Divider(
+              indent: 12,
+              endIndent: 24,
+              thickness: 1,
+              color: Colors.grey,
+            ),
+            Row(
+              children: <Widget>[
+                Container(
+                  width: queryData.size.width*0.6,
+                  padding: EdgeInsets.only(right: 12,left: 12),
+                  child: Text('Loại',style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400, color: Colors.black),),
+                ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Container(
+                  width: queryData.size.width*0.6,
+                  padding: EdgeInsets.all(12),
+                  child: Text(widget.selectCategory,style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black),),
                 ),
               ],
             ),
@@ -181,7 +209,7 @@ class _ProductInfomationState extends State<ProductInfomation> {
                 Container(
                   width: queryData.size.width*0.6,
                   padding: EdgeInsets.all(12),
-                  child: Text(status,style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black),),
+                  child: Text(widget.statusProduct,style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black),),
                 ),
               ],
             ),
@@ -220,16 +248,8 @@ class _ProductInfomationState extends State<ProductInfomation> {
 
               ),
             ),
-            Container(height: 100,),
-            Container(
-              child: Center(
-                child: RaisedButton(
-                  onPressed: (){
-                    Navigator.pushNamed(context, CONTACTINFOMATION);
-                  },
-                ),
-              ),
-            )
+            Container(height: 50,),
+
 
           ],
         ),

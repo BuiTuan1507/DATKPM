@@ -32,7 +32,7 @@ class _FavoriteState extends State<Favorite> {
                Container(
                  width: queryData.size.width*0.72,
                  padding: EdgeInsets.only(top: 10,bottom: 7),
-                 child: Text("Phòng trọ",style: TextStyle(fontSize: 19, fontWeight: FontWeight.w500),),
+                 child: Text("Bất động sản",style: TextStyle(fontSize: 19, fontWeight: FontWeight.w500),),
                ),
                InkWell(
                  onTap: (){
