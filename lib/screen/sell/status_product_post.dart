@@ -60,7 +60,7 @@ class _StatusProductPostState extends State<StatusProductPost> {
           Container(height: 40,),
           InkWell(
               onTap: (){
-                Navigator.pushNamed(context, ADDPOST,
+                Navigator.pushNamed(context, PRODUCTINFOMATION,
                     arguments: {'selectedType':widget.selectType,'selectedCategory':widget.selectCategory,'statusProduct':statusProduct});
               },
               child: Container(

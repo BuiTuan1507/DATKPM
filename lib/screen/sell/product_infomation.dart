@@ -26,6 +26,10 @@ class _ProductInfomationState extends State<ProductInfomation> {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.amber,
+        title: Text('Thông tin sản phẩm', style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold, color: Colors.black),),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -249,6 +253,29 @@ class _ProductInfomationState extends State<ProductInfomation> {
               ),
             ),
             Container(height: 50,),
+            InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, CONTACTINFOMATION,
+                      arguments: {'tittleP':tittleP,'addressP':addressP,'description':description,
+                      'price':price,'selectType':widget.selectType,'selectCategory':widget.selectCategory,'selectProduct':widget.statusProduct
+                      });
+                },
+                child: Container(
+                    height: 50,
+                    width: queryData.size.width * 0.8,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.amber
+                    ),
+                    child: Center(
+                      child: Text('Thông tin liên lạc',
+                          style: new TextStyle(
+                              fontSize: 20.0, color: Colors.white)),
+                    )
+
+                )
+            ),
+
 
 
           ],
