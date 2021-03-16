@@ -1,8 +1,11 @@
+import 'package:app_giao_do_an/controller/provider_controller.dart';
+import 'package:app_giao_do_an/model/user.dart';
 import 'package:app_giao_do_an/route.dart';
 import 'package:app_giao_do_an/service/BaseAuth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 class Personal extends StatefulWidget {
   Personal({Key key, this.auth, this.userId, this.logoutCallback})
       : super(key: key);
@@ -31,13 +34,16 @@ class _PersonalState extends State<Personal> {
   Widget build(BuildContext context) {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Chức năng khác", style: TextStyle(fontSize: 22, color: Colors.black),),
-        centerTitle: true,
-        backgroundColor: Colors.amber,
-      ),
-      body: SingleChildScrollView(
+    return Consumer<ProviderController> (builder: (context,provider,child){
+      User user = provider.getUserOnline(widget.userId) as User;
+      print(user.email);
+      return Scaffold(
+        appBar: AppBar(
+          title: Text("Chức năng khác", style: TextStyle(fontSize: 22, color: Colors.black),),
+          centerTitle: true,
+          backgroundColor: Colors.amber,
+        ),
+        body: SingleChildScrollView(
 
           child: Column(
 
@@ -70,9 +76,9 @@ class _PersonalState extends State<Personal> {
                           ),
 
                           Container(
-                            alignment: Alignment.centerLeft,
-                            padding: EdgeInsets.only(left: 10),
-                            child: Text("Điểm đánh giá của tôi : 80", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 17),)
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.only(left: 10),
+                              child: Text("Điểm đánh giá của tôi : 80", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 17),)
                           )
 
                         ],
@@ -341,7 +347,9 @@ class _PersonalState extends State<Personal> {
 
             ],
           ),
-      ),
-    );
+        ),
+      );
+    },);
+
   }
 }

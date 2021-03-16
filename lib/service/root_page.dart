@@ -37,6 +37,7 @@ class _RootPageState extends State<RootPage> {
   }
 
   void loginCallback() {
+    print('loginCallback');
     widget.auth.getCurrentUser().then((user) {
       setState(() {
         _userId = user.uid.toString();

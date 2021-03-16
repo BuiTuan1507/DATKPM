@@ -1,8 +1,10 @@
 import 'package:app_giao_do_an/model/item.dart';
+import 'package:app_giao_do_an/model/user.dart';
 import 'package:app_giao_do_an/route.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../constant.dart';
 class HomeAppScreen extends StatefulWidget {
@@ -16,6 +18,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
   Item item1 = new Item('1','nha xa',['assets/h1.jpg'],20,'Ha noi','hêlo','hello','hee',true);
   @override
   Widget build(BuildContext context) {
+
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     return Scaffold(
@@ -372,7 +375,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                             borderRadius: BorderRadius.circular(20),
                             child: Image.asset('assets/doan.jpg',fit: BoxFit.cover,),
                           )
-                          
+
                         ),
                         Container(height: 7,),
                         Container(
@@ -428,7 +431,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20),
                             child: Image.asset('assets/sach.jpg',fit: BoxFit.cover,),
-                          ) 
+                          )
                           ,
                         ),
                         Container(height: 7,),
@@ -476,7 +479,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                           child: ClipRRect(
                             child: Image.asset('assets/vieclam.jpg',fit: BoxFit.cover,),
                             borderRadius: BorderRadius.circular(20),
-                          ) 
+                          )
                           ,
                         ),
                         Container(height: 7,),
@@ -500,7 +503,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                           child: ClipRRect(
                             child: Image.asset('assets/xe.jpg',fit: BoxFit.cover,),
                             borderRadius: BorderRadius.circular(20),
-                          ) 
+                          )
                           ,
                         ),
                         Container(height: 7,),
@@ -524,7 +527,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                           child: ClipRRect(
                             child: Image.asset('assets/dogiadung.jpg',fit: BoxFit.cover,),
                             borderRadius: BorderRadius.circular(20),
-                          ) 
+                          )
                          ,
                         ),
                         Container(height: 7,),

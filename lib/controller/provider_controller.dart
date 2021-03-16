@@ -1,4 +1,5 @@
 import 'package:app_giao_do_an/model/post.dart';
+import 'package:app_giao_do_an/model/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -18,5 +19,12 @@ class ProviderController extends ChangeNotifier{
       'selectCategory':selectCategory,
 
     });
+  }
+
+  User getUserOnline (String uuid) {
+    User user;
+    print(uuid);
+    var data = firestore.collection('User').document(uuid).snapshots().toList();
+    return data.then((value) => value.toList()[0]);
   }
 }

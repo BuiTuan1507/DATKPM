@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 class RegisterScreen extends StatefulWidget {
   RegisterScreen({this.auth, this.loginCallback});
 
-  final BaseAuth auth;
-  final VoidCallback loginCallback;
+   BaseAuth auth;
+   VoidCallback loginCallback;
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
@@ -39,12 +39,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
       isLoading = true;
     });
     if (validateAndSave()) {
+      List <String> friends = List<String>();
+      List <String> follow  = List<String>();
       String userId = '';
       try {
 
         String userId = await widget.auth.signUp(email, password);
         setState(() {
-
+          _formKey.currentState.reset();
           isLoading = false;
         });
         print(userId);
@@ -57,33 +59,37 @@ class _RegisterScreenState extends State<RegisterScreen> {
               'email': email,
               'password':password,
               'sex': 0,
+              'name':'',
+
+              'imageUser':'',
               'address':'',
               'phoneNumber':'',
               'isOnline': true,
+
               'timeOnline': DateTime.now(),
               'coinApp':0,
-              'friends': {[]},
-              'followPerson': {[]},
+              'friends': friends.toList(),
+              'followPerson': follow.toList(),
             },
           );
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text("Bạn đã đăng ký thành công"),
 
+                  actions: [
+                    FlatButton(
+                      child: Text("Ok"),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    )
+                  ],
+                );
+              });
         }
-        showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text("Bạn đã đăng ký thành công"),
 
-                actions: [
-                  FlatButton(
-                    child: Text("Ok"),
-                    onPressed: () {
-                      widget.loginCallback();
-                    },
-                  )
-                ],
-              );
-            });
       } catch (e) {
         setState(() {
           isLoading = false;

@@ -2,6 +2,7 @@ import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_a
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/homeapp/home_app_screen.dart';
 import 'package:app_giao_do_an/controller/provider_controller.dart';
 import 'package:app_giao_do_an/hone_app.dart';
+import 'package:app_giao_do_an/model/user.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/login_register/login_screen.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/notificati/notification.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/shop/order.dart';
@@ -14,6 +15,7 @@ import 'package:app_giao_do_an/screen/homeapp/priority_catalog.dart';
 import 'package:app_giao_do_an/screen/homeapp/product/vehicle_product_type.dart';
 import 'package:app_giao_do_an/screen/login_register/register_screen.dart';
 import 'package:app_giao_do_an/service/Auth.dart';
+import 'package:app_giao_do_an/service/firebase_service.dart';
 import 'package:app_giao_do_an/service/root_page.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/homeapp/product/electronic_product_type.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/add/update_profile.dart';
@@ -33,10 +35,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final FirebaseService firebaseService = FirebaseService();
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => ProviderController(),)
+        ChangeNotifierProvider(create: (context) => ProviderController(),),
       ],
       child: MaterialApp(
           title: 'Cho BK',

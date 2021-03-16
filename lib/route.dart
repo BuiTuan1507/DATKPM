@@ -70,7 +70,7 @@ class RouterNav {
       case REGISTER :
         var _argument = settings.arguments as Map;
         return MaterialPageRoute(builder: (context) => RegisterScreen(
-          auth: _argument['auth'],loginCallback: _argument['logoutCallback'],
+          auth: _argument['auth'],loginCallback: _argument['loginCallback'],
         ));
       case CHANGEINFO :
         var argument = settings.arguments as Map;
