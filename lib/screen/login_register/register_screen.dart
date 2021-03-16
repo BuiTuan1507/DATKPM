@@ -42,23 +42,48 @@ class _RegisterScreenState extends State<RegisterScreen> {
       String userId = '';
       try {
 
-        userId = await widget.auth.signUp(email, password);
+        String userId = await widget.auth.signUp(email, password);
         setState(() {
+
           isLoading = false;
         });
         print(userId);
         if (userId.length > 0 && userId != null) {
-          widget.loginCallback();
+          
           final firestoreInstance = Firestore.instance;
           firestoreInstance.collection('User').document(userId).setData(
             {
               'uuid': userId,
               'email': email,
-              'password':password
-            }
+              'password':password,
+              'sex': 0,
+              'address':'',
+              'phoneNumber':'',
+              'isOnline': true,
+              'timeOnline': DateTime.now(),
+              'coinApp':0,
+              'friends': {[]},
+              'followPerson': {[]},
+            },
           );
 
         }
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Bạn đã đăng ký thành công"),
+
+                actions: [
+                  FlatButton(
+                    child: Text("Ok"),
+                    onPressed: () {
+                      widget.loginCallback();
+                    },
+                  )
+                ],
+              );
+            });
       } catch (e) {
         setState(() {
           isLoading = false;

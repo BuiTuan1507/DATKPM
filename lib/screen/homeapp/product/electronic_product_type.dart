@@ -18,7 +18,8 @@ class ProductType extends StatefulWidget {
 }
 
 class _ProductTypeState extends State<ProductType> {
-  Item item1 = new Item('1','nha xa','assets/h1.jpg',20,'Ha noi',true);
+  Item item1 = new Item('1','nha xa',['assets/h1.jpg'],20,'Ha noi','hêlo','hello','hee',true);
+
   bool isFavorite = false;
   var catalogE = ['Đồ điện tử','Điện thoại','Máy tính bảng', 'Lap top', 'Máy tính để bàn', 'Phụ kiện'];
 
@@ -385,7 +386,7 @@ class _ProductTypeState extends State<ProductType> {
                                       child: (item1.isStore == true) ? (Icon(Icons.store, size: 25,)) : (Icon(Icons.person_pin))),
                                   Container(
                                     padding: EdgeInsets.only(left: 15,right: 70),
-                                    child: Text(item1.address,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
+                                    child: Text('item1.address',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
                                   ),
                                   (isFavorite == true) ? IconButton(onPressed: (){},icon: Icon(Icons.favorite, color: Colors.red,),)
                                       : IconButton(onPressed: (){},icon: Icon(Icons.favorite_border, color: Colors.black45,),)

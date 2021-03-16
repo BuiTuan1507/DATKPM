@@ -9,7 +9,7 @@ class ItemElectronicDetail extends StatefulWidget {
 
 class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
 
-  Item item1 = new Item('1','IPhone 12x 32GB','assets/h1.jpg',20000000,'Hoàng Mai, Hà Nội',true);
+  Item item1 = new Item('1','nha xa',['assets/h1.jpg'],2000000,'Ha noi','hêlo','hello','hee',true);
   String _formatMoney(int costSearch){
     if((costSearch>1000) && (costSearch<1000000)){
       costSearch = (costSearch/1000) as int;

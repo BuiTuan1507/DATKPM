@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 class Item{
-  String id;
+  String idItem;
   String name;
-  String image;
+  List<String> image;
   int cost;
-  DateTime time;
-  String address;
-  String type ;
-  String category;
-  String status;
+  String type ; // Loại gì?
+  String category; // thuộc nhómn nào trong loại đó ?
+  String status; // trạng thái của loại sản phẩm
   String description ;
   bool isStore;
-  Item(this.id, this.name, this.image, this.cost, this.address, this.isStore);
+  Item(this.idItem, this.name, this.image, this.cost, this.type, this.category,
+      this.status, this.description, this.isStore); // mô tả
+
 }

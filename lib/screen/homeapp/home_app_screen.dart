@@ -13,7 +13,7 @@ class HomeAppScreen extends StatefulWidget {
 
 class _HomeAppScreenState extends State<HomeAppScreen> {
   TextEditingController searchController;
-  Item item1 = new Item('1','nha xa','assets/h1.jpg',20,'Ha noi',true);
+  Item item1 = new Item('1','nha xa',['assets/h1.jpg'],20,'Ha noi','hêlo','hello','hee',true);
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData;
@@ -605,7 +605,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                   width: 150,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage(item.image),
+                      image: AssetImage(item.image[0]),
                       fit: BoxFit.cover
 
                     )
@@ -650,7 +650,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                         width: 20,
                       ),
                       Container(
-                        child: Text(item.address,style: TextStyle(fontSize: 19),overflow: TextOverflow.fade,),
+                        child: Text('item.address',style: TextStyle(fontSize: 19),overflow: TextOverflow.fade,),
                       )
                     ],
                   )

@@ -16,7 +16,7 @@ class VehicleProductType extends StatefulWidget {
 
 class _VehicleProductTypeState extends State<VehicleProductType> {
 
-  Item item1 = new Item('1','nha xa','assets/h1.jpg',20,'Ha noi',true);
+  Item item1 = new Item('1','nha xa',['assets/h1.jpg'],20,'Ha noi','hêlo','hello','hee',true);
   bool isFavorite = false;
   var catalogE = ['Xe cộ','Xe máy','Xe điện', 'Xe đạp','Phụ kiện'];
   @override
@@ -357,7 +357,7 @@ class _VehicleProductTypeState extends State<VehicleProductType> {
                                       child: (item1.isStore == true) ? (Icon(Icons.store, size: 25,)) : (Icon(Icons.person_pin))),
                                   Container(
                                     padding: EdgeInsets.only(left: 15,right: 70),
-                                    child: Text(item1.address,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
+                                    child: Text('item1.address',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
                                   ),
                                   (isFavorite == true) ? IconButton(onPressed: (){},icon: Icon(Icons.favorite, color: Colors.red,),)
                                       : IconButton(onPressed: (){},icon: Icon(Icons.favorite_border, color: Colors.black45,),)
