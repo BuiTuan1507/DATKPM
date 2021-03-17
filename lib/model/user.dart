@@ -15,9 +15,9 @@ class User {
   bool isOnline;
   Timestamp timeOnline;
   int coinApp;
-  List<String> friends;
+  List<dynamic> friends;
 
-  List<String> followPerson;
+  List<dynamic> followPerson;
 
   User(this.uuid, this.email, this.password);
 

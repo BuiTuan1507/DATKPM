@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ProviderController extends ChangeNotifier{
+  User userOnline;
   Firestore firestore = Firestore.instance;
   void addPost(String tittleP,String addressP,String description,
       int price,String selectType,String selectCategory,String statusProduct,
@@ -21,10 +22,8 @@ class ProviderController extends ChangeNotifier{
     });
   }
 
-  User getUserOnline (String uuid) {
-    User user;
-    print(uuid);
-    var data = firestore.collection('User').document(uuid).snapshots().toList();
-    return data.then((value) => value.toList()[0]);
+  Future<void> getUserOnline (String uuid)  async {
+    DocumentSnapshot snapshot = await firestore.collection('User').document(uuid).get();
+    userOnline = User.fromSnapshot(snapshot);
   }
 }

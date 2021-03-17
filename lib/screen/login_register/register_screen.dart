@@ -39,8 +39,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
       isLoading = true;
     });
     if (validateAndSave()) {
-      List <String> friends = List<String>();
-      List <String> follow  = List<String>();
+      List <dynamic> friends = List<dynamic>();
+      List <dynamic> follow  = List<dynamic>();
       String userId = '';
       try {
 

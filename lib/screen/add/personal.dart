@@ -21,6 +21,7 @@ class _PersonalState extends State<Personal> {
   String name= "objjur";
   int point = 0;
   bool isLogin = false;
+  User user;
   signOut() async {
     try {
       await widget.auth.signOut();
@@ -35,8 +36,9 @@ class _PersonalState extends State<Personal> {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     return Consumer<ProviderController> (builder: (context,provider,child){
-      User user = provider.getUserOnline(widget.userId) as User;
-      print(user.email);
+
+      print(provider.userOnline.email);
+
       return Scaffold(
         appBar: AppBar(
           title: Text("Chức năng khác", style: TextStyle(fontSize: 22, color: Colors.black),),
