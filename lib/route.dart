@@ -11,6 +11,10 @@ import 'package:app_giao_do_an/screen/homeapp/cost_catalog.dart';
 import 'package:app_giao_do_an/screen/homeapp/electronic_catalog.dart';
 import 'package:app_giao_do_an/screen/homeapp/item_electronic_detail.dart';
 import 'package:app_giao_do_an/screen/homeapp/priority_catalog.dart';
+import 'package:app_giao_do_an/screen/login_register/register_first.dart';
+import 'package:app_giao_do_an/screen/login_register/register_name.dart';
+import 'package:app_giao_do_an/screen/login_register/register_password.dart';
+import 'package:app_giao_do_an/screen/login_register/register_phone.dart';
 import 'package:app_giao_do_an/screen/sell/add_post.dart';
 import 'package:app_giao_do_an/screen/sell/category_post.dart';
 import 'package:app_giao_do_an/screen/sell/contact_infomation.dart';
@@ -21,6 +25,8 @@ import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_a
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/add/personal.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/login_register/register_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'screen/login_register/register_email.dart';
 
 const String HOME_APP = '/homeApp';
 const String ORDER = '/order';
@@ -42,6 +48,13 @@ const String CONTACTINFOMATION = '/contactInfomation';
 const String ADDPOST = '/addPost';
 const String CATEGORYPOST = '/categoryPost';
 const String STATUSPRODUCTPOST = '/statusProductPost';
+
+//register
+const String REGISTERFIRST = '/registerFirst';
+const String REGISTERNAME = '/registerName';
+const String REGISTERPHONENUMBER = '/registerPhoneNumber';
+const String REGISTEREMAIL = '/registerEmail';
+const String REGISTERPASSWORD = '/registerPassword';
 class NavService {
   static GlobalKey<NavigatorState> navigatorKey =
   new GlobalKey<NavigatorState>();
@@ -67,11 +80,7 @@ class RouterNav {
         ));
       case LOGIN :
         return MaterialPageRoute(builder: (context) => LoginScreen());
-      case REGISTER :
-        var _argument = settings.arguments as Map;
-        return MaterialPageRoute(builder: (context) => RegisterScreen(
-          auth: _argument['auth'],loginCallback: _argument['loginCallback'],
-        ));
+
       case CHANGEINFO :
         var argument = settings.arguments as Map;
         return MaterialPageRoute(builder: (context) =>ChangeInfo(name: argument['name'],email: argument['email'],
@@ -112,6 +121,30 @@ class RouterNav {
       case STATUSPRODUCTPOST :
         var _agrument = settings.arguments as Map;
         return MaterialPageRoute(builder: (context) => StatusProductPost(selectType:_agrument['selectedType'],selectCategory: _agrument['selectedCategory'],));
+      case REGISTERFIRST :
+        var _agrument = settings.arguments as Map;
+
+        return MaterialPageRoute(builder: (context) => RegisterFirst(auth: _agrument['auth'],loginCallback: _agrument['loginCallback'],));
+      case REGISTEREMAIL :
+        var _agrument = settings.arguments as Map;
+        return MaterialPageRoute(builder: (context) => RegisterEmail(auth: _agrument['auth'],loginCallback: _agrument['loginCallback'],));
+      case REGISTERNAME :
+        var _agrument = settings.arguments as Map;
+        return MaterialPageRoute(builder: (context) => RegisterName(auth: _agrument['auth'],loginCallback: _agrument['loginCallback'],
+          email: _agrument['email'],password: _agrument['password'],));
+      case REGISTERPHONENUMBER :
+        var _agrument = settings.arguments as Map;
+        return MaterialPageRoute(builder: (context) => RegisterPhone(auth: _agrument['auth'],loginCallback: _agrument['loginCallback'],
+          email: _agrument['email'],password: _agrument['password'],name: _agrument['name'],));
+      case REGISTERPASSWORD :
+        var _agrument = settings.arguments as Map;
+        return MaterialPageRoute(builder: (context) => RegisterPassword(auth: _agrument['auth'],loginCallback: _agrument['loginCallback'],email: _agrument['email'],));
+      case REGISTER :
+        var _agrument = settings.arguments as Map;
+        return MaterialPageRoute(builder: (context) => RegisterScreen(
+          auth: _agrument['auth'],loginCallback: _agrument['loginCallback'],
+          email: _agrument['email'],password: _agrument['password'],name: _agrument['name'],phone: _agrument['phone'],
+        ));
       default:
         return MaterialPageRoute(builder: (context) => HomeApp());
     }

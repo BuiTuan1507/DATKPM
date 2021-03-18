@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
       } catch (e) {
         setState(() {
           isLoading = false;
-         errorMessage = e.message;
+         //errorMessage = e.message;
           _formKey.currentState.reset();
         });
       }
@@ -261,7 +261,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, REGISTER,arguments: {'auth':widget.auth,'loginCallback':widget.loginCallback});
+                      Navigator.pushNamed(context, REGISTERFIRST,arguments: {'auth':widget.auth,'loginCallback':widget.loginCallback});
                     },
                     child: Center(
                       child: Text("Đăng ký ngay", style: TextStyle(fontSize: 18,

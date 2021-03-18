@@ -1,54 +1,52 @@
+import 'package:app_giao_do_an/route.dart';
 import 'package:app_giao_do_an/service/Auth.dart';
 import 'package:app_giao_do_an/service/BaseAuth.dart';
+import 'package:app_giao_do_an/service/root_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 class RegisterScreen extends StatefulWidget {
-  RegisterScreen({this.auth, this.loginCallback});
-
-   BaseAuth auth;
-   VoidCallback loginCallback;
+  String email;
+  String password;
+  String name;
+  String phone;
+  BaseAuth auth;
+  VoidCallback loginCallback;
+  RegisterScreen({Key key, this.email,this.password,this.name,this.phone,this.auth, this.loginCallback}) : super(key: key);
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final _formKey = new GlobalKey<FormState>();
-  String email;
-  String password;
-  bool _obscureText = true;
+
+
+
   String errorMessage = '';
   bool isLoading;
-  void _toggle() {
-    setState(() {
-      _obscureText = !_obscureText;
-    });
-  }
-  bool validateAndSave() {
-    final form = _formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      return true;
-    }
-    return false;
-  }
+
+
 
   void submit() async {
     setState(() {
       errorMessage = '';
       isLoading = true;
     });
-    if (validateAndSave()) {
+
       List <dynamic> friends = List<dynamic>();
       List <dynamic> follow  = List<dynamic>();
       String userId = '';
       try {
 
-        String userId = await widget.auth.signUp(email, password);
+        String userId = await widget.auth.signUp(widget.email, widget.password);
         setState(() {
-          _formKey.currentState.reset();
           isLoading = false;
         });
+        print(widget.email);
+        if(widget.auth == null){
+          print('null');
+        }else{
+          print('n');
+        }
         print(userId);
         if (userId.length > 0 && userId != null) {
           
@@ -56,14 +54,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
           firestoreInstance.collection('User').document(userId).setData(
             {
               'uuid': userId,
-              'email': email,
-              'password':password,
+              'email': widget.email,
+              'password':widget.password,
               'sex': 0,
-              'name':'',
+              'name':widget.name,
 
               'imageUser':'',
               'address':'',
-              'phoneNumber':'',
+              'phoneNumber':widget.phone,
               'isOnline': true,
 
               'timeOnline': DateTime.now(),
@@ -94,10 +92,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
         setState(() {
           isLoading = false;
           //errorMessage = e.message;
-          _formKey.currentState.reset();
+
         });
       }
-    }
+
   }
   @override
   void initState() {
@@ -154,69 +152,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Container(
               height: 15,
             ),
-            Container(
-              padding: EdgeInsets.all(12),
-              child: new Form(
-                  key: _formKey,
-                  child: new ListView(
-                    shrinkWrap: true,
-                    children: <Widget>[
-                      Container(
-                        child: TextFormField(
-                          maxLines: 1,
-                          keyboardType: TextInputType.emailAddress,
-                          autofocus: false,
-                          decoration: new InputDecoration(
-                              labelText: 'Nhập Email của bạn',
-                              labelStyle: TextStyle(
-                                  fontSize: 18,
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black45),
-                              focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.green)),
-                              icon: new Icon(
-                                Icons.mail,
-                                size: 26,
-                                color: Color(0xFF0C9869),
-                              )
-                          ),
-                          validator: (value) => value.isEmpty ? 'Email không thể trống' : null,
-                          onSaved: (value) => email = value.trim(),
-                        ),
-                      ),
-                      Container(height: 10,),
-                      Container(
-                        child: TextFormField(
 
-                          maxLines: 1,
-                          obscureText: _obscureText,
-                          autofocus: false,
-                          decoration: new InputDecoration(
-
-                              suffixIcon: (_obscureText == true) ? InkWell(onTap: _toggle,child: Icon(Icons.visibility,size: 28,color: Colors.grey,),)
-                                  : InkWell(onTap: _toggle,child: Icon(Icons.visibility_off,size: 28,color: Colors.grey,),) ,
-                              labelText: 'Nhập mật khẩu',
-                              labelStyle: TextStyle(
-                                  fontSize: 18,
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black45),
-                              focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.green)),
-                              icon: new Icon(
-                                Icons.lock,
-                                size: 26,
-                                color: Color(0xFF0C9869),
-                              )),
-                          validator: (value) => value.isEmpty ? 'Mật khẩu không thể trống' : null,
-                          onSaved: (value) => password = value.trim(),
-                        ),
-                      )
-                    ],
-                  )
-              ),
-            ),
             Container(height: 40,),
             (isLoading)
                 ? Center(child: CircularProgressIndicator(),)
@@ -259,7 +195,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 InkWell(
                   onTap: (){
-                    Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RootPage(auth: widget.auth,)));
                   },
                   child: Center(
                     child: Text("Đăng nhập", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500,color: Colors.blue[800]),),
