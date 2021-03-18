@@ -37,8 +37,6 @@ class _PersonalState extends State<Personal> {
     queryData = MediaQuery.of(context);
     return Consumer<ProviderController> (builder: (context,provider,child){
 
-      print(provider.userOnline.email);
-
       return Scaffold(
         appBar: AppBar(
           title: Text("Chức năng khác", style: TextStyle(fontSize: 22, color: Colors.black),),
@@ -55,7 +53,7 @@ class _PersonalState extends State<Personal> {
                   Container(
                     padding: EdgeInsets.only(left: 10,right: 10 , top: 10),
                     child: CircleAvatar(
-                      backgroundImage: AssetImage('assets/ramdom.jpg'),
+                      backgroundImage: NetworkImage(provider.userOnline.imageUser),
                       radius: 40,
                     ),
                   ),
@@ -65,7 +63,7 @@ class _PersonalState extends State<Personal> {
                           Container(
                             alignment: Alignment.centerLeft,
                             padding: EdgeInsets.only(left: 10),
-                            child:Text(name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),),
+                            child:Text(provider.userOnline.name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),),
 
                           ),
 
@@ -80,7 +78,7 @@ class _PersonalState extends State<Personal> {
                           Container(
                               alignment: Alignment.centerLeft,
                               padding: EdgeInsets.only(left: 10),
-                              child: Text("Điểm đánh giá của tôi : 80", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 17),)
+                              child: Text("Coin App: ${provider.userOnline.coinApp}", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 17),)
                           )
 
                         ],

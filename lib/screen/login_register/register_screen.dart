@@ -59,12 +59,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               'sex': 0,
               'name':widget.name,
 
-              'imageUser':'',
+              'imageUser':'https://firebasestorage.googleapis.com/v0/b/appdoan-53f1b.appspot.com/o/ramdom.jpg?alt=media&token=7a7cb060-5d38-4891-8dd2-58a8125f5dd8',
               'address':'',
               'phoneNumber':widget.phone,
               'isOnline': true,
 
-              'timeOnline': DateTime.now(),
+              'timeOnline': DateTime.now(), //time create tk
+              'timeUseApp': DateTime.now(),
               'coinApp':0,
               'friends': friends.toList(),
               'followPerson': follow.toList(),

@@ -14,6 +14,7 @@ class User {
 
   bool isOnline;
   Timestamp timeOnline;
+  Timestamp timeUseApp;
   int coinApp;
   List<dynamic> friends;
 
@@ -33,6 +34,7 @@ class User {
         isOnline = data['isOnline'],
         coinApp = data['coinApp'],
         timeOnline = data['timeOnline'],
+        timeUseApp = data['timeUseApp'],
         friends = data['friends'],
         followPerson = data['followPerson'];
 
@@ -48,6 +50,7 @@ class User {
         isOnline = snapshot['isOnline'],
         coinApp = snapshot['coinApp'],
         timeOnline = snapshot['timeOnline'],
+        timeUseApp = snapshot['timeUseApp'],
         friends = snapshot['friends'],
         followPerson = snapshot['followPerson'];
 
@@ -64,6 +67,7 @@ class User {
     "isOnline" : isOnline ,
     "coinApp" : coinApp ,
     "timeOnline" : coinApp ,
+      "timeUseApp":timeUseApp,
     "friends" : friends ,
     "followPerson" : followPerson
     };

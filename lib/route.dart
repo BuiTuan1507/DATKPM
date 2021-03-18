@@ -82,13 +82,12 @@ class RouterNav {
         return MaterialPageRoute(builder: (context) => LoginScreen());
 
       case CHANGEINFO :
-        var argument = settings.arguments as Map;
-        return MaterialPageRoute(builder: (context) =>ChangeInfo(name: argument['name'],email: argument['email'],
-          password: argument['password'],address: argument['address'],dateOfBirth:argument['dateOfBirth'],sex: argument['sex'],),);
+        return MaterialPageRoute(builder: (context) =>ChangeInfo(),);
       case PROFILE :
         return MaterialPageRoute(builder: (context) => Profile());
       case UPDATEPROFILE :
-        return MaterialPageRoute(builder: (context) => UpdateProfile());
+        var _agrument = settings.arguments as Map ;
+        return MaterialPageRoute(builder: (context) => UpdateProfile(password: _agrument['password'],));
       case PRODUCTTYPE :
         var argument1 = settings.arguments as Map;
         return MaterialPageRoute(builder: (context) => ProductType(catalogF: argument1['catalogF'],));
