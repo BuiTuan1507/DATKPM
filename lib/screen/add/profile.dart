@@ -49,7 +49,7 @@ class _ProfileState extends State<Profile> {
                   padding: EdgeInsets.only(left: 15,right: 15 , top: 20),
                   child: CircleAvatar(
                     backgroundImage: NetworkImage(_userOnline.imageUser),
-                    radius: 55,
+                    radius: 40,
                   ),
                 ),
                 Expanded(
@@ -82,7 +82,7 @@ class _ProfileState extends State<Profile> {
                           children: <Widget>[
                             InkWell(
                               onTap: (){
-                                Navigator.pushNamed(context, UPDATEPROFILE,arguments: {'password':_userOnline.password});
+                                Navigator.pushNamed(context, UPDATEPROFILE,arguments: {'password':_userOnline.password,'uuid':_userOnline.uuid});
                               },
                               child:Container(
                                 padding: EdgeInsets.all(10),

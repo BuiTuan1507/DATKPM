@@ -12,6 +12,10 @@ class _ChangeInfoState extends State<ChangeInfo> {
   final _formKey = new GlobalKey<FormState>();
   String nameChange;
   String emailChange;
+  String passwordChange;
+  String addressChange;
+  String phoneNumberChange;
+  int sexChange;
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQuery = MediaQuery.of(context);
@@ -154,7 +158,7 @@ class _ChangeInfoState extends State<ChangeInfo> {
                                       ? 'Email không thể trống'
                                       : null,
                                   onSaved: (value) =>
-                                  widget.password = value.trim(),
+                                  passwordChange = value.trim(),
                                 ),
                               ),
                               Container(height: 15),
@@ -172,7 +176,7 @@ class _ChangeInfoState extends State<ChangeInfo> {
                               ),
                               Container(
                                 child: TextFormField(
-                                  initialValue: widget.address,
+                                  initialValue: _user.address,
                                   maxLines: 1,
                                   keyboardType: TextInputType.emailAddress,
                                   autofocus: false,
@@ -195,7 +199,7 @@ class _ChangeInfoState extends State<ChangeInfo> {
                                       ? 'Email không thể trống'
                                       : null,
                                   onSaved: (value) =>
-                                  widget.address = value.trim(),
+                                  addressChange = value.trim(),
                                 ),
                               ),
                               Container(height: 15),
@@ -204,7 +208,7 @@ class _ChangeInfoState extends State<ChangeInfo> {
                                 padding:
                                 EdgeInsets.only(top: 10, bottom: 5, left: 15),
                                 child: Text(
-                                  'Date Of Birth',
+                                  'Phone',
                                   style: TextStyle(
                                       fontSize: 17,
                                       fontWeight: FontWeight.w500,
@@ -213,12 +217,12 @@ class _ChangeInfoState extends State<ChangeInfo> {
                               ),
                               Container(
                                 child: TextFormField(
-                                  initialValue: widget.dateOfBirth,
+                                  initialValue: _user.phoneNumber,
                                   maxLines: 1,
-                                  keyboardType: TextInputType.emailAddress,
+                                  keyboardType: TextInputType.phone,
                                   autofocus: false,
                                   decoration: new InputDecoration(
-                                      labelText: 'Date of Bidth',
+                                      labelText: 'Phone',
                                       labelStyle: TextStyle(
                                           fontSize: 20,
                                           fontFamily: 'Montserrat',
@@ -236,7 +240,7 @@ class _ChangeInfoState extends State<ChangeInfo> {
                                       ? 'Email không thể trống'
                                       : null,
                                   onSaved: (value) =>
-                                  widget.dateOfBirth = value.trim(),
+                                  phoneNumberChange = value.trim(),
                                 ),
                               ),
                               Container(height: 15),
@@ -263,10 +267,10 @@ class _ChangeInfoState extends State<ChangeInfo> {
                   title: const Text('Chưa xác định'),
                   leading: Radio(
                     value: 0,
-                    groupValue: widget.sex,
+                    groupValue: sexChange,
                     onChanged: (value) {
                       setState(() {
-                        widget.sex = value;
+                        sexChange = value;
                       });
                     },
                   ),
@@ -275,10 +279,10 @@ class _ChangeInfoState extends State<ChangeInfo> {
                   title: const Text('Nam'),
                   leading: Radio(
                     value: 1,
-                    groupValue: widget.sex,
+                    groupValue: sexChange,
                     onChanged: (value) {
                       setState(() {
-                        widget.sex = value;
+                        sexChange = value;
                       });
                     },
                   ),
@@ -287,10 +291,10 @@ class _ChangeInfoState extends State<ChangeInfo> {
                   title: const Text('Nữ'),
                   leading: Radio(
                     value: 2,
-                    groupValue: widget.sex,
+                    groupValue: sexChange,
                     onChanged: (value) {
                       setState(() {
-                        widget.sex = value;
+                        sexChange = value;
                       });
                     },
                   ),
@@ -299,10 +303,10 @@ class _ChangeInfoState extends State<ChangeInfo> {
                   title: const Text('Không muốn tiết lộ'),
                   leading: Radio(
                     value: 3,
-                    groupValue: widget.sex,
+                    groupValue: sexChange,
                     onChanged: (value) {
                       setState(() {
-                        widget.sex = value;
+                        sexChange = value;
                       });
                     },
                   ),

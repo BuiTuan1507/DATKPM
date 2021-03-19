@@ -87,7 +87,7 @@ class RouterNav {
         return MaterialPageRoute(builder: (context) => Profile());
       case UPDATEPROFILE :
         var _agrument = settings.arguments as Map ;
-        return MaterialPageRoute(builder: (context) => UpdateProfile(password: _agrument['password'],));
+        return MaterialPageRoute(builder: (context) => UpdateProfile(password: _agrument['password'],uuid: _agrument['uuid'],));
       case PRODUCTTYPE :
         var argument1 = settings.arguments as Map;
         return MaterialPageRoute(builder: (context) => ProductType(catalogF: argument1['catalogF'],));

@@ -1,22 +1,72 @@
+import 'dart:io';
+import 'package:path/path.dart';
 import 'package:app_giao_do_an/controller/provider_controller.dart';
 import 'package:app_giao_do_an/model/user.dart';
 import 'package:app_giao_do_an/route.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 class UpdateProfile extends StatefulWidget {
   String password;
-  UpdateProfile({Key key, this.password}) : super(key: key);
+  String uuid;
+  UpdateProfile({Key key, this.password, this.uuid}) : super(key: key);
   @override
   _UpdateProfileState createState() => _UpdateProfileState();
 }
 
 class _UpdateProfileState extends State<UpdateProfile> {
-
-
-
   String hidenPassword = '';
   String star = '*';
   bool isHiddenPassword = false;
+  File _image;
+  String urlUser;
+  Future getImage() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    print('getImage');
+    setState(() {
+      _image = image;
+      print('Image Path $_image');
+    });
+  }
+  Future uploadPic(BuildContext context) async{
+    if (_image != null)
+    {
+      while(urlUser == null){
+
+        String fileName = basename(_image.path);
+        StorageReference firebaseStorageRef = FirebaseStorage.instance.ref().child(fileName);
+        StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
+
+        StorageTaskSnapshot taskSnapshot=await uploadTask.onComplete;
+        taskSnapshot.ref.getDownloadURL().then((value) => {
+          urlUser = value.toString()
+        });
+
+        setState(() {
+          print("Upload ảnh thành công");
+
+          Firestore.instance.collection("User").document(widget.uuid).updateData(
+              {
+
+                "photoURL":urlUser
+              }
+          );
+          print(1234);
+
+          print(urlUser);
+          print(widget.uuid);
+
+          Scaffold.of(context).showSnackBar(SnackBar(content: Text('Upload ảnh thành công')));
+        });
+
+      }
+
+
+    }
+
+  }
   @override
   void initState() {
     // TODO: implement initState
@@ -57,47 +107,65 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 Row(
                   children: <Widget>[
                     Container(
-                      padding: EdgeInsets.only(left: 15,right: 15 , top: 20),
-                      child: CircleAvatar(
-                        backgroundImage: NetworkImage(_user.imageUser),
-                        radius: 55,
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                          margin: EdgeInsets.only(right: 20,top: 20),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(3),
-                              border: Border.all(width: 0.5,color: Colors.grey[500])
-                          ),
-                          child: SizedBox(
-                            height: 100,
-                            width: queryData.size.width*0.55,
-                            child: Column(
-                              children: <Widget>[
-                                Container(height: 10,),
-                                Container(
-                                  alignment: Alignment.centerLeft,
-                                  padding: EdgeInsets.only(left: 10),
-                                  child: Text("Họ và tên",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 18, color: Colors.grey[400]),),
-                                ),
-                                Container(
-                                  height: 7,
-                                ),
-                                showNameText(queryData,_user.name,
-                                        (){
-
-                                      Navigator.pushNamed(context, CHANGEINFO);
-                                    }
-                                ),
-
-
-
-                              ],
-                            ),
+                      margin: EdgeInsets.only(left: 15,right: 15),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          image: DecorationImage(
+                              image: NetworkImage(_user.imageUser),
+                              fit: BoxFit.cover
                           )
-
                       ),
+                      child:
+                      Container(
+                        width: 85,
+                        height: 85,
+
+
+                        alignment: Alignment.bottomRight,
+                        child: InkWell(
+                          onTap: (){
+                            getImage();
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(top: 16,left: 5),
+                            width: 40,
+                            height: 40,
+
+                            child: Icon(Icons.camera_alt,size: 28,),
+                          ),
+                        ),
+                        )
+
+                    ),
+
+                    Expanded(
+                      child: SizedBox(
+                        height: 100,
+                        width: queryData.size.width*0.55,
+                        child: Column(
+                          children: <Widget>[
+                            Container(height: 10,),
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.only(left: 10),
+                              child: Text("Họ và tên",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 18, color: Colors.grey[400]),),
+                            ),
+                            Container(
+                              height: 7,
+                            ),
+                            showNameText(queryData,_user.name,
+                                    (){
+
+                                  Navigator.pushNamed(context, CHANGEINFO);
+                                }
+                            ),
+
+
+
+                          ],
+                        ),
+                      )
+
                     ),
                   ],
                 ),
@@ -231,7 +299,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
       children: <Widget>[
         Container(
           padding: EdgeInsets.only(left: 10),
-          width: queryData.size.width*0.5,
+          width: queryData.size.width*0.44,
           child: Text(name, style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400, color: Colors.black),),
         ),
         GestureDetector(
@@ -257,7 +325,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
         InkWell(
           onTap: onPress,
           child: Container(
-            width: 350,
+            width: 320,
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.only(left: 15,top: 15,bottom: 15),
             child: Text(name, style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400,color: Colors.amber),),
@@ -285,17 +353,19 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 Container(
                   //margin: EdgeInsets.only(right: 290),
                   //alignment: Alignment.centerLeft,
-                  width: 350,
+                  width: 320,
                   padding: EdgeInsets.only(left: 15, top: 7, bottom: 7),
                   child: Text(
                       name,style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400,color: Colors.grey[500])
                   ),
                 ),
                 Container(
-                  width: 350,
+                  width: 320,
+
                   padding: EdgeInsets.only(left: 15, top: 3, bottom: 10),
                   child: Text(
-                      value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600,color: Colors.black)
+                      value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600,color: Colors.black),
+
                   ),
                 ),
 

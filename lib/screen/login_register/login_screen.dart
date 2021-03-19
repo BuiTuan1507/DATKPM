@@ -96,8 +96,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             alignment: Alignment.centerLeft,
                             padding: EdgeInsets.only(top: 20,
                                 bottom: 5,
-                                left: 20,
-                                right: 20),
+                                left: 15,
+                                right: 15),
                             child: Text("Đăng nhập", style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 29,
@@ -111,8 +111,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             alignment: Alignment.centerLeft,
                             padding: EdgeInsets.only(top: 20,
                                 bottom: 5,
-                                left: 20,
-                                right: 20),
+                                left: 15,
+                                right: 15),
                             child: Text("Chào bạn quay lại", style: TextStyle(
                                 fontSize: 21,
                                 fontWeight: FontWeight.w300,
@@ -126,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Container(
                     padding: EdgeInsets.only(top: 25),
                     height: 140,
-                    width: 180,
+                    width: 165,
                     child: Image.asset(
                       "assets/loginLogo.jpg", fit: BoxFit.cover,),
                   )
