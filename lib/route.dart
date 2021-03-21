@@ -103,9 +103,9 @@ class RouterNav {
       case CONTACTINFOMATION :
         var _agrument = settings.arguments as Map;
 
-        return MaterialPageRoute(builder: (context) => ContactInfomation(selectCategory: _agrument['selectCategory'],
+        return MaterialPageRoute(builder: (context) => ContactInfomation(idPost: _agrument['idPost'],selectCategory: _agrument['selectCategory'],
         selectType: _agrument['selectType'],statusProduct: _agrument['statusProduct'],price: _agrument['price'],
-          tittleP: _agrument['tittleP'],addressP: _agrument['addressP'],description: _agrument['description'],imageProduct: _agrument['imageProduct'],
+          tittleP: _agrument['tittleP'],addressP: _agrument['addressP'],description: _agrument['description'],imageProduct: _agrument['imageProduct']
         ));
       case PRODUCTINFOMATION :
         var _agrument = settings.arguments as Map;

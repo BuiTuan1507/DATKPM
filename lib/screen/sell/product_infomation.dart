@@ -1,9 +1,10 @@
 import 'dart:io';
-
+import 'dart:math' show Random;
 import 'package:app_giao_do_an/route.dart';
 import 'package:app_giao_do_an/screen/sell/contact_infomation.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
+import 'package:random_string/random_string.dart';
 
 class ProductInfomation extends StatefulWidget {
   String selectType;
@@ -386,6 +387,7 @@ class _ProductInfomationState extends State<ProductInfomation> {
             InkWell(
                 onTap: () {
                   Navigator.pushNamed(context, CONTACTINFOMATION, arguments: {
+                    'idPost':randomAlpha(20),
                     'tittleP': tittleP,
                     'addressP': addressP,
                     'description': description,
@@ -393,7 +395,8 @@ class _ProductInfomationState extends State<ProductInfomation> {
                     'selectType': widget.selectType,
                     'selectCategory': widget.selectCategory,
                     'selectProduct': widget.statusProduct,
-                    'imageProduct':imageProduct
+                    'imageProduct':imageProduct,
+
                   });
                 },
                 child: Container(

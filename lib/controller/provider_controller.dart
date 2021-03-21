@@ -7,17 +7,19 @@ class ProviderController extends ChangeNotifier {
   User userOnline;
   Firestore firestore = Firestore.instance;
 
-  void addPost(String tittleP, String addressP, String description,
-      int price, String selectType, String selectCategory, String statusProduct,
-      String nameUser, String phoneNumber, String emailUser, String address) {
-    firestore.collection('Post').document().setData({
-      'tittle': tittleP,
-      'address': addressP,
-      'description': description,
-      'price': price,
-      'selectType': selectType,
-      'statusProduct': statusProduct,
-      'selectCategory': selectCategory,
+  void addPost(Post post) {
+    List <dynamic> imageProduct = List<dynamic>();
+    firestore.collection('Post').document(post.idPost).setData({
+      'idPost':post.idPost,
+      'uuid':post.uuid,
+      'nameUserPost':post.nameUserPost,
+      'emailUserPost':post.emailUserPost,
+      'phoneNumberPost':post.phoneNumberPost,
+      'addressPost':post.addressPost,
+      'timeCreate':post.timeCreate,
+      'item':post.item,
+      'report':post.report,
+      'isPriority':post.isPriority
 
     });
   }
