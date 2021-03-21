@@ -4,23 +4,40 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ChangeInfo extends StatefulWidget {
+  User userOnline;
+  int sexU;
+  ChangeInfo({Key key, this.userOnline, this.sexU}) : super(key: key);
   @override
   _ChangeInfoState createState() => _ChangeInfoState();
 }
 
 class _ChangeInfoState extends State<ChangeInfo> {
   final _formKey = new GlobalKey<FormState>();
+
   String nameChange;
-  String emailChange;
+
   String passwordChange;
   String addressChange;
   String phoneNumberChange;
+  User _user;
   int sexChange;
+
+  bool validateAndSave() {
+    final form = _formKey.currentState;
+    if (form.validate()) {
+      form.save();
+      return true;
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQuery = MediaQuery.of(context);
+
     return Consumer<ProviderController> (builder: (context,provider,child){
-      User _user = provider.userOnline;
+      _user = provider.userOnline;
+     
       return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.amber,
@@ -55,9 +72,10 @@ class _ChangeInfoState extends State<ChangeInfo> {
                               ),
                               Container(
                                 child: TextFormField(
+
                                   initialValue: _user.name,
                                   maxLines: 1,
-                                  keyboardType: TextInputType.emailAddress,
+                                  keyboardType: TextInputType.name,
                                   autofocus: false,
                                   decoration: new InputDecoration(
                                       labelText: 'Name',
@@ -80,46 +98,8 @@ class _ChangeInfoState extends State<ChangeInfo> {
                                   onSaved: (value) => nameChange = value.trim(),
                                 ),
                               ),
-                              Container(height: 15),
-                              Container(
-                                width: mediaQuery.size.width,
-                                padding:
-                                EdgeInsets.only(top: 10, bottom: 5, left: 15),
-                                child: Text(
-                                  'Email của bạn',
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black),
-                                ),
-                              ),
-                              Container(
-                                child: TextFormField(
-                                  initialValue: _user.email,
-                                  maxLines: 1,
-                                  keyboardType: TextInputType.emailAddress,
-                                  autofocus: false,
-                                  decoration: new InputDecoration(
-                                      labelText: 'Email',
-                                      labelStyle: TextStyle(
-                                          fontSize: 20,
-                                          fontFamily: 'Montserrat',
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black45),
-                                      focusedBorder: UnderlineInputBorder(
-                                          borderSide:
-                                          BorderSide(color: Colors.green)),
-                                      icon: new Icon(
-                                        Icons.mail,
-                                        size: 26,
-                                        color: Color(0xFF0C9869),
-                                      )),
-                                  validator: (value) => value.isEmpty
-                                      ? 'Email không thể trống'
-                                      : null,
-                                  onSaved: (value) => emailChange = value.trim(),
-                                ),
-                              ),
+
+
                               Container(height: 15),
                               Container(
                                 width: mediaQuery.size.width,
@@ -135,9 +115,10 @@ class _ChangeInfoState extends State<ChangeInfo> {
                               ),
                               Container(
                                 child: TextFormField(
+
                                   initialValue: _user.password,
                                   maxLines: 1,
-                                  keyboardType: TextInputType.emailAddress,
+                                  keyboardType: TextInputType.visiblePassword,
                                   autofocus: false,
                                   decoration: new InputDecoration(
                                       labelText: 'Password',
@@ -150,7 +131,7 @@ class _ChangeInfoState extends State<ChangeInfo> {
                                           borderSide:
                                           BorderSide(color: Colors.green)),
                                       icon: new Icon(
-                                        Icons.mail,
+                                        Icons.lock_open,
                                         size: 26,
                                         color: Color(0xFF0C9869),
                                       )),
@@ -176,9 +157,10 @@ class _ChangeInfoState extends State<ChangeInfo> {
                               ),
                               Container(
                                 child: TextFormField(
+
                                   initialValue: _user.address,
                                   maxLines: 1,
-                                  keyboardType: TextInputType.emailAddress,
+                                  keyboardType: TextInputType.streetAddress,
                                   autofocus: false,
                                   decoration: new InputDecoration(
                                       labelText: 'Address',
@@ -217,6 +199,7 @@ class _ChangeInfoState extends State<ChangeInfo> {
                               ),
                               Container(
                                 child: TextFormField(
+
                                   initialValue: _user.phoneNumber,
                                   maxLines: 1,
                                   keyboardType: TextInputType.phone,
@@ -232,7 +215,7 @@ class _ChangeInfoState extends State<ChangeInfo> {
                                           borderSide:
                                           BorderSide(color: Colors.green)),
                                       icon: new Icon(
-                                        Icons.mail,
+                                        Icons.phone,
                                         size: 26,
                                         color: Color(0xFF0C9869),
                                       )),
@@ -312,7 +295,28 @@ class _ChangeInfoState extends State<ChangeInfo> {
                   ),
                 ),
                 InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    if(validateAndSave()){
+                      provider.updateUserInfo(nameChange, passwordChange, addressChange,phoneNumberChange, sexChange);
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Thông báo'),
+                              content: Text("Bạn đã thay đổi thông tin thành công"),
+                              actions: [
+                                FlatButton(
+                                  child: Text("Ok"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                )
+                              ],
+                            );
+                          });
+                    }
+
+                  },
                   child: Container(
                     padding: EdgeInsets.all(15),
                     decoration: BoxDecoration(

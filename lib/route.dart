@@ -82,7 +82,8 @@ class RouterNav {
         return MaterialPageRoute(builder: (context) => LoginScreen());
 
       case CHANGEINFO :
-        return MaterialPageRoute(builder: (context) =>ChangeInfo(),);
+        var _argument = settings.arguments as Map;
+        return MaterialPageRoute(builder: (context) =>ChangeInfo(userOnline: _argument['user'],sexU: _argument['sex'],),);
       case PROFILE :
         return MaterialPageRoute(builder: (context) => Profile());
       case UPDATEPROFILE :
@@ -104,7 +105,7 @@ class RouterNav {
 
         return MaterialPageRoute(builder: (context) => ContactInfomation(selectCategory: _agrument['selectCategory'],
         selectType: _agrument['selectType'],statusProduct: _agrument['statusProduct'],price: _agrument['price'],
-          tittleP: _agrument['tittleP'],addressP: _agrument['addressP'],description: _agrument['description'],
+          tittleP: _agrument['tittleP'],addressP: _agrument['addressP'],description: _agrument['description'],imageProduct: _agrument['imageProduct'],
         ));
       case PRODUCTINFOMATION :
         var _agrument = settings.arguments as Map;

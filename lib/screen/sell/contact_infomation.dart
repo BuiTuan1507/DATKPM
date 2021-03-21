@@ -1,4 +1,9 @@
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:multi_image_picker/multi_image_picker.dart';
+import 'package:path/path.dart';
 import 'package:app_giao_do_an/controller/provider_controller.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 class ContactInfomation extends StatefulWidget {
@@ -9,7 +14,9 @@ class ContactInfomation extends StatefulWidget {
   String selectType;
   String selectCategory;
   String statusProduct;
-  ContactInfomation({Key key, this.selectType, this.selectCategory, this.statusProduct,this.tittleP,this.addressP,this.description,this.price})
+  List<Asset> imageProduct;
+  ContactInfomation({Key key, this.selectType, this.selectCategory,
+    this.statusProduct,this.tittleP,this.addressP,this.description,this.price, this.imageProduct})
       : super(key: key);
   @override
   _ContactInfomationState createState() => _ContactInfomationState();
@@ -20,6 +27,21 @@ class _ContactInfomationState extends State<ContactInfomation> {
   String phoneNumber = '0923121212';
   String emailUser = 'abc@gmail.com';
   String address = 'Số 1, Mai Động, Hà Nội';
+  Future<List<String>> uploadFiles(List<Asset> _images) async {
+    List<String> imagesUrls=[];
+    imagesUrls = await Future.wait(_images.map((_image) => uploadFile(_image)));
+    print(imagesUrls);
+    return imagesUrls;
+  }
+
+  Future<String> uploadFile(Asset _image) async {
+    ByteData byteData = await _image.getByteData(); // requestOriginal is being deprecated
+    List<int> imageData = byteData.buffer.asUint8List();
+    StorageReference ref = FirebaseStorage().ref().child('postProduct${_image.name}'); // To be aligned with the latest firebase API(4.0)
+    StorageUploadTask uploadTask = ref.putData(imageData);
+
+    return await (await uploadTask.onComplete).ref.getDownloadURL();
+  }
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData;
@@ -145,8 +167,9 @@ class _ContactInfomationState extends State<ContactInfomation> {
               ),
               InkWell(
                   onTap: () {
-                    provider.addPost(widget.tittleP, widget.addressP, widget.description,
-                        widget.price, widget.selectType, widget.selectCategory, widget.statusProduct, nameUser, phoneNumber, emailUser, address);
+                    uploadFiles(widget.imageProduct);
+                  //  provider.addPost(widget.tittleP, widget.addressP, widget.description,
+                   //     widget.price, widget.selectType, widget.selectCategory, widget.statusProduct, nameUser, phoneNumber, emailUser, address);
                   },
                   child: Container(
                       height: 50,

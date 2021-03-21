@@ -334,7 +334,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                 crossAxisCount: 4,
                 crossAxisSpacing: 15.0,
                 mainAxisSpacing: 5.0,
-                childAspectRatio: 0.6,
+                childAspectRatio: 0.5,
                 children: <Widget>[
                   SizedBox(
                     width: 120,
@@ -342,8 +342,8 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                     child: Column(
                       children: <Widget>[
                         Container(
-                          height: 80,
-                          width: 80,
+                          height: 78,
+                          width: 78,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                           ),
@@ -620,7 +620,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                   Row(
                     children: <Widget>[
                       Container(
-                        padding:EdgeInsets.only(left: 15),
+                        padding:EdgeInsets.only(left: 10),
                         child: Text(item.name, style: TextStyle(fontSize: 19, fontWeight: FontWeight.w400, color: Colors.black),textAlign: TextAlign.left,),
                       )
                     ],
@@ -628,8 +628,8 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                   Row(
                     children: <Widget>[
                        Container(
-                         padding:EdgeInsets.only(left: 15),
-                         child: Text(item.cost.toString() + ' tỷ'  ,style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold,color:Colors.red),),
+                         padding:EdgeInsets.only(left: 10),
+                         child: Text(item.cost.toString() + ' tỷ'  ,style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold,color:Colors.red),),
                        ),
                       Container(width: 25,
                       ),
@@ -646,14 +646,14 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                   Row(
                     children: <Widget>[
                       Container(
-                          padding:EdgeInsets.only(left: 15),
-                        child:Text("20h truoc",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 18),)
+                          padding:EdgeInsets.only(left: 10),
+                        child:Text("20h truoc",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 17),)
                       ),
                       Container(
                         width: 20,
                       ),
                       Container(
-                        child: Text('item.address',style: TextStyle(fontSize: 19),overflow: TextOverflow.fade,),
+                        child: Text('item.address',style: TextStyle(fontSize: 16),overflow: TextOverflow.fade,),
                       )
                     ],
                   )
