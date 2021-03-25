@@ -1,33 +1,71 @@
+import 'package:app_giao_do_an/model/item.dart';
 import 'package:app_giao_do_an/model/post.dart';
 import 'package:app_giao_do_an/model/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ProviderController extends ChangeNotifier {
+
   User userOnline;
   Firestore firestore = Firestore.instance;
+  List<Post> userPost;
+
+
 
   void addPost(Post post) {
     List <dynamic> imageProduct = List<dynamic>();
+    String idItem = post.item.idItem;
+    String name = post.item.name;
+    List<dynamic> image;
+    int cost = post.item.cost;
+    String type = post.item.type;
+    String category = post.item.category;
+    String status = post.item.status;
+    String description =  post.item.description;
+    bool isStore = post.item.isStore;
+    List item = [];
+    item.add({
+      'idItem': idItem,
+      'name':name,
+      'image':image,
+      'cost':cost,
+      'type':type,
+      'category':category,
+      'status':status,
+      'description':description,
+      'isStore':isStore
+    });
     firestore.collection('Post').document(post.idPost).setData({
       'idPost':post.idPost,
       'uuid':post.uuid,
       'nameUserPost':post.nameUserPost,
       'emailUserPost':post.emailUserPost,
       'phoneNumberPost':post.phoneNumberPost,
+
       'addressPost':post.addressPost,
       'timeCreate':post.timeCreate,
-      'item':post.item,
+      'item':item,
       'report':post.report,
       'isPriority':post.isPriority
 
     });
+    print('Add Post');
   }
+  Future<void> getAllPost(String uuid) async{
 
+    Firestore.instance.collection('Post').where('uuid',isEqualTo: uuid).snapshots().listen((event) {
+      for (int i = 0 ; i< event.documents.length; i++){
+        userPost[i] = Post.fromSnapshot(event.documents[i]);
+        print(userPost[i]);
+      }
+    });
+    print('Get All Post');
+  }
   Future<void> getUserOnline(String uuid) async {
     DocumentSnapshot snapshot = await firestore.collection('User').document(
         uuid).get();
     userOnline = User.fromSnapshot(snapshot);
+    print("Get User Online");
   }
 
   void updateUserInfo(String nameChange,

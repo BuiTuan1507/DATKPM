@@ -35,15 +35,37 @@ class ContactInfomation extends StatefulWidget {
 class _ContactInfomationState extends State<ContactInfomation> {
   int isPriority ;
 
-  Future<List<String>> uploadFiles(List<Asset> _images, String idPost,BuildContext context) async {
+  Future<List<String>> uploadFiles(List<Asset> _images, String idPost,BuildContext context, Item item) async {
     List<String> imagesUrls=[];
     imagesUrls = await Future.wait(_images.map((_image) => uploadFile(_image)));
     print(imagesUrls);
 
+    String idItem =item.idItem;
+    String name = item.name;
+
+    int cost = item.cost;
+    String type = item.type;
+    String category = item.category;
+    String status = item.status;
+    String description =  item.description;
+    bool isStore = item.isStore;
+
+    List item1 = [];
+    item1.add({
+      'idItem': idItem,
+      'name':name,
+      'image':imagesUrls,
+      'cost':cost,
+      'type':type,
+      'category':category,
+      'status':status,
+      'description':description,
+      'isStore':isStore
+    });
 
     Firestore firestore = Firestore.instance;
     firestore.collection('Post').document(idPost).updateData({
-        'imageProduct':imagesUrls
+        'item':item1
     });
     showDialog(
         context: context,
@@ -246,11 +268,13 @@ class _ContactInfomationState extends State<ContactInfomation> {
                     List<dynamic> report = List<dynamic>();
                     String idItem  = randomAlpha(15);
 
-                    Item item = new Item(idItem,widget.tittleP,imageP.toList(),widget.price,widget.selectType,widget.selectCategory,widget.statusProduct,widget.description,false);
+                    Item item = new Item(idItem,widget.tittleP,imageP.toList(),widget.price,widget.selectType
+                        ,widget.selectCategory,widget.statusProduct,widget.description,false);
 
                     Post post = new Post(widget.idPost,_userOnline.uuid,_userOnline.name,_userOnline.email,_userOnline.phoneNumber,widget.addressP,DateTime.now(),item,report.toList(),isPriority);
                     provider.addPost(post);
-                    uploadFiles(widget.imageProduct, widget.idPost,context);
+
+                    uploadFiles(widget.imageProduct, widget.idPost,context, item);
                   },
                   child: Container(
                       height: 50,

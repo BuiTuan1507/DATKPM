@@ -19,7 +19,10 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Consumer<ProviderController> (builder: (context,provider,child){
+      provider.getAllPost(provider.userOnline.uuid);
+
       User _userOnline = provider.userOnline;
+
       int followPerson;
       if(_userOnline.followPerson == null){
         followPerson = 0;

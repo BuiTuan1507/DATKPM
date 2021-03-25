@@ -57,19 +57,19 @@ class User {
   toJson() {
     return {
       "name": name,
-    "uuid" : uuid,
-    'email': email,
-    "sex" :sex ,
-    "imageUser" : imageUser ,
-    "address" : address,
-    "phoneNumber" :phoneNumber ,
-    "password" : password,
-    "isOnline" : isOnline ,
-    "coinApp" : coinApp ,
-    "timeOnline" : coinApp ,
-      "timeUseApp":timeUseApp,
-    "friends" : friends ,
-    "followPerson" : followPerson
+      "uuid": uuid,
+      'email': email,
+      "sex": sex,
+      "imageUser": imageUser,
+      "address": address,
+      "phoneNumber": phoneNumber,
+      "password": password,
+      "isOnline": isOnline,
+      "coinApp": coinApp,
+      "timeOnline": coinApp,
+      "timeUseApp": timeUseApp,
+      "friends": friends,
+      "followPerson": followPerson
     };
   }
 }

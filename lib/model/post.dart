@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'item.dart';
-class Post{
+
+class Post {
   String idPost; // id Bai dang
   String uuid; // id nguoi dang
   String nameUserPost;
@@ -10,19 +12,61 @@ class Post{
   String addressPost; // noi giao dich
   DateTime timeCreate; // thoi gian dang
   Item item; // san pham
-  List<String> report; // danh sách người báo cáo bài viết
+  List<dynamic> report; // danh sách người báo cáo bài viết
   int isPriority;
 
-  Post(
-      this.idPost,
+  Post(this.idPost,
       this.uuid,
       this.nameUserPost,
       this.emailUserPost,
       this.phoneNumberPost,
+
       this.addressPost,
       this.timeCreate,
       this.item,
       this.report,
-      this.isPriority); // độ ưu tiên
+      this.isPriority);
 
+  // độ ưu tiên
+  Post.fromJson(Map<String, dynamic> data)
+      : idPost = data['idPost'],
+        uuid = data['uuid'],
+        nameUserPost = data['nameUserPost'],
+        emailUserPost = data['emailUserPost'],
+        phoneNumberPost = data['phoneNumberPost'],
+
+        addressPost = data['addressPost'],
+        timeCreate = data['timeCreate'],
+        item = data['item'],
+        report = data['report'],
+        isPriority = data['isPriority'];
+
+  Post.fromSnapshot(DocumentSnapshot snapshot)
+      : idPost = snapshot['idPost'],
+        uuid = snapshot['uuid'],
+        nameUserPost = snapshot['nameUserPost'],
+        emailUserPost = snapshot['emailUserPost'],
+        phoneNumberPost = snapshot['phoneNumberPost'],
+
+        addressPost = snapshot['addressPost'],
+        timeCreate = snapshot['timeCreate'],
+        item = snapshot['item'],
+        report = snapshot['report'],
+        isPriority = snapshot['isPriority'];
+
+  toJson() {
+    return {
+      "idPost": idPost,
+      "uuid": uuid,
+      'emailUserPost': emailUserPost,
+      "nameUserPost": nameUserPost,
+      "phoneNumberPost": phoneNumberPost,
+      "addressPost": addressPost,
+      "timeCreate": timeCreate,
+      "item": item,
+      "report": report,
+      "isPriority": isPriority,
+
+    };
+  }
 }
