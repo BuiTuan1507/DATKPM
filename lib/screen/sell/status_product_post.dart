@@ -10,7 +10,15 @@ class StatusProductPost extends StatefulWidget {
 }
 
 class _StatusProductPostState extends State<StatusProductPost> {
+
   String statusProduct ;
+  @override
+  void initState() {
+    setState(() {
+      statusProduct = "";
+    });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,6 +68,7 @@ class _StatusProductPostState extends State<StatusProductPost> {
           Container(height: 40,),
           InkWell(
               onTap: (){
+
                 Navigator.pushNamed(context, PRODUCTINFOMATION,
                     arguments: {'selectedType':widget.selectType,'selectedCategory':widget.selectCategory,'statusProduct':statusProduct});
               },

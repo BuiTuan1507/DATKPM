@@ -74,6 +74,7 @@ class _ProductInfomationState extends State<ProductInfomation> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.statusProduct);
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     return Scaffold(
@@ -312,7 +313,7 @@ class _ProductInfomationState extends State<ProductInfomation> {
                 keyboardType: TextInputType.number,
                 controller: priceProduct,
                 onChanged: (t) {
-                  price = t as int;
+                  price = int.parse(t);
                 },
                 style: TextStyle(fontSize: 18),
               ),
@@ -394,7 +395,7 @@ class _ProductInfomationState extends State<ProductInfomation> {
                     'price': price,
                     'selectType': widget.selectType,
                     'selectCategory': widget.selectCategory,
-                    'selectProduct': widget.statusProduct,
+                    'statusProduct': widget.statusProduct,
                     'imageProduct':imageProduct,
 
                   });

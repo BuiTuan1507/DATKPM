@@ -102,7 +102,8 @@ class _ContactInfomationState extends State<ContactInfomation> {
   }
   @override
   Widget build(BuildContext context) {
-
+    print(widget.price);
+    print(widget.statusProduct);
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     return Consumer<ProviderController>(builder: (context,provider,child){
