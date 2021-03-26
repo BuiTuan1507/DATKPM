@@ -13,7 +13,8 @@ class Item{
 
   Item(this.idItem, this.name, this.image, this.cost, this.type, this.category,
       this.status, this.description, this.isStore);
-  Item.fromJson(Map<String, dynamic> data)
+
+  Item.fromJson(Map<dynamic, dynamic> data)
       : idItem = data['idItem'],
         name = data['name'],
         image = data['image'],

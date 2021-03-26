@@ -22,6 +22,8 @@ import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_a
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'model/post.dart';
+
 void main() {
 
   runApp(MyApp(
@@ -35,11 +37,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final FirebaseService firebaseService = FirebaseService();
 
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ProviderController(),),
+
       ],
       child: MaterialApp(
           title: 'Cho BK',

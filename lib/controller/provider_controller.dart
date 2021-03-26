@@ -55,12 +55,21 @@ class ProviderController extends ChangeNotifier {
 
     Firestore.instance.collection('Post').where('uuid',isEqualTo: uuid).snapshots().listen((event) {
       for (int i = 0 ; i< event.documents.length; i++){
-        userPost[i] = Post.fromSnapshot(event.documents[i]);
-        print(userPost[i]);
+       String post = Post.fromSnapshot(event.documents[i]).item.name;
+       print(post);
+       //userPost.add(post);
       }
     });
+
     print('Get All Post');
   }
+
+  Stream <List<Post>> getPostUser(String uuid) {
+    Stream<List<Post>> uPost = firestore.collection('Post').where('uuid',isEqualTo: uuid).snapshots().map((event) => event.documents.map((e) => Post.fromJson(e.data)).toList() );
+
+    return uPost;
+  }
+
   Future<void> getUserOnline(String uuid) async {
     DocumentSnapshot snapshot = await firestore.collection('User').document(
         uuid).get();

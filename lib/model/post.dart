@@ -10,7 +10,7 @@ class Post {
   String emailUserPost;
   String phoneNumberPost;
   String addressPost; // noi giao dich
-  DateTime timeCreate; // thoi gian dang
+  Timestamp timeCreate; // thoi gian dang
   Item item; // san pham
   List<dynamic> report; // danh sách người báo cáo bài viết
   int isPriority;
@@ -50,7 +50,7 @@ class Post {
 
         addressPost = snapshot['addressPost'],
         timeCreate = snapshot['timeCreate'],
-        item = snapshot['item'],
+        item = Item.fromJson(snapshot['item'][0]),
         report = snapshot['report'],
         isPriority = snapshot['isPriority'];
 
