@@ -1,6 +1,7 @@
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/notificati/activity_user.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/notificati/new_infomation.dart';
 import 'package:app_giao_do_an/route.dart';
+import 'package:app_giao_do_an/screen/notificati/all_cart.dart';
 import 'package:flutter/material.dart';
 class NotificationApp extends StatefulWidget {
   @override
@@ -13,11 +14,11 @@ class _NotificationAppState extends State<NotificationApp> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.amber,
-            title: Text('Quản lí tin đăng', style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold, color: Colors.black),),
+            title: Text('Quản lí đơn hàng', style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold, color: Colors.black),),
             actions: [
               Container(
                 child: IconButton(
@@ -48,13 +49,19 @@ class _NotificationAppState extends State<NotificationApp> {
                   Tab(
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("Hoạt động" + "",style: TextStyle(fontSize: 18),),
+                      child: Text("Đơn hàng" + "",style: TextStyle(fontSize: 18),),
                     ),
                   ),
                   Tab(
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("Tin mới" + " (${_tinMoi.toString()})",style: TextStyle(fontSize: 18)),
+                      child: Text("Đang giao" + " (${_tinMoi.toString()})",style: TextStyle(fontSize: 18)),
+                    ),
+                  ),
+                  Tab(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text("Đã giao" + " (${_tinMoi.toString()})",style: TextStyle(fontSize: 18)),
                     ),
                   ),
 
@@ -66,7 +73,8 @@ class _NotificationAppState extends State<NotificationApp> {
           body: TabBarView(
             children: [
               ActivityUser(),
-              NewInfomation()
+              NewInfomation(),
+              AllCart()
             ],
           )
       ),

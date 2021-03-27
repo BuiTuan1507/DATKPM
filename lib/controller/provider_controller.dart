@@ -9,9 +9,10 @@ class ProviderController extends ChangeNotifier {
   User userOnline;
   Firestore firestore = Firestore.instance;
   List<Post> userPost;
+  List<Post> cartPost;
 
 
-
+  //Post
   void addPost(Post post) {
     List <dynamic> imageProduct = List<dynamic>();
     String idItem = post.item.idItem;
@@ -69,7 +70,7 @@ class ProviderController extends ChangeNotifier {
 
     return uPost;
   }
-
+  //User
   Future<void> getUserOnline(String uuid) async {
     DocumentSnapshot snapshot = await firestore.collection('User').document(
         uuid).get();
@@ -92,4 +93,13 @@ class ProviderController extends ChangeNotifier {
     print('Update info user');
   }
 
+  //Cart
+  void addCart(Post post){
+    cartPost.add(post);
+    notifyListeners();
+  }
+  void removeCart(Post post){
+    cartPost.remove(post);
+    notifyListeners();
+  }
 }

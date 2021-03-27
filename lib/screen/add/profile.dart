@@ -332,7 +332,7 @@ class _ProfileState extends State<Profile> {
                           ),
                           Container(
                             padding: EdgeInsets.only(top: 10, bottom: 7),
-                            child: Text('Tin cua ban', style:TextStyle(fontSize: 19, fontWeight: FontWeight.bold)),
+                            child: Text('Tin của bạn', style:TextStyle(fontSize: 19, fontWeight: FontWeight.bold)),
                           ),
                           (snapshot.data.documents.length == 0)
                               ? Column(
