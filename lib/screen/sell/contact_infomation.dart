@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:app_giao_do_an/model/item.dart';
 import 'package:app_giao_do_an/model/post.dart';
 import 'package:app_giao_do_an/model/user.dart';
+import 'package:app_giao_do_an/route.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:path/path.dart';
@@ -83,7 +84,7 @@ class _ContactInfomationState extends State<ContactInfomation> {
               FlatButton(
                 child: Text("Xem"),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.pushNamed(context, PROFILE);
                 },
               )
             ],

@@ -4,7 +4,7 @@ import 'package:app_giao_do_an/controller/provider_controller.dart';
 import 'package:app_giao_do_an/hone_app.dart';
 import 'package:app_giao_do_an/model/user.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/login_register/login_screen.dart';
-import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/notificati/notification.dart';
+
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/shop/order.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/add/profile.dart';
 import 'package:app_giao_do_an/route.dart';

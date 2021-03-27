@@ -74,6 +74,9 @@ flutter:
     - xe.jpg
     - online.jpg
     - icon_image.jpg
+    - home1.jpg
+    - home2.jpg
+    - home3.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

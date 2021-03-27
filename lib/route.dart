@@ -2,11 +2,13 @@
 
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/add/change_info.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/login_register/login_screen.dart';
-import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/notificati/notification.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/sell/favorite.dart';
 import 'package:app_giao_do_an/hone_app.dart';
 import 'package:app_giao_do_an/screen/add/profile.dart';
 import 'package:app_giao_do_an/screen/add/update_profile.dart';
+import 'package:app_giao_do_an/screen/add/user_favorite.dart';
+import 'package:app_giao_do_an/screen/add/user_friend.dart';
+import 'package:app_giao_do_an/screen/cart/notification.dart';
 import 'package:app_giao_do_an/screen/homeapp/cost_catalog.dart';
 import 'package:app_giao_do_an/screen/homeapp/electronic_catalog.dart';
 import 'package:app_giao_do_an/screen/homeapp/item_electronic_detail.dart';
@@ -26,6 +28,7 @@ import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_a
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/login_register/register_screen.dart';
 import 'package:flutter/material.dart';
 
+import 'screen/add/user_help.dart';
 import 'screen/login_register/register_email.dart';
 
 const String HOME_APP = '/homeApp';
@@ -55,6 +58,14 @@ const String REGISTERNAME = '/registerName';
 const String REGISTERPHONENUMBER = '/registerPhoneNumber';
 const String REGISTEREMAIL = '/registerEmail';
 const String REGISTERPASSWORD = '/registerPassword';
+
+//Home Screen
+
+const String USERFAVORITE = '/userFavorite';
+const String USERFRIEND = '/userFriend';
+const String USERHELP = '/userHelp';
+
+
 class NavService {
   static GlobalKey<NavigatorState> navigatorKey =
   new GlobalKey<NavigatorState>();
@@ -145,6 +156,13 @@ class RouterNav {
           auth: _agrument['auth'],loginCallback: _agrument['loginCallback'],
           email: _agrument['email'],password: _agrument['password'],name: _agrument['name'],phone: _agrument['phone'],
         ));
+      case USERFAVORITE :
+        return  MaterialPageRoute(builder: (context) => UserFavorite());
+      case USERFRIEND :
+        return MaterialPageRoute(builder: (context) => UserFriend());
+      case USERHELP :
+        return MaterialPageRoute(builder: (context) => UserHelp());
+
       default:
         return MaterialPageRoute(builder: (context) => HomeApp());
     }

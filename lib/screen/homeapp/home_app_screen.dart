@@ -102,7 +102,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage('assets/h1.jpg'),
+                      image: AssetImage('assets/home1.jpg'),
                     ),
                   ),
                 ),
@@ -121,7 +121,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                         borderRadius: BorderRadius.circular(10),
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage('assets/h2.jpg'),
+                          image: AssetImage('assets/home2.jpg'),
                         ),
                       ),
                     ),
@@ -140,11 +140,14 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                         borderRadius: BorderRadius.circular(10),
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage('assets/h2.jpg'),
+                          image: AssetImage('assets/home3.jpg'),
                         ),
                       ),
                     ),
                   ),
+                  Container(
+                    width:15
+                  )
                 ],
               ),
             ),
@@ -189,7 +192,9 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                     child: Column(
                       children: <Widget>[
                         InkWell(
-                          onTap:(){},
+                          onTap:(){
+                            Navigator.pushNamed(context, USERFAVORITE);
+                          },
                           child: Container(
 
                               width: 40,
@@ -216,25 +221,25 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                       children: <Widget>[
                         InkWell(
                           onTap:(){
-
+                              Navigator.pushNamed(context, USERFRIEND);
                           },
                           child: Container(
 
                               width: 40,
                               height: 40,
                               decoration: BoxDecoration(
-                                  color: Colors.blue,
+                                  color: Colors.greenAccent,
                                   borderRadius: BorderRadius.circular(100)
                               ),
                               child: Center(
-                                child:Icon(Icons.person,color: Colors.white,),
+                                child:Icon(Icons.person_add,color: Colors.white,),
                               )
 
                           ),
                         )
                         ,
                         Container(
-                          child: Text("Trang cá nhân", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18, color: Colors.black,),textAlign: TextAlign.center,),
+                          child: Text("Bạn bè", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18, color: Colors.black,),textAlign: TextAlign.center,),
                         )
                       ],
                     ),
@@ -243,21 +248,27 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                     width: 100,
                     child: Column(
                       children: <Widget>[
-                        Container(
+                        InkWell(
+                          onTap: (){
+                            Navigator.pushNamed(context, NOTIFICATION);
+                          },
+                          child: Container(
 
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.circular(100)
-                            ),
-                            child: Center(
-                              child:Icon(Icons.person,color: Colors.white,),
-                            )
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  color: Colors.amber,
+                                  borderRadius: BorderRadius.circular(100)
+                              ),
+                              child: Center(
+                                child:Icon(Icons.save,color: Colors.white,),
+                              )
 
+                          ),
                         ),
+
                         Container(
-                          child: Text("Trang cá nhân", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18, color: Colors.black,),textAlign: TextAlign.center,),
+                          child: Text("Đơn hàng", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18, color: Colors.black,),textAlign: TextAlign.center,),
                         )
                       ],
                     ),
@@ -266,49 +277,31 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                     width: 100,
                     child: Column(
                       children: <Widget>[
-                        Container(
+                        InkWell(
+                          onTap: (){
+                            Navigator.pushNamed(context, USERHELP);
+                          },
+                          child: Container(
 
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.circular(100)
-                            ),
-                            child: Center(
-                              child:Icon(Icons.person,color: Colors.white,),
-                            )
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  color: Colors.grey,
+                                  borderRadius: BorderRadius.circular(100)
+                              ),
+                              child: Center(
+                                child:Icon(Icons.help_outline,color: Colors.white,),
+                              )
 
-                        ),
+                          ),
+                        )
+                        ,
                         Container(
-                          child: Text("Trang cá nhân", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18, color: Colors.black,),textAlign: TextAlign.center,),
+                          child: Text("Trợ giúp", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18, color: Colors.black,),textAlign: TextAlign.center,),
                         )
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: 100,
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.circular(100)
-                            ),
-                            child: Center(
-                              child:Icon(Icons.person,color: Colors.white,),
-                            )
-
-                        ),
-                        Container(
-                          child: Text("Trang cá nhân", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18, color: Colors.black,),textAlign: TextAlign.center,),
-                        )
-                      ],
-                    ),
-                  ),
-
 
                 ],
               )

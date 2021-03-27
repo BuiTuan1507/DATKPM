@@ -13,7 +13,7 @@ class _ActivityUserState extends State<ActivityUser> {
     return Scaffold(
       body: Consumer<ProviderController>(
         builder: (context,provider,child){
-          return provider.cartPost.length > 0 ?
+          return provider.cartPost != null ?
               SingleChildScrollView(
                 child: Column(
                   children: <Widget>[

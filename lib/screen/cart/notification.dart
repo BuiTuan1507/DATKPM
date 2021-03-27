@@ -1,8 +1,10 @@
-import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/notificati/activity_user.dart';
-import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/notificati/new_infomation.dart';
 import 'package:app_giao_do_an/route.dart';
-import 'package:app_giao_do_an/screen/notificati/all_cart.dart';
+
 import 'package:flutter/material.dart';
+
+import 'activity_user.dart';
+import 'all_cart.dart';
+import 'new_infomation.dart';
 class NotificationApp extends StatefulWidget {
   @override
   _NotificationAppState createState() => _NotificationAppState();
