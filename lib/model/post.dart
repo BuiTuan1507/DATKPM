@@ -37,7 +37,7 @@ class Post {
 
         addressPost = data['addressPost'],
         timeCreate = data['timeCreate'],
-        item = data['item'],
+        item = Item.fromJson(data['item'][0]),
         report = data['report'],
         isPriority = data['isPriority'];
 
@@ -50,7 +50,7 @@ class Post {
 
         addressPost = snapshot['addressPost'],
         timeCreate = snapshot['timeCreate'],
-        item = Item.fromJson(snapshot['item'][0]),
+        item = Item.fromSnapshot(snapshot['item'][0]),
         report = snapshot['report'],
         isPriority = snapshot['isPriority'];
 

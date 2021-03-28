@@ -8,7 +8,7 @@ class ProviderController extends ChangeNotifier {
 
   User userOnline;
   Firestore firestore = Firestore.instance;
-  List<Post> userPost;
+  Stream<List<Post>> userPost;
   List<Post> cartPost;
 
 
@@ -70,6 +70,7 @@ class ProviderController extends ChangeNotifier {
 
     return uPost;
   }
+
   //User
   Future<void> getUserOnline(String uuid) async {
     DocumentSnapshot snapshot = await firestore.collection('User').document(

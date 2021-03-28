@@ -21,7 +21,11 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Consumer<ProviderController>(builder: (context, provider, child) {
+      Stream<List<Post>> x = provider.getPostUser(provider.userOnline.uuid);
+    //  print(x.listen((event) {print(event[0].nameUserPost);}));
       int numberOfNews = 0;
+     // List<Post> x = Provider.of<List<Post>>(context);
+    //  print(x[0].emailUserPost);
 
       User _userOnline = provider.userOnline;
 

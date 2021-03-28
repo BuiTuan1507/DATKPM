@@ -37,7 +37,7 @@ class _ChangeInfoState extends State<ChangeInfo> {
 
     return Consumer<ProviderController> (builder: (context,provider,child){
       _user = provider.userOnline;
-     
+
       return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.amber,

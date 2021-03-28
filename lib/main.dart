@@ -37,11 +37,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
+    final firebaseService = FirebaseService();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ProviderController(),),
-
+        StreamProvider<List<Post>>.value(value: firebaseService.getPost()),
       ],
       child: MaterialApp(
           title: 'Cho BK',

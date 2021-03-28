@@ -92,7 +92,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
     queryData = MediaQuery.of(context);
 
     return Consumer<ProviderController>(builder: (context, provider, child) {
-      print(provider.userPost[0].nameUserPost);
+
       User _user = provider.userOnline;
       String sexUser;
       switch (_user.sex) {

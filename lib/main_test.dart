@@ -6,6 +6,7 @@ import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_a
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/shop/order.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/add/profile.dart';
 import 'package:app_giao_do_an/route.dart';
+import 'package:app_giao_do_an/screen/add/test.dart';
 import 'package:app_giao_do_an/screen/cart_chat/chat.dart';
 import 'package:app_giao_do_an/screen/homeapp/cost_catalog.dart';
 import 'package:app_giao_do_an/screen/homeapp/electronic_catalog.dart';
@@ -25,5 +26,5 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
-  home: CategoryPost(),
+  home: test(),
 ));
