@@ -16,6 +16,7 @@ class HomeAppScreen extends StatefulWidget {
 }
 
 class _HomeAppScreenState extends State<HomeAppScreen> {
+  ScrollController _scrollController = new ScrollController();
   List<Post> refreshPost = [];
   List<Post> loadPost = [];
   int get count => loadPost.length;
@@ -29,12 +30,16 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
     queryData = MediaQuery.of(context);
     int down = 0;
     List<Post> x = Provider.of<List<Post>>(context);
-
-    for(int i = 0; i<2; i++){
-      loadPost.add(x[i]);
+    if(x != null){
+      for(int i = 0; i<3; i++){
+        loadPost.add(x[i]);
+      }
     }
 
-    int _count = 0;
+
+    int _count = 3;
+
+
     List<Widget> _getItems(List<Post> p) {
       var items = <Widget>[];
       for (int i = _count; i < _count + 1; i++) {
@@ -65,9 +70,10 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
 
     // pull down to load more
     void load(){
+      print('load');
       setState(() {
-        _count = down;
-        for(int  i = 2; i< 5; i++){
+        loadPost.clear();
+        for(int  i = _count; i< _count + 3; i++){
           loadPost.add(x[i]);
         }
       });
@@ -75,13 +81,16 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
 
     Future<bool> _loadMore() async {
       print("onLoadMore");
+
       await Future.delayed(Duration(seconds: 0, milliseconds: 5000));
       load();
-      down = down + 1;
       return true;
     }
 
     Future<void> _refresh() async {
+      setState(() {
+        _count = _count + 4;
+      });
       print('refresh');
       await Future.delayed(Duration(seconds: 0, milliseconds: 2000));
       loadPost.clear();
@@ -618,31 +627,26 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                   "Tin đăng mới", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
                 ),
               ),
-              (x != null) ?
-                 new ListView(
+             // (x != null) ?
+             //    new ListView(
+              //    shrinkWrap: true,
+             //     scrollDirection: Axis.vertical,
+              //    children: _getItems(loadPost),
+              //  )
+
+             //  : CircularProgressIndicator(),
+              LoadMore(
+                isFinish: count >= 6,
+                onLoadMore: _loadMore,
+                child: ListView.builder(
+                 // reverse: true,
+                  controller: _scrollController,
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
-                  children: _getItems(loadPost),
-                )
-
-               : CircularProgressIndicator(),
-              LoadMore(
-                isFinish: count >= 4,
-                onLoadMore: _loadMore,
-                child: SingleChildScrollView(
-                  child:ListView.builder(
-                    physics: AlwaysScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        child: Text(loadPost[index].item.name),
-                        height: 40.0,
-                        alignment: Alignment.center,
-                      );
-                    },
-                    itemCount: count,
-                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    return showItem(loadPost[index].item);
+                  },
+                  itemCount: count,
                 ),
 
                 whenEmptyLoad: false,
@@ -660,8 +664,29 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
   }
 
   Widget showItem(Item item){
-    return new
-      Text(item.name)
-    ;
+    return Container(
+      child: Row(
+        children: <Widget>[
+          Container(
+            height: 150,
+            width: 150,
+            padding: EdgeInsets.all(10),
+            child:Image.network(item.image[0], fit: BoxFit.cover,),
+          ),
+          Column(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.all(10),
+                child: Text(item.name, style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18,),),
+              ),
+              Container(
+                padding: EdgeInsets.all(10),
+                child: Text('Gia :' + item.cost.toString(), style: TextStyle(fontSize: 16),),
+              )
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
