@@ -5,6 +5,7 @@ import 'package:app_giao_do_an/route.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:loadmore/loadmore.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +18,8 @@ class HomeAppScreen extends StatefulWidget {
 
 class _HomeAppScreenState extends State<HomeAppScreen> {
   ScrollController _scrollController = new ScrollController();
+  ScrollController _scrollControllerGrid = new ScrollController();
+
   List<Post> refreshPost = [];
   List<Post> loadPost = [];
   int get count => loadPost.length;
@@ -45,7 +48,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
       for (int i = _count; i < _count + 1; i++) {
         var item = new Column(
           children: <Widget>[
-            showItem(p[_count].item),
+            showItem(p[_count]),
 
             Container(height: 20,),
             new Divider(
@@ -398,6 +401,8 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
               Container(height: 15,),
               Container(
                 child: GridView.count(
+                 // controller: _scrollControllerGrid,
+                  physics: ScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   padding: EdgeInsets.all(5),
@@ -644,7 +649,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   itemBuilder: (BuildContext context, int index) {
-                    return showItem(loadPost[index].item);
+                    return showItem(loadPost[index]);
                   },
                   itemCount: count,
                 ),
@@ -663,7 +668,10 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
     );
   }
 
-  Widget showItem(Item item){
+  Widget showItem(Post post){
+    var timeJoinApp;
+    var createTimeFormat = DateFormat('dd-MM-yyyy');
+    timeJoinApp = createTimeFormat.format(post.timeCreate.toDate());
     return Container(
       child: Row(
         children: <Widget>[
@@ -671,17 +679,52 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
             height: 150,
             width: 150,
             padding: EdgeInsets.all(10),
-            child:Image.network(item.image[0], fit: BoxFit.cover,),
+            child:Image.network(post.item.image[0], fit: BoxFit.cover,),
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                padding: EdgeInsets.all(10),
-                child: Text(item.name, style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18,),),
+                padding: EdgeInsets.only(top: 10, left:10, bottom: 10, right: 10),
+                child: Text(post.item.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20,),),
               ),
               Container(
                 padding: EdgeInsets.all(10),
-                child: Text('Gia :' + item.cost.toString(), style: TextStyle(fontSize: 16),),
+                child: Text('Giá :' + post.item.cost.toString() + 'đ', style: TextStyle(fontSize: 18),),
+              ),
+              Row(
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: Text(post.addressPost, overflow: TextOverflow.fade,style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 10, bottom: 10, right: 10),
+                    child: Text(timeJoinApp, overflow: TextOverflow.fade,style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
+                  )
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.only(left: 20,right: 20),
+                    child: IconButton(
+                      onPressed: (){},
+                      icon:Icon( Icons.favorite_border),
+                      iconSize: 26,
+
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: 20,right: 20),
+                    child: IconButton(
+                      onPressed: (){},
+                      icon:Icon( Icons.add_shopping_cart),
+                      iconSize: 26,
+
+                    ),
+                  ),
+                ],
               )
             ],
           )
