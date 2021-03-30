@@ -8,7 +8,10 @@ import 'package:app_giao_do_an/screen/add/profile.dart';
 import 'package:app_giao_do_an/screen/add/update_profile.dart';
 import 'package:app_giao_do_an/screen/add/user_favorite.dart';
 import 'package:app_giao_do_an/screen/add/user_friend.dart';
+import 'package:app_giao_do_an/screen/add/user_promotion.dart';
+import 'package:app_giao_do_an/screen/add/user_store.dart';
 import 'package:app_giao_do_an/screen/cart/notification.dart';
+import 'package:app_giao_do_an/screen/cart_chat/chat.dart';
 import 'package:app_giao_do_an/screen/homeapp/cost_catalog.dart';
 import 'package:app_giao_do_an/screen/homeapp/electronic_catalog.dart';
 import 'package:app_giao_do_an/screen/homeapp/item_electronic_detail.dart';
@@ -64,7 +67,11 @@ const String REGISTERPASSWORD = '/registerPassword';
 const String USERFAVORITE = '/userFavorite';
 const String USERFRIEND = '/userFriend';
 const String USERHELP = '/userHelp';
+const String CHAT = '/chat';
 
+// add screen
+const String USERSTORE = '/userStore';
+const String USERPROMOTION = '/userPromotion';
 
 class NavService {
   static GlobalKey<NavigatorState> navigatorKey =
@@ -162,7 +169,12 @@ class RouterNav {
         return MaterialPageRoute(builder: (context) => UserFriend());
       case USERHELP :
         return MaterialPageRoute(builder: (context) => UserHelp());
-
+      case USERSTORE :
+        return MaterialPageRoute(builder: (context) => UserStore());
+      case USERPROMOTION :
+        return MaterialPageRoute(builder: (context) => UserPromotion());
+      case CHAT :
+        return MaterialPageRoute(builder: (context) => Chat());
       default:
         return MaterialPageRoute(builder: (context) => HomeApp());
     }

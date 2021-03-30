@@ -19,6 +19,8 @@ class HomeAppScreen extends StatefulWidget {
 class _HomeAppScreenState extends State<HomeAppScreen> {
   ScrollController _scrollController = new ScrollController();
   ScrollController _scrollControllerGrid = new ScrollController();
+  bool isFavorite;
+
 
   List<Post> refreshPost = [];
   List<Post> loadPost = [];
@@ -99,6 +101,11 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
       loadPost.clear();
       load();
     }
+    bool changeFavorite(bool isFavorite){
+      setState(() {
+        isFavorite = !isFavorite;
+      });
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -150,7 +157,9 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
               child: IconButton(
                 icon: Icon(Icons.message,size: 28,),
 
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.pushNamed(context, CHAT);
+                },
                 color: Colors.black,
               ),
             )
@@ -676,6 +685,9 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
       child: Row(
         children: <Widget>[
           Container(
+            decoration: BoxDecoration(
+              borderRadius:BorderRadius.circular(10),
+            ),
             height: 150,
             width: 150,
             padding: EdgeInsets.all(10),
@@ -686,11 +698,19 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
             children: <Widget>[
               Container(
                 padding: EdgeInsets.only(top: 10, left:10, bottom: 10, right: 10),
-                child: Text(post.item.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20,),),
+                child: Text(post.item.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21,),),
               ),
               Container(
                 padding: EdgeInsets.all(10),
-                child: Text('Giá :' + post.item.cost.toString() + 'đ', style: TextStyle(fontSize: 18),),
+                child: RichText(
+                  text: TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(text:'Giá : ',style: TextStyle(fontSize: 18, color: Colors.black)),
+                      TextSpan(text:post.item.cost.toString(), style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600, color: Colors.red)),
+                      TextSpan(text:' đ',style: TextStyle(fontSize: 18,color: Colors.black)),
+                    ]
+                  ),
+                )
               ),
               Row(
                 children: <Widget>[
@@ -699,7 +719,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                     child: Text(post.addressPost, overflow: TextOverflow.fade,style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 10, bottom: 10, right: 10),
+                    padding: EdgeInsets.only(top: 10, bottom: 10, right: 10,left: 50),
                     child: Text(timeJoinApp, overflow: TextOverflow.fade,style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
                   )
                 ],
@@ -709,14 +729,16 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                   Container(
                     padding: EdgeInsets.only(left: 20,right: 20),
                     child: IconButton(
-                      onPressed: (){},
+                      onPressed: (){
+
+                      },
                       icon:Icon( Icons.favorite_border),
                       iconSize: 26,
 
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 20,right: 20),
+                    padding: EdgeInsets.only(left: 50,right: 20),
                     child: IconButton(
                       onPressed: (){},
                       icon:Icon( Icons.add_shopping_cart),

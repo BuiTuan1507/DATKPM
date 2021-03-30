@@ -134,72 +134,108 @@ class _PersonalState extends State<Personal> {
               Row(
                 children: <Widget>[
                   Container(width: 15,),
-                  Container(
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, USERFAVORITE);
+                    },
+                    child: Container(
 
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Colors.redAccent,
-                          borderRadius: BorderRadius.circular(100)
-                      ),
-                      child: Center(
-                        child:Icon(Icons.favorite,color: Colors.white,),
-                      )
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.redAccent,
+                            borderRadius: BorderRadius.circular(100)
+                        ),
+                        child: Center(
+                          child:Icon(Icons.favorite,color: Colors.white,),
+                        )
 
-                  ),
-                  Container(width: 20,),
-                  Container(
-                    padding: EdgeInsets.only(top: 10, bottom: 10),
-                    child: Text("Tin đăng đã lưu", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
+                    ),
                   )
+                  ,
+                  Container(width: 20,),
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, USERFAVORITE);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.only(top: 10, bottom: 10),
+                      child: Text("Tin đăng đã lưu", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
+                    ),
+                  )
+
                 ],
               ),
               Container(height: 10,),
               Row(
                 children: <Widget>[
                   Container(width: 15,),
-                  Container(
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context,USERFRIEND);
+                    },
+                    child: Container(
 
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Colors.greenAccent,
-                          borderRadius: BorderRadius.circular(100)
-                      ),
-                      child: Center(
-                        child:Icon(Icons.person_add,color: Colors.white,),
-                      )
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.greenAccent,
+                            borderRadius: BorderRadius.circular(100)
+                        ),
+                        child: Center(
+                          child:Icon(Icons.person_add,color: Colors.white,),
+                        )
 
+                    ),
                   ),
+
                   Container(width: 20,),
-                  Container(
-                    padding: EdgeInsets.only(top: 10, bottom: 10),
-                    child: Text("Bạn bè", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context,USERFRIEND);
+                    },
+                    child:  Container(
+                      padding: EdgeInsets.only(top: 10, bottom: 10),
+                      child: Text("Bạn bè", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
+                    ),
                   )
+
                 ],
               ),
               Container(height: 10,),
               Row(
                 children: <Widget>[
                   Container(width: 15,),
-                  Container(
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, NOTIFICATION);
+                    },
+                    child: Container(
 
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Colors.amber,
-                          borderRadius: BorderRadius.circular(100)
-                      ),
-                      child: Center(
-                        child:Icon(Icons.save,color: Colors.white,),
-                      )
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.amber,
+                            borderRadius: BorderRadius.circular(100)
+                        ),
+                        child: Center(
+                          child:Icon(Icons.save,color: Colors.white,),
+                        )
 
-                  ),
-                  Container(width: 20,),
-                  Container(
-                    padding: EdgeInsets.only(top: 10, bottom: 10),
-                    child: Text("Lịch sử giao dịch", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
+                    ),
                   )
+                  ,
+                  Container(width: 20,),
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, NOTIFICATION);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.only(top: 10, bottom: 10),
+                      child: Text("Lịch sử giao dịch", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
+                    ),
+                  )
+
                 ],
               ),
               Container(height: 10,),
@@ -213,96 +249,108 @@ class _PersonalState extends State<Personal> {
               Row(
                 children: <Widget>[
                   Container(width: 15,),
-                  Container(
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, USERSTORE);
+                    },
+                    child: Container(
 
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Colors.green,
-                          borderRadius: BorderRadius.circular(100)
-                      ),
-                      child: Center(
-                        child:Icon(Icons.store,color: Colors.white,),
-                      )
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(100)
+                        ),
+                        child: Center(
+                          child:Icon(Icons.store,color: Colors.white,),
+                        )
 
+                    ),
                   ),
+
                   Container(width: 20,),
-                  Container(
-                    padding: EdgeInsets.only(top: 10, bottom: 10),
-                    child: Text("Tạo cửa hàng", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, USERSTORE);
+                    },
+                    child:Container(
+                      padding: EdgeInsets.only(top: 10, bottom: 10),
+                      child: Text("Tạo cửa hàng", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
+                    )
                   )
+
                 ],
               ),
               Container(height: 10,),
               Row(
                 children: <Widget>[
                   Container(width: 15,),
-                  Container(
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, USERPROMOTION);
+                    },
+                    child: Container(
 
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Colors.green,
-                          borderRadius: BorderRadius.circular(100)
-                      ),
-                      child: Center(
-                        child:Icon(Icons.speaker_group,color: Colors.white,),
-                      )
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(100)
+                        ),
+                        child: Center(
+                          child:Icon(Icons.speaker_group,color: Colors.white,),
+                        )
 
-                  ),
-                  Container(width: 20,),
-                  Container(
-                    padding: EdgeInsets.only(top: 10, bottom: 10),
-                    child: Text("Khuyến mãi", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
+                    )
                   )
+                 ,
+                  Container(width: 20,),
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, USERPROMOTION);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.only(top: 10, bottom: 10),
+                      child: Text("Khuyến mãi", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
+                    ),
+                  ),
+
                 ],
               ),
               Container(height: 10,),
               Row(
                 children: <Widget>[
                   Container(width: 15,),
-                  Container(
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, USERHELP);
+                    },
+                    child:  Container(
 
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(100)
-                      ),
-                      child: Center(
-                        child:Icon(Icons.help,color: Colors.white,),
-                      )
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(100)
+                        ),
+                        child: Center(
+                          child:Icon(Icons.help,color: Colors.white,),
+                        )
 
-                  ),
-                  Container(width: 20,),
-                  Container(
-                    padding: EdgeInsets.only(top: 10, bottom: 10),
-                    child: Text("Trợ giúp", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
+                    ),
                   )
-                ],
-              ),
-              Container(height: 10,),
-              Row(
-                children: <Widget>[
-                  Container(width: 15,),
-                  Container(
-
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(100)
-                      ),
-                      child: Center(
-                        child:Icon(Icons.settings,color: Colors.white,),
-                      )
-
-                  ),
+                 ,
                   Container(width: 20,),
-                  Container(
-                    padding: EdgeInsets.only(top: 10, bottom: 10),
-                    child: Text("Cài đặt", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, USERHELP);
+                    },
+                    child:  Container(
+                      padding: EdgeInsets.only(top: 10, bottom: 10),
+                      child: Text("Trợ giúp", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
+                    ),
                   )
+
                 ],
               ),
               Container(height: 10,),
