@@ -27,13 +27,17 @@ class _OrderState extends State<Order> {
               Container(
                 child: IconButton(
                   icon: Icon(Icons.search,size: 28,color: Colors.black,),
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.pushNamed(context, SEARCHPOST);
+                  },
                 ),
               ),
               Container(
                 child: IconButton(
                   icon: Icon(Icons.message,size: 28,color: Colors.black,),
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.pushNamed(context, CHAT);
+                  },
                 ),
               ),
             ],

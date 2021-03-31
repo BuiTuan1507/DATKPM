@@ -25,13 +25,17 @@ class _NotificationAppState extends State<NotificationApp> {
               Container(
                 child: IconButton(
                   icon: Icon(Icons.search,size: 28,color: Colors.black,),
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.pushNamed(context, SEARCHPOST);
+                  },
                 ),
               ),
               Container(
                 child: IconButton(
                   icon: Icon(Icons.message,size: 28,color: Colors.black,),
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.pushNamed(context, CHAT);
+                  },
                 ),
               ),
             ],

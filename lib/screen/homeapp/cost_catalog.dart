@@ -1,3 +1,4 @@
+import 'package:app_giao_do_an/route.dart';
 import 'package:flutter/material.dart';
 class CostCatalog extends StatefulWidget {
 
@@ -51,7 +52,9 @@ class _CostCatalogState extends State<CostCatalog> {
           ),
           Container(height: 40,),
           InkWell(
-              onTap: (){},
+              onTap: (){
+                Navigator.pushNamed(context, PRODUCTTYPE,arguments: {'catalogF': 0,'costSearch':costSearch.round()*1000});
+              },
               child: Container(
                   height: 50,
                   width: 120,

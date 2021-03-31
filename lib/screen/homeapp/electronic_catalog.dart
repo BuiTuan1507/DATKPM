@@ -129,7 +129,7 @@ class _ElectronicCatalogState extends State<ElectronicCatalog> {
             InkWell(
                 onTap: (){
                   if(catalogF != 7){
-                    Navigator.pushNamed(context, PRODUCTTYPE,arguments: {'catalogF':catalogF});
+                    Navigator.pushNamed(context, PRODUCTTYPE,arguments: {'catalogF':catalogF,'costSearch':0});
                   }
 
                 },

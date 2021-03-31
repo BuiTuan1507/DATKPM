@@ -33,6 +33,7 @@ import 'package:flutter/material.dart';
 
 import 'screen/add/user_help.dart';
 import 'screen/login_register/register_email.dart';
+import 'screen/shop/search_post.dart';
 
 const String HOME_APP = '/homeApp';
 const String ORDER = '/order';
@@ -73,6 +74,9 @@ const String CHAT = '/chat';
 const String USERSTORE = '/userStore';
 const String USERPROMOTION = '/userPromotion';
 
+//
+const String SEARCHPOST = '/searchPost';
+
 class NavService {
   static GlobalKey<NavigatorState> navigatorKey =
   new GlobalKey<NavigatorState>();
@@ -109,7 +113,7 @@ class RouterNav {
         return MaterialPageRoute(builder: (context) => UpdateProfile(password: _agrument['password'],uuid: _agrument['uuid'],));
       case PRODUCTTYPE :
         var argument1 = settings.arguments as Map;
-        return MaterialPageRoute(builder: (context) => ProductType(catalogF: argument1['catalogF'],));
+        return MaterialPageRoute(builder: (context) => ProductType(catalogF: argument1['catalogF'], costSearch: argument1['costSearch'],priority: argument1['priority'],));
       case ELECTRONICCATALOG :
         return MaterialPageRoute(builder: (context) => ElectronicCatalog());
       case COSTCATALOG :
@@ -175,6 +179,8 @@ class RouterNav {
         return MaterialPageRoute(builder: (context) => UserPromotion());
       case CHAT :
         return MaterialPageRoute(builder: (context) => Chat());
+      case SEARCHPOST :
+        return MaterialPageRoute(builder: (context) => Search());
       default:
         return MaterialPageRoute(builder: (context) => HomeApp());
     }

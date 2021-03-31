@@ -470,7 +470,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                     ),
                     InkWell(
                       onTap: (){
-                        Navigator.pushNamed(context, PRODUCTTYPE,arguments: {'catalogF':0});
+                        Navigator.pushNamed(context, PRODUCTTYPE,arguments: {'catalogF':0,'costSearch':0,});
                         print(2);
                       },
                       child: SizedBox(

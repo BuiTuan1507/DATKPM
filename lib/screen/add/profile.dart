@@ -16,6 +16,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  ScrollController _scrollController = new ScrollController();
   String feedback = '0';
 
   @override
@@ -376,6 +377,7 @@ class _ProfileState extends State<Profile> {
                                   ],
                                 )
                               : ListView.builder(
+                            controller: _scrollController,
                                   scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
                                   itemCount: snapshot.data.documents.length,

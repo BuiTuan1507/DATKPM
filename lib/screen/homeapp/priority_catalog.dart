@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../../route.dart';
 class PriorityCatalog extends StatefulWidget {
   @override
   _PriorityCatalogState createState() => _PriorityCatalogState();
@@ -69,7 +71,9 @@ class _PriorityCatalogState extends State<PriorityCatalog> {
           ),
           Container(height: 40,),
           InkWell(
-
+              onTap: (){
+                Navigator.pushNamed(context, PRODUCTTYPE,arguments: {'catalogF': 0,'costSearch':0,'priority':priorityF});
+              },
               child: Container(
                   height: 50,
                   width: 120,
