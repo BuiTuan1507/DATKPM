@@ -435,7 +435,7 @@ class _ProfileState extends State<Profile> {
                                                           child: (snapshot.data.documents[index]['isPriority'] == 0) ? (Icon(Icons.store, size: 25,)) : (Icon(Icons.person_pin))),
                                                       Container(
                                                         padding: EdgeInsets.only(left: 15,right: 70),
-                                                        child: Text('item1.address',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
+                                                        child: Text(snapshot.data.documents[index]['addressPost'],style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
                                                       ),
 
 
