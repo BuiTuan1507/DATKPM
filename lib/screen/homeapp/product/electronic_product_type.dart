@@ -58,6 +58,7 @@ class _ProductTypeState extends State<ProductType> {
       builder:(context,provider, child){
         List<Post> _product = [];
         if(widget.catalogF == 0) {
+          print('do dien tu');
           for (int  i = 0; i< x.length; i++ ){
             if (x[i].item.type == 'Đồ điện tử'){
               _product.add(x[i]);
@@ -65,6 +66,7 @@ class _ProductTypeState extends State<ProductType> {
           }
         } else if (widget.catalogF != 0)
         {
+          print('dien thoai');
           for (int  i = 0; i<x.length;i++){
             if (x[i].item.category == catalogE[widget.catalogF]){
               _product.add(x[i]);
@@ -72,10 +74,28 @@ class _ProductTypeState extends State<ProductType> {
           }
         }
         if ((widget.costSearch != 0) && (widget.costSearch != null)){
+          print(widget.costSearch);
+          print('cost search');
+          _product.clear();
           for (int i = 0; i<x.length; i++){
             if(x[i].item.cost >= widget.costSearch){
               _product.add(x[i]);
             }
+          }
+        }
+        if ( (widget.priority != 0) && (widget.priority != null)) {
+          print('do uu tien');
+          _product.clear();
+          for(int  i = 0; i<x.length; i++){
+            if (x[i].isPriority == widget.priority){
+              _product.add(x[i]);
+            }
+          }
+        }
+        if(widget.priority == 0){
+          _product.clear();
+          for  (int i = 0; i< x.length; i++){
+            _product.add(x[i]);
           }
         }
         return Scaffold(
@@ -278,182 +298,7 @@ class _ProductTypeState extends State<ProductType> {
                     thickness: 1,
                     color: Colors.grey[500],
                   ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        SizedBox(
-                          width: 100,
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                width: 40,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    border: Border.all(
-                                        width: 1, color: Colors.black45)),
-                                child: Center(
-                                  child: Icon(
-                                    Icons.phone_android,
-                                    color: Colors.black,
-                                    size: 26,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 7,
-                              ),
-                              Container(
-                                child: Text(
-                                  'Điện thoại',
-                                  style: TextStyle(
-                                      fontSize: 16, fontWeight: FontWeight.w400),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          width: 100,
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                width: 40,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    border: Border.all(
-                                        width: 1, color: Colors.black45)),
-                                child: Center(
-                                  child: Icon(
-                                    Icons.tablet,
-                                    color: Colors.black,
-                                    size: 26,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 7,
-                              ),
-                              Container(
-                                //margin: EdgeInsets.only(left: 20),
-                                child: Text(
-                                  'Máy tính bảng',
-                                  style: TextStyle(
-                                      fontSize: 16, fontWeight: FontWeight.w400),
-                                  textAlign: TextAlign.center,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          width: 100,
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                width: 40,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    border: Border.all(
-                                        width: 1, color: Colors.black45)),
-                                child: Center(
-                                  child: Icon(
-                                    Icons.laptop,
-                                    color: Colors.black,
-                                    size: 26,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 7,
-                              ),
-                              Container(
-                                child: Text(
-                                  'Lap top',
-                                  style: TextStyle(
-                                      fontSize: 16, fontWeight: FontWeight.w400),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          width: 100,
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                width: 40,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    border: Border.all(
-                                        width: 1, color: Colors.black45)),
-                                child: Center(
-                                  child: Icon(
-                                    Icons.computer,
-                                    color: Colors.black,
-                                    size: 26,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 7,
-                              ),
-                              Container(
-                                child: Text(
-                                  'Máy tính để bàn',
-                                  style: TextStyle(
-                                      fontSize: 16, fontWeight: FontWeight.w400),
-                                  textAlign: TextAlign.center,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          width: 100,
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                width: 40,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    border: Border.all(
-                                        width: 1, color: Colors.black45)),
-                                child: Center(
-                                  child: Icon(
-                                    Icons.headset,
-                                    color: Colors.black,
-                                    size: 26,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 7,
-                              ),
-                              Container(
-                                child: Text(
-                                  'Phụ kiện',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontSize: 16, fontWeight: FontWeight.w400),
-                                ),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Divider(
-                    thickness: 3,
-                    color: Colors.grey[300],
-                  ),
+
                   Row(
                     children: <Widget>[
                       Container(
@@ -516,7 +361,7 @@ class _ProductTypeState extends State<ProductType> {
                               InkWell(
                                 onTap: () {
                                   Navigator.pushNamed(
-                                      context, ITEMELECTRONICDETAIL);
+                                      context, ITEMELECTRONICDETAIL,arguments: {'post':_product[index]});
                                 },
                                 child: Container(
                                   child: ClipRRect(

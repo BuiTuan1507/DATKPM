@@ -240,7 +240,7 @@ class _ContactInfomationState extends State<ContactInfomation> {
               ListTile(
                 title: const Text('Không ưu tiên'),
                 leading: Radio(
-                  value: 0,
+                  value: 2,
                   groupValue: isPriority,
                   onChanged: (value) {
                     setState(() {

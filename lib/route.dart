@@ -121,7 +121,8 @@ class RouterNav {
       case PRIORITYCATALOG :
         return MaterialPageRoute(builder: (context) => PriorityCatalog());
       case ITEMELECTRONICDETAIL :
-        return MaterialPageRoute(builder: (context) => ItemElectronicDetail());
+        var _agrument = settings.arguments as Map;
+        return MaterialPageRoute(builder: (context) => ItemElectronicDetail(post: _agrument['post'],));
       case CONTACTINFOMATION :
         var _agrument = settings.arguments as Map;
 
