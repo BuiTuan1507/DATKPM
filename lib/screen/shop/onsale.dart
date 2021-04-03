@@ -1,9 +1,12 @@
 import 'package:app_giao_do_an/controller/provider_controller.dart';
+import 'package:app_giao_do_an/model/post.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class OnSale extends StatefulWidget {
+  List<Post> salePost;
+  OnSale({Key key, this.salePost}) : super(key: key);
   @override
   _OnSaleState createState() => _OnSaleState();
 }

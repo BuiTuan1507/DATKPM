@@ -273,7 +273,7 @@ class _ContactInfomationState extends State<ContactInfomation> {
                     Item item = new Item(idItem,widget.tittleP,imageP.toList(),widget.price,widget.selectType
                         ,widget.selectCategory,widget.statusProduct,widget.description,false);
 
-                    Post post = new Post(widget.idPost,_userOnline.uuid,_userOnline.name,_userOnline.email,_userOnline.phoneNumber,widget.addressP,Timestamp.fromDate(DateTime.now()),item,report.toList(),isPriority);
+                    Post post = new Post(widget.idPost,_userOnline.uuid,_userOnline.name,_userOnline.email,_userOnline.phoneNumber,widget.addressP,Timestamp.fromDate(DateTime.now()),item,report.toList(),isPriority,2);
                     provider.addPost(post);
 
                     uploadFiles(widget.imageProduct, widget.idPost,context, item);

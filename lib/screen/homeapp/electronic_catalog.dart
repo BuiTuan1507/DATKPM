@@ -14,6 +14,7 @@ class _ElectronicCatalogState extends State<ElectronicCatalog> {
     queryData = MediaQuery.of(context);
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.amber,
         centerTitle: true,
         title: Text('Chọn danh mục', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),),

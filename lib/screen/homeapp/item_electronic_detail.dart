@@ -3,6 +3,7 @@ import 'package:app_giao_do_an/model/item.dart';
 import 'package:app_giao_do_an/model/post.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ItemElectronicDetail extends StatefulWidget {
   Post post;
@@ -32,6 +33,10 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
 
   @override
   Widget build(BuildContext context) {
+    var createTimeFormat = DateFormat('dd-MM-yyyy');
+    var timeJoinApp;
+
+    timeJoinApp = createTimeFormat.format(widget.post.timeCreate.toDate());
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     return Scaffold(
@@ -94,7 +99,7 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
                   padding:
                       EdgeInsets.only(left: 15, top: 12, right: 12, bottom: 12),
                   child: Text(
-                    item1.name,
+                    widget.post.item.name,
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                 )
@@ -111,7 +116,7 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
                         alignment: Alignment.centerLeft,
                         padding: EdgeInsets.only(left: 15, bottom: 12),
                         child: Text(
-                          _formatMoney(item1.cost) + ' đ',
+                          _formatMoney(widget.post.item.cost) + ' đ',
                           style: TextStyle(
                               fontSize: 19,
                               fontWeight: FontWeight.w500,
@@ -121,7 +126,7 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
                       Container(
                         alignment: Alignment.centerLeft,
                         padding: EdgeInsets.only(left: 15, bottom: 12),
-                        child: Text('6 giờ trước',
+                        child: Text(timeJoinApp,
                             style: TextStyle(
                                 fontSize: 17,
                                 fontWeight: FontWeight.w500,

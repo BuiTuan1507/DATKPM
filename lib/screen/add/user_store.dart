@@ -11,7 +11,7 @@ class _UserStoreState extends State<UserStore> {
       appBar: AppBar(
         backgroundColor: Colors.amber,
         centerTitle: true,
-        title: Text('Tạo cửa hàng', style: TextStyle(fontSize: 21, fontWeight: FontWeight.w400),),
+        title: Text('Cập nhật thông tin cửa hàng', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),),
       ),
       body: SingleChildScrollView(
         child: Column(

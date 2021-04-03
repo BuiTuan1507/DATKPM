@@ -1,5 +1,8 @@
+import 'package:app_giao_do_an/model/post.dart';
 import 'package:flutter/material.dart';
 class OtherApp extends StatefulWidget {
+  List<Post> other;
+  OtherApp({Key key, this.other}) : super(key: key);
   @override
   _OtherAppState createState() => _OtherAppState();
 }

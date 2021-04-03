@@ -1,5 +1,6 @@
 import 'package:app_giao_do_an/model/item.dart';
 import 'package:app_giao_do_an/model/post.dart';
+import 'package:app_giao_do_an/model/store.dart';
 import 'package:app_giao_do_an/model/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 class ProviderController extends ChangeNotifier {
 
   User userOnline;
+  Store userStore;
   Firestore firestore = Firestore.instance;
   Stream<List<Post>> userPost;
   List<Post> cartPost;
@@ -70,13 +72,19 @@ class ProviderController extends ChangeNotifier {
 
     return uPost;
   }
+  //Store User
+  Future<void> getStoreUser(String uuid) async{
 
+  }
   //User
   Future<void> getUserOnline(String uuid) async {
     DocumentSnapshot snapshot = await firestore.collection('User').document(
         uuid).get();
     userOnline = User.fromSnapshot(snapshot);
     print("Get User Online");
+    DocumentSnapshot snapshot1 = await firestore.collection('Store').document(uuid).get();
+    userStore = Store.fromSnapshot(snapshot1);
+    print('Get Store');
   }
 
   void updateUserInfo(String nameChange,

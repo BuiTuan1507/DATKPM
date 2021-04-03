@@ -14,6 +14,7 @@ class Post {
   Item item; // san pham
   List<dynamic> report; // danh sách người báo cáo bài viết
   int isPriority;
+  int statusPost ; //trang thai bai dang 0 : dang ban, 1 : tu choi, 2 : can thanh toan, 3: an bai dang
 
   Post(this.idPost,
       this.uuid,
@@ -25,7 +26,9 @@ class Post {
       this.timeCreate,
       this.item,
       this.report,
-      this.isPriority);
+      this.isPriority,
+      this.statusPost
+      );
 
   // độ ưu tiên
   Post.fromJson(Map<String, dynamic> data)
@@ -39,7 +42,9 @@ class Post {
         timeCreate = data['timeCreate'],
         item = Item.fromJson(data['item'][0]),
         report = data['report'],
-        isPriority = data['isPriority'];
+        isPriority = data['isPriority'],
+        statusPost = data['statusPost']
+  ;
 
   Post.fromSnapshot(DocumentSnapshot snapshot)
       : idPost = snapshot['idPost'],
@@ -52,7 +57,9 @@ class Post {
         timeCreate = snapshot['timeCreate'],
         item = Item.fromSnapshot(snapshot['item'][0]),
         report = snapshot['report'],
-        isPriority = snapshot['isPriority'];
+        isPriority = snapshot['isPriority'],
+        statusPost = snapshot['statusPost']
+  ;
 
   toJson() {
     return {
@@ -66,7 +73,7 @@ class Post {
       "item": item,
       "report": report,
       "isPriority": isPriority,
-
+      "statusPost":statusPost
     };
   }
 }

@@ -46,6 +46,7 @@ class _HomeAppState extends State<HomeApp> {
     ];
     return Consumer<ProviderController> (builder: (context,provider,child) {
       provider.getUserOnline(widget.userId);
+
       return Scaffold(
 
         body: SafeArea(

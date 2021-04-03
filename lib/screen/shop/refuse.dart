@@ -1,5 +1,8 @@
+import 'package:app_giao_do_an/model/post.dart';
 import 'package:flutter/material.dart';
 class RefuseItem extends StatefulWidget {
+  List<Post> refuse;
+  RefuseItem({Key key, this.refuse}) : super(key: key);
   @override
   _RefuseItemState createState() => _RefuseItemState();
 }

@@ -5,6 +5,7 @@ import 'package:app_giao_do_an/service/root_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:random_string/random_string.dart';
 class RegisterScreen extends StatefulWidget {
   String email;
   String password;
@@ -34,6 +35,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
       List <dynamic> friends = List<dynamic>();
       List <dynamic> follow  = List<dynamic>();
+
+      List<dynamic> postId = List<dynamic>();
       String userId = '';
       try {
 
@@ -71,6 +74,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
               'followPerson': follow.toList(),
             },
           );
+          firestoreInstance.collection('Store').document(userId).setData({
+            'idStore':randomAlpha(15),
+            'uuid':userId,
+            'name':'Chưa có',
+            'imageStore':'https://firebasestorage.googleapis.com/v0/b/appdoan-53f1b.appspot.com/o/ramdom.jpg?alt=media&token=7a7cb060-5d38-4891-8dd2-58a8125f5dd8',
+            'rating':0,
+            'numberPersonRating':0,
+            'subRating':0,
+            'postId':postId.toList(),
+            'description':'Chưa có mô tả',
+            'timeCreateStore':DateTime.now(),
+            'chatReturn':0
+          });
           showDialog(
               context: context,
               builder: (BuildContext context) {

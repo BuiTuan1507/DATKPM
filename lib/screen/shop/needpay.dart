@@ -1,5 +1,8 @@
+import 'package:app_giao_do_an/model/post.dart';
 import 'package:flutter/material.dart';
 class NeedPay extends StatefulWidget {
+  List<Post> needPay;
+  NeedPay({Key key, this.needPay}) : super(key: key);
   @override
   _NeedPayState createState() => _NeedPayState();
 }

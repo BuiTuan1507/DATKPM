@@ -13,6 +13,7 @@ class _PriorityCatalogState extends State<PriorityCatalog> {
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.amber,
         centerTitle: true,
         title: Text('Chọn ưu tiên', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),),

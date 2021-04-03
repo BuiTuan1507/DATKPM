@@ -24,6 +24,7 @@ class _CostCatalogState extends State<CostCatalog> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.amber,
         centerTitle: true,
         title: Text('Chọn giá', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),),
