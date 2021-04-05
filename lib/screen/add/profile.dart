@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:random_string/random_string.dart';
 
 class Profile extends StatefulWidget {
   User user;
@@ -23,10 +24,11 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Consumer<ProviderController>(builder: (context, provider, child) {
       Stream<List<Post>> x = provider.getPostUser(provider.userOnline.uuid);
-    //  print(x.listen((event) {print(event[0].nameUserPost);}));
+      //  print(x.listen((event) {print(event[0].nameUserPost);}));
       int numberOfNews = 0;
-     // List<Post> x = Provider.of<List<Post>>(context);
-    //  print(x[0].emailUserPost);
+      // List<Post> x = Provider.of<List<Post>>(context);
+      //  print(x[0].emailUserPost);
+
 
       User _userOnline = provider.userOnline;
 
@@ -124,6 +126,7 @@ class _ProfileState extends State<Profile> {
                                     children: <Widget>[
                                       InkWell(
                                         onTap: () {
+
                                           Navigator.pushNamed(
                                               context, UPDATEPROFILE,
                                               arguments: {
@@ -337,7 +340,9 @@ class _ProfileState extends State<Profile> {
                           ),
                           Container(
                             padding: EdgeInsets.only(top: 10, bottom: 7),
-                            child: Text('Tin của bạn', style:TextStyle(fontSize: 19, fontWeight: FontWeight.bold)),
+                            child: Text('Tin của bạn',
+                                style: TextStyle(
+                                    fontSize: 19, fontWeight: FontWeight.bold)),
                           ),
                           (snapshot.data.documents.length == 0)
                               ? Column(
@@ -377,18 +382,20 @@ class _ProfileState extends State<Profile> {
                                   ],
                                 )
                               : ListView.builder(
-                            controller: _scrollController,
+                                  controller: _scrollController,
                                   scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
                                   itemCount: snapshot.data.documents.length,
                                   itemBuilder: (context, index) {
                                     return InkWell(
                                       child: Container(
-                                       margin: EdgeInsets.all(15),
+                                        margin: EdgeInsets.all(15),
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          border: Border.all(width: 0.7, color: Colors.grey[500])
-                                        ),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            border: Border.all(
+                                                width: 0.7,
+                                                color: Colors.grey[500])),
                                         padding: EdgeInsets.all(10),
                                         child: Row(
                                           children: <Widget>[
@@ -399,46 +406,112 @@ class _ProfileState extends State<Profile> {
                                                             20),
                                                     image: DecorationImage(
                                                         image: NetworkImage(
-                                                          snapshot.data.documents[index]['item'][0]['image'][0],),
+                                                          snapshot.data
+                                                                      .documents[
+                                                                  index]['item']
+                                                              [0]['image'][0],
+                                                        ),
                                                         fit: BoxFit.cover)),
                                                 child: Container(
                                                   width: 70,
                                                   height: 70,
-
                                                   alignment: Alignment.topRight,
-
                                                 )),
                                             Container(
                                               width: 20,
                                               height: 20,
-
-                                              margin: EdgeInsets.only(bottom:30),
-                                              child: Text(snapshot.data.documents[index]['item'][0]['image'].length.toString(),style: TextStyle(fontSize: 18, color:Colors.redAccent, fontWeight: FontWeight.bold),),
+                                              margin:
+                                                  EdgeInsets.only(bottom: 30),
+                                              child: Text(
+                                                snapshot
+                                                    .data
+                                                    .documents[index]['item'][0]
+                                                        ['image']
+                                                    .length
+                                                    .toString(),
+                                                style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: Colors.redAccent,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
                                             ),
                                             Expanded(
                                               child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: <Widget>[
                                                   Container(
-                                                    padding:EdgeInsets.only(left: 15,top: 10, bottom: 10,),
-                                                    child: Text(snapshot.data.documents[index]['item'][0]['name'], style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black45),),
+                                                    padding: EdgeInsets.only(
+                                                      left: 15,
+                                                      top: 10,
+                                                      bottom: 10,
+                                                    ),
+                                                    child: Text(
+                                                      snapshot.data
+                                                              .documents[index]
+                                                          ['item'][0]['name'],
+                                                      style: TextStyle(
+                                                          fontSize: 18,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color:
+                                                              Colors.black45),
+                                                    ),
                                                   ),
                                                   Container(
-                                                    padding: EdgeInsets.only(left:15, bottom: 10),
-                                                    child: Text(snapshot.data.documents[index]['item'][0]['cost'].toString() + ' tỷ', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red, fontSize: 19),),
+                                                    padding: EdgeInsets.only(
+                                                        left: 15, bottom: 10),
+                                                    child: Text(
+                                                      snapshot
+                                                              .data
+                                                              .documents[index]
+                                                                  ['item'][0]
+                                                                  ['cost']
+                                                              .toString() +
+                                                          ' tỷ',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colors.red,
+                                                          fontSize: 19),
+                                                    ),
                                                   ),
-
                                                   Row(
                                                     children: <Widget>[
                                                       Container(
-                                                          padding:EdgeInsets.only(left: 15),
-                                                          child: (snapshot.data.documents[index]['isPriority'] == 0) ? (Icon(Icons.store, size: 25,)) : (Icon(Icons.person_pin))),
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  left: 15),
+                                                          child: (snapshot.data
+                                                                              .documents[
+                                                                          index]
+                                                                      [
+                                                                      'isPriority'] ==
+                                                                  0)
+                                                              ? (Icon(
+                                                                  Icons.store,
+                                                                  size: 25,
+                                                                ))
+                                                              : (Icon(Icons
+                                                                  .person_pin))),
                                                       Container(
-                                                        padding: EdgeInsets.only(left: 15,right: 70),
-                                                        child: Text(snapshot.data.documents[index]['addressPost'],style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 15,
+                                                                right: 70),
+                                                        child: Text(
+                                                          snapshot.data
+                                                                      .documents[
+                                                                  index]
+                                                              ['addressPost'],
+                                                          style: TextStyle(
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
+                                                        ),
                                                       ),
-
-
                                                     ],
                                                   )
                                                 ],
@@ -735,7 +808,9 @@ class _ProfileState extends State<Profile> {
                               height: 10,
                             ),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+
+                              },
                               child: Container(
                                 padding: EdgeInsets.all(12),
                                 decoration: BoxDecoration(

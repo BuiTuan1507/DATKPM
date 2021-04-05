@@ -8,7 +8,7 @@ class Store {
   String name; // ten cua hang
   String imageStore; // dia chi anh
 
-  double rating; // danh gia trung binh
+  int rating; // danh gia trung binh
   int numberPersonRating; // số người đánh giá sản phẩm
   int subRating; // tong so sao danh gia
   List<dynamic> postId; // list cac bai dang
@@ -27,7 +27,7 @@ class Store {
       this.subRating,
       this.postId,
       this.description,
-      this.timeCreateStore,
+
       this.chatReturn);
 
   Store.fromJson(Map<dynamic, dynamic> data)
@@ -40,7 +40,7 @@ class Store {
         subRating = data['subRating'],
         postId = data['postId'],
         description = data['description'],
-        timeCreateStore = data['timeCreateStore'],
+
         chatReturn = data['timeCreateStore'];
 
   Store.fromSnapshot(DocumentSnapshot snapshot)
@@ -53,7 +53,7 @@ class Store {
         subRating = snapshot['subRating'],
         postId = snapshot['postId'],
         description = snapshot['description'],
-        timeCreateStore = snapshot['timeCreateStore'],
+
         chatReturn = snapshot['chatReturn'];
 
   toJson() {
@@ -67,7 +67,7 @@ class Store {
       "subRating": subRating,
       "postId": postId,
       "description": description,
-      "timeCreateStore": timeCreateStore,
+
       'chatReturn': chatReturn
     };
   }

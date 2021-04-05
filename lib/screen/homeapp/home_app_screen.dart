@@ -12,7 +12,8 @@ import 'package:provider/provider.dart';
 
 import '../../constant.dart';
 class HomeAppScreen extends StatefulWidget {
-
+  String uuid;
+  HomeAppScreen({Key key, this.uuid}) : super(key: key);
   @override
   _HomeAppScreenState createState() => _HomeAppScreenState();
 }
@@ -110,7 +111,8 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
 
     return Consumer<ProviderController>(
       builder: (context, provider, child){
-
+        provider.getStoreUser(widget.uuid);
+        provider.getUserOnline(widget.uuid);
         return  Scaffold(
             appBar: AppBar(
 

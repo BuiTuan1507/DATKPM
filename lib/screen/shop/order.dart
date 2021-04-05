@@ -4,6 +4,7 @@ import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_a
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/shop/refuse.dart';
 import 'package:app_giao_do_an/controller/provider_controller.dart';
 import 'package:app_giao_do_an/model/post.dart';
+import 'package:app_giao_do_an/model/store.dart';
 import 'package:app_giao_do_an/route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,8 +18,16 @@ class _OrderState extends State<Order> {
   @override
   Widget build(BuildContext context) {
     List<Post> x = Provider.of<List<Post>>(context);
+
+    Store store ;
+
     return Consumer<ProviderController>(
       builder: (context, provider, child){
+        provider.getStoreUser(provider.userOnline.uuid);
+        if(provider.userStore != null){
+          store = provider.userStore;
+        }
+
         List<Post> _sales = [];
         List<Post> _refuse = [];
         List<Post> _needPay = [];
@@ -118,14 +127,14 @@ class _OrderState extends State<Order> {
 
               ),
             ),
-            body: (provider.userOnline.imageUser != null) ?Column(
+            body:(store != null) ? Column(
               children: <Widget>[
                 Row(
                   children: <Widget>[
                     Container(
                       padding: EdgeInsets.only(left: 15, right: 10, top: 15),
                       child: CircleAvatar(
-                        backgroundImage: NetworkImage(provider.userStore.imageStore),
+                        backgroundImage: NetworkImage(store.imageStore),
                         radius: 40,
                       ),
                     ),
@@ -133,29 +142,32 @@ class _OrderState extends State<Order> {
                       child: Column(
                         children: <Widget>[
                           Container(
-                            child: Text(provider.userStore.name),
+                            child: Text(store.name),
                           ),
                           Container(
                             height: 10,
                           ),
                           Container(
-                            child: Text(provider.userStore.description),
+                            child: Text(store.description),
                           )
                         ],
                       ),
                     )
                   ],
                 ),
-                TabBarView(
-                  children: [
-                    OnSale(salePost: _sales,),
-                    RefuseItem(refuse: _refuse,),
-                    NeedPay(needPay: _needPay,),
-                    OtherApp(other: _other,)
-                  ],
-                )
+                Expanded(
+                  child:TabBarView(
+                    children: [
+                      OnSale(salePost: _sales,),
+                      RefuseItem(refuse: _refuse,),
+                      NeedPay(needPay: _needPay,),
+                      OtherApp(other: _other,)
+                    ],
+                  )
+                ),
+
               ],
-            ) : CircularProgressIndicator(),
+            ) : Center(child: CircularProgressIndicator(),),
 
           ),
         );

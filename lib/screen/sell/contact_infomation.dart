@@ -101,6 +101,8 @@ class _ContactInfomationState extends State<ContactInfomation> {
 
     return await (await uploadTask.onComplete).ref.getDownloadURL();
   }
+
+
   @override
   Widget build(BuildContext context) {
     print(widget.price);
@@ -269,12 +271,17 @@ class _ContactInfomationState extends State<ContactInfomation> {
                     List<dynamic> imageP = List<dynamic>();
                     List<dynamic> report = List<dynamic>();
                     String idItem  = randomAlpha(15);
-
+                    String idStore;
                     Item item = new Item(idItem,widget.tittleP,imageP.toList(),widget.price,widget.selectType
                         ,widget.selectCategory,widget.statusProduct,widget.description,false);
 
                     Post post = new Post(widget.idPost,_userOnline.uuid,_userOnline.name,_userOnline.email,_userOnline.phoneNumber,widget.addressP,Timestamp.fromDate(DateTime.now()),item,report.toList(),isPriority,2);
-                    provider.addPost(post);
+                    if(_userOnline.isStore == false){
+                      idStore = provider.createStore(_userOnline.uuid);
+                    }else{
+                      idStore = provider.userStore.idStore;
+                    }
+                    provider.addPost(post,provider.userStore,idStore);
 
                     uploadFiles(widget.imageProduct, widget.idPost,context, item);
                   },

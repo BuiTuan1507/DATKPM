@@ -4,6 +4,7 @@ import 'package:app_giao_do_an/model/store.dart';
 import 'package:app_giao_do_an/model/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:random_string/random_string.dart';
 
 class ProviderController extends ChangeNotifier {
 
@@ -15,7 +16,7 @@ class ProviderController extends ChangeNotifier {
 
 
   //Post
-  void addPost(Post post) {
+  void addPost(Post post,Store store,String idStore) {
     List <dynamic> imageProduct = List<dynamic>();
     String idItem = post.item.idItem;
     String name = post.item.name;
@@ -52,6 +53,17 @@ class ProviderController extends ChangeNotifier {
       'isPriority':post.isPriority
 
     });
+    var x;
+    if(store != null){
+      x = store.postId;
+    }else{
+      x = [];
+    }
+
+    x.add(post.idPost);
+    firestore.collection('Store').document(idStore).updateData({
+      'postId':x.toList()
+    });
     print('Add Post');
   }
   Future<void> getAllPost(String uuid) async{
@@ -73,18 +85,45 @@ class ProviderController extends ChangeNotifier {
     return uPost;
   }
   //Store User
-  Future<void> getStoreUser(String uuid) async{
+  Future<void> getStoreUser(String uuid) async {
+    await firestore.collection('Store').where('uuid', isEqualTo: uuid).getDocuments().then((value) => {
+      userStore = Store.fromSnapshot(value.documents[0])
+    }
+    );
+
+    print("Get Store");
 
   }
-  //User
+  //Create Store
+  String createStore(String uuid) {
+    print('xyyuy');
+    List<dynamic> postId = List<dynamic>();
+    String idStore = randomAlpha(15);
+    Firestore.instance.collection('Store').document(idStore).setData({
+      'idStore': idStore,
+      'uuid': uuid,
+      'name': 'Chưa có',
+      'imageStore':
+      'https://firebasestorage.googleapis.com/v0/b/appdoan-53f1b.appspot.com/o/ramdom.jpg?alt=media&token=7a7cb060-5d38-4891-8dd2-58a8125f5dd8',
+      'rating': 0,
+      'numberPersonRating': 0,
+      'subRating': 0,
+      'postId': postId.toList(),
+      'description': 'Chưa có mô tả',
+      'chatReturn': 0
+    });
+
+    firestore.collection('User').document(uuid).updateData({
+      'isStore':true
+    });
+    return idStore;
+  }
+  //Get User
   Future<void> getUserOnline(String uuid) async {
-    DocumentSnapshot snapshot = await firestore.collection('User').document(
-        uuid).get();
+    DocumentSnapshot snapshot = await firestore.collection('User').document(uuid).get();
     userOnline = User.fromSnapshot(snapshot);
     print("Get User Online");
-    DocumentSnapshot snapshot1 = await firestore.collection('Store').document(uuid).get();
-    userStore = Store.fromSnapshot(snapshot1);
-    print('Get Store');
+
   }
 
   void updateUserInfo(String nameChange,

@@ -38,14 +38,14 @@ class _HomeAppState extends State<HomeApp> {
   @override
   Widget build(BuildContext context) {
     List<Widget> _widgetOptions = <Widget>[
-      HomeAppScreen(),
+      HomeAppScreen(uuid: widget.userId,),
       Order(),
       Favorite(),
       NotificationApp(),
       Personal(auth: widget.auth,logoutCallback: widget.logoutCallback,userId: widget.userId,)
     ];
     return Consumer<ProviderController> (builder: (context,provider,child) {
-      provider.getUserOnline(widget.userId);
+
 
       return Scaffold(
 
