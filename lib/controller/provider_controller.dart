@@ -53,7 +53,7 @@ class ProviderController extends ChangeNotifier {
       'isPriority':post.isPriority
 
     });
-    var x;
+    var x = new List<dynamic>();
     if(store != null){
       x = store.postId;
     }else{
@@ -84,6 +84,8 @@ class ProviderController extends ChangeNotifier {
 
     return uPost;
   }
+  // Delete Post
+
   //Store User
   Future<void> getStoreUser(String uuid) async {
     await firestore.collection('Store').where('uuid', isEqualTo: uuid).getDocuments().then((value) => {
