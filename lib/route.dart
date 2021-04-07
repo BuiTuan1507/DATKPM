@@ -12,6 +12,7 @@ import 'package:app_giao_do_an/screen/add/user_promotion.dart';
 import 'package:app_giao_do_an/screen/add/user_store.dart';
 import 'package:app_giao_do_an/screen/cart/notification.dart';
 import 'package:app_giao_do_an/screen/cart_chat/chat.dart';
+import 'package:app_giao_do_an/screen/cart_chat/chat_item.dart';
 import 'package:app_giao_do_an/screen/homeapp/cost_catalog.dart';
 import 'package:app_giao_do_an/screen/homeapp/electronic_catalog.dart';
 import 'package:app_giao_do_an/screen/homeapp/item_electronic_detail.dart';
@@ -76,6 +77,9 @@ const String USERPROMOTION = '/userPromotion';
 
 //
 const String SEARCHPOST = '/searchPost';
+// Chat
+const String CHATITEM = '/chatItem';
+
 
 class NavService {
   static GlobalKey<NavigatorState> navigatorKey =
@@ -182,6 +186,8 @@ class RouterNav {
         return MaterialPageRoute(builder: (context) => Chat());
       case SEARCHPOST :
         return MaterialPageRoute(builder: (context) => Search());
+      case CHATITEM :
+        return MaterialPageRoute(builder: (context) => ChatItem());
       default:
         return MaterialPageRoute(builder: (context) => HomeApp());
     }
