@@ -1,6 +1,7 @@
 import 'package:app_giao_do_an/constant.dart';
 import 'package:app_giao_do_an/model/item.dart';
 import 'package:app_giao_do_an/model/post.dart';
+import 'package:app_giao_do_an/route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -211,7 +212,9 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, ANOTHERUSER);
+                  },
                   child: Container(
                     padding: EdgeInsets.all(7),
                     decoration: BoxDecoration(

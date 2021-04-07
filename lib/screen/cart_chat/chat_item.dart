@@ -12,6 +12,15 @@ class _ChatItemState extends State<ChatItem> {
   String pairId = "2";
   List<ChatMessage> chatItems = ChatMessage.list;
 
+
+  String text= "";
+  var timeNow = DateTime.now();
+  TextEditingController helpController = new  TextEditingController();
+
+
+  void sendMessage(String text){
+    print(text);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,10 +127,10 @@ class _ChatItemState extends State<ChatItem> {
               },
             ),
           ),
-
+          _buildInput()
         ],
       ),
-      bottomNavigationBar: _buildInput(),
+
     );
   }
 
@@ -146,9 +155,14 @@ class _ChatItemState extends State<ChatItem> {
           ),
           Expanded(
             child: TextField(
+              controller: helpController,
+              onChanged: (value) {
+                text = value;
+              },
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: "Nhập tin nhắn",
+
                 hintStyle: TextStyle(
                   color: Colors.black54,
                 ),
@@ -161,7 +175,10 @@ class _ChatItemState extends State<ChatItem> {
               Icons.send,
               color: AppColors.blueColor,
             ),
-            onPressed: null,
+            onPressed: (){
+              helpController.clear();
+              sendMessage(text);
+            },
           ),
         ],
       ),

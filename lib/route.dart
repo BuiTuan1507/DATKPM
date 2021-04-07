@@ -4,6 +4,7 @@ import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_a
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/login_register/login_screen.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/sell/favorite.dart';
 import 'package:app_giao_do_an/hone_app.dart';
+import 'package:app_giao_do_an/screen/add/another_user_homepage.dart';
 import 'package:app_giao_do_an/screen/add/profile.dart';
 import 'package:app_giao_do_an/screen/add/update_profile.dart';
 import 'package:app_giao_do_an/screen/add/user_favorite.dart';
@@ -79,7 +80,7 @@ const String USERPROMOTION = '/userPromotion';
 const String SEARCHPOST = '/searchPost';
 // Chat
 const String CHATITEM = '/chatItem';
-
+const String ANOTHERUSER = '/anotherUser';
 
 class NavService {
   static GlobalKey<NavigatorState> navigatorKey =
@@ -188,6 +189,8 @@ class RouterNav {
         return MaterialPageRoute(builder: (context) => Search());
       case CHATITEM :
         return MaterialPageRoute(builder: (context) => ChatItem());
+      case ANOTHERUSER :
+        return MaterialPageRoute(builder: (context) => AnotherUserHomePage());
       default:
         return MaterialPageRoute(builder: (context) => HomeApp());
     }
