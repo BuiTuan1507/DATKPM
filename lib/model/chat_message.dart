@@ -10,6 +10,31 @@ class ChatMessage{
   ChatMessage(this.idChatMessage,this.sendUuid,this.takeUuid, this.message, this.createMessage);
 
  // ChatMessage({this.sendUuid, this.message});
+  ChatMessage.fromJson(Map<dynamic, dynamic> data)
+      : idChatMessage = data['idChatMessage'],
+        sendUuid = data['sendUuid'],
+        takeUuid = data['takeUuid'],
+
+        message = data['message'],
+        createMessage = data['createMessage'];
+
+  ChatMessage.fromSnapshot(DocumentSnapshot snapshot)
+      : idChatMessage = snapshot['idChatMessage'],
+        sendUuid = snapshot['sendUuid'],
+        takeUuid = snapshot['takeUuid'],
+        message = snapshot['message'],
+        createMessage = snapshot['createMessage'];
+
+  toJson() {
+    return {
+      "idChatMessage": idChatMessage,
+      "sendUuid": sendUuid,
+      'takeUuid': takeUuid,
+      "message": message,
+      "createMessage": createMessage,
+
+    };
+  }
 
 
 }

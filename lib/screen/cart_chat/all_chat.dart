@@ -1,28 +1,35 @@
+import 'package:app_giao_do_an/model/chat_room.dart';
+import 'package:app_giao_do_an/model/post.dart';
+import 'package:app_giao_do_an/model/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:app_giao_do_an/route.dart';
+import 'package:provider/provider.dart';
 class AllChat extends StatefulWidget {
   @override
   _AllChatState createState() => _AllChatState();
 }
 
 class _AllChatState extends State<AllChat> {
+
   @override
   Widget build(BuildContext context) {
+    List<ChatRoom> _chatRoom = Provider.of<List<ChatRoom>>(context);
+
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     return Scaffold(
-      body: SingleChildScrollView(
+      body: (_chatRoom != null) ? SingleChildScrollView(
         child: Column(
           children: <Widget>[
             ListView.builder(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
-              itemCount: 3,
+              itemCount: _chatRoom.length,
               itemBuilder: (context,index){
                 return InkWell(
                   onTap: (){
-                    Navigator.pushNamed(context, CHATITEM);
+                    Navigator.pushNamed(context, CHATITEM,arguments: {'ChatRoom':_chatRoom[index]});
                   },
                   child: Container(
                     padding: EdgeInsets.all(10),
@@ -92,6 +99,15 @@ class _AllChatState extends State<AllChat> {
             )
           ],
         ),
+      ) : Column(
+        children: <Widget>[
+          Container(
+            height: 100,
+          ),
+          Center(
+            child: Text('Bạn không có tin nhắn'),
+          )
+        ],
       ),
     );
   }

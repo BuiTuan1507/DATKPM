@@ -2,6 +2,8 @@ import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_a
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/homeapp/home_app_screen.dart';
 import 'package:app_giao_do_an/controller/provider_controller.dart';
 import 'package:app_giao_do_an/hone_app.dart';
+import 'package:app_giao_do_an/model/chat_message.dart';
+import 'package:app_giao_do_an/model/chat_room.dart';
 import 'package:app_giao_do_an/model/store.dart';
 import 'package:app_giao_do_an/model/user.dart';
 import 'file:///C:/Users/Microsoft%20Windows/AndroidStudioProjects/app_giao_do_an/lib/screen/login_register/login_screen.dart';
@@ -44,6 +46,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ProviderController(),),
         StreamProvider<List<Post>>.value(value: firebaseService.getPost()),
         StreamProvider<List<Store>>.value(value: firebaseService.getStore()),
+        StreamProvider<List<ChatRoom>>.value(value: firebaseService.getChatRoom()),
+        StreamProvider<List<ChatMessage>>.value(value: firebaseService.getChatMessage()),
+        StreamProvider<List<User>>.value(value: firebaseService.getUser()),
 
       ],
       child: MaterialApp(

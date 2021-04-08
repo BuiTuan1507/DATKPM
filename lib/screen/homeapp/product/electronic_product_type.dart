@@ -361,7 +361,7 @@ class _ProductTypeState extends State<ProductType> {
                               InkWell(
                                 onTap: () {
                                   Navigator.pushNamed(
-                                      context, ITEMELECTRONICDETAIL,arguments: {'post':_product[index]});
+                                      context, ITEMELECTRONICDETAIL,arguments: {'post':_product[index],'uuid':provider.userOnline.uuid});
                                 },
                                 child: Container(
                                   child: ClipRRect(

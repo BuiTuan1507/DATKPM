@@ -127,7 +127,7 @@ class RouterNav {
         return MaterialPageRoute(builder: (context) => PriorityCatalog());
       case ITEMELECTRONICDETAIL :
         var _agrument = settings.arguments as Map;
-        return MaterialPageRoute(builder: (context) => ItemElectronicDetail(post: _agrument['post'],));
+        return MaterialPageRoute(builder: (context) => ItemElectronicDetail(post: _agrument['post'],uuid: _agrument['uuid'],));
       case CONTACTINFOMATION :
         var _agrument = settings.arguments as Map;
 
@@ -188,7 +188,8 @@ class RouterNav {
       case SEARCHPOST :
         return MaterialPageRoute(builder: (context) => Search());
       case CHATITEM :
-        return MaterialPageRoute(builder: (context) => ChatItem());
+        var _agrument = settings.arguments as Map;
+        return MaterialPageRoute(builder: (context) => ChatItem(chatRoom: _agrument['ChatRoom'],));
       case ANOTHERUSER :
         return MaterialPageRoute(builder: (context) => AnotherUserHomePage());
       default:

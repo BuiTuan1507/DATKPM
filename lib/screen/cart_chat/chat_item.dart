@@ -1,5 +1,6 @@
 import 'package:app_giao_do_an/model/chat_message.dart';
 import 'package:app_giao_do_an/model/chat_room.dart';
+import 'package:app_giao_do_an/model/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:random_string/random_string.dart';
@@ -11,7 +12,7 @@ class ChatItem extends StatefulWidget {
 }
 
 class _ChatItemState extends State<ChatItem> {
-  ChatRoom currentChat = ChatRoom.list.elementAt(0);
+  User chatUser;
   String currentUser = "1";
   String pairId = "2";
   List<ChatMessage> chatItems = ChatMessage.list;
