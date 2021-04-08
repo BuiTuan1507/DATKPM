@@ -1,7 +1,11 @@
 import 'package:app_giao_do_an/model/chat_message.dart';
 import 'package:app_giao_do_an/model/chat_room.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:random_string/random_string.dart';
 class ChatItem extends StatefulWidget {
+  ChatRoom chatRoom;
+  ChatItem({Key key, this.chatRoom}) : super(key: key);
   @override
   _ChatItemState createState() => _ChatItemState();
 }
@@ -18,8 +22,25 @@ class _ChatItemState extends State<ChatItem> {
   TextEditingController helpController = new  TextEditingController();
 
 
-  void sendMessage(String text){
-    print(text);
+  void sendMessage(String text, String sendUuid, String takeUuid){
+    String idChatMessage = randomAlpha(20);
+    Timestamp timestamp = Timestamp.fromDate(DateTime.now());
+    //ChatMessage chatMessage = new ChatMessage(idChatMessage,sendUuid,takeUuid,text,timestamp);
+    Firestore firestore = Firestore.instance;
+    firestore.collection('ChatMessage').document(idChatMessage).setData({
+      'idChatMessage':idChatMessage,
+      'sendUuid':sendUuid,
+      'takeUuid':takeUuid,
+      'message':text,
+      'createMessage':timestamp
+    });
+    var x = widget.chatRoom.chatMessage;
+    x.add(idChatMessage);
+
+    firestore.collection('ChatRoom').document(widget.chatRoom.idChatRoom).updateData({
+      'chatMessage':x
+    });
+    print('add message');
   }
   @override
   Widget build(BuildContext context) {

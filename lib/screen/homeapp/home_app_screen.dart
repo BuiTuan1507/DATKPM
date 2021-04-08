@@ -4,11 +4,13 @@ import 'package:app_giao_do_an/model/post.dart';
 import 'package:app_giao_do_an/model/user.dart';
 import 'package:app_giao_do_an/route.dart';
 import 'package:badges/badges.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loadmore/loadmore.dart';
 import 'package:provider/provider.dart';
+import 'package:random_string/random_string.dart';
 
 import '../../constant.dart';
 class HomeAppScreen extends StatefulWidget {
@@ -108,6 +110,15 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
         isFavorite = !isFavorite;
       });
     }
+    void createChatUser(User user){
+      String idChatUser = randomAlpha(15);
+      List <dynamic> chatRoom  = List<dynamic>();
+      Firestore.instance.collection('ChatUser').document(idChatUser).setData({
+        'idChatUser':idChatUser,
+        'uuid':user.uuid,
+        'chatRoom':chatRoom.toList()
+      });
+    }
 
     return Consumer<ProviderController>(
       builder: (context, provider, child){
@@ -164,6 +175,11 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                         icon: Icon(Icons.message,size: 28,),
 
                         onPressed: (){
+                          if(provider.userOnline != null){
+                            if(provider.userOnline.isChatUser == false){
+                              createChatUser(provider.userOnline);
+                            }
+                          }
                           Navigator.pushNamed(context, CHAT);
                         },
                         color: Colors.black,

@@ -71,6 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               'timeUseApp': DateTime.now(),
               'coinApp':0,
               'isStore': false,
+              'isChatUser':false,
               'friends': friends.toList(),
               'followPerson': follow.toList(),
             },

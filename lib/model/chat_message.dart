@@ -7,34 +7,9 @@ class ChatMessage{
   String message; // tin nhan
   Timestamp createMessage; //  thoi gian nhan tin
 
-  //ChatMessage(this.idChatMessage,this.sendUuid,this.takeUuid, this.message, this.createMessage);
+  ChatMessage(this.idChatMessage,this.sendUuid,this.takeUuid, this.message, this.createMessage);
 
-  ChatMessage({this.sendUuid, this.message});
+ // ChatMessage({this.sendUuid, this.message});
 
-  static List<ChatMessage> list = [
-    ChatMessage(
-      sendUuid: "1",
-      message: "Bạn ơi mặt hàng này còn không",
-    ),
-    ChatMessage(
-      sendUuid: "1",
-      message: "Mình muốn mua vài thứ",
-    ),
-    ChatMessage(
-      sendUuid: "1",
-      message: "...",
-    ),
-    ChatMessage(
-      sendUuid: "2",
-      message: "Hôm nay buồn",
-    ),
-    ChatMessage(
-      sendUuid: "2",
-      message: "Không có bán đồ nhé",
-    ),
-    ChatMessage(
-      sendUuid: "2",
-      message: "...",
-    ),
-  ];
+
 }

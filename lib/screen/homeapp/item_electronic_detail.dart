@@ -2,14 +2,16 @@ import 'package:app_giao_do_an/constant.dart';
 import 'package:app_giao_do_an/model/item.dart';
 import 'package:app_giao_do_an/model/post.dart';
 import 'package:app_giao_do_an/route.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:random_string/random_string.dart';
 
 class ItemElectronicDetail extends StatefulWidget {
   Post post;
-
-  ItemElectronicDetail({Key key, this.post}) : super(key: key);
+  String uuid;
+  ItemElectronicDetail({Key key, this.post, this.uuid}) : super(key: key);
 
   @override
   _ItemElectronicDetailState createState() => _ItemElectronicDetailState();
@@ -31,7 +33,22 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
     } else
       return '1';
   }
-
+  void createChatRoom(String buyUuid, String sellUuid){
+    String idChatRoom  = randomAlpha(20);
+    bool isReading  = true;
+    String lastMessage = "";
+    Timestamp lastTimeRead = Timestamp.fromDate(DateTime.now());
+    List<dynamic> chatMessage = List<dynamic>();
+    Firestore.instance.collection('ChatRoom').document(idChatRoom).setData({
+      'idChatRoom':idChatRoom,
+      'isReading':isReading,
+      'lastMessage':lastMessage,
+      'lastTimeRead':lastTimeRead,
+      'buyUuid':buyUuid,
+      'sellUuid':sellUuid,
+      'chatMesaage':chatMessage
+    });
+  }
   @override
   Widget build(BuildContext context) {
     var createTimeFormat = DateFormat('dd-MM-yyyy');
@@ -419,6 +436,20 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
                     ]),
               ),
             ),
+            GestureDetector(
+              onTap: (){
+                bool kiemtra = false;
+
+                createChatRoom(widget.uuid, widget.post.uuid);
+              },
+              child: Container(
+                height: 50,
+                width: 100,
+                color: Colors.amber,
+                child: Text('Lien he'),
+              ),
+            )
+
           ],
         ),
       ),

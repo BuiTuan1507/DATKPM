@@ -1,3 +1,4 @@
+import 'package:app_giao_do_an/model/chat_user.dart';
 import 'package:app_giao_do_an/model/item.dart';
 import 'package:app_giao_do_an/model/post.dart';
 import 'package:app_giao_do_an/model/store.dart';
@@ -10,6 +11,7 @@ class ProviderController extends ChangeNotifier {
 
   User userOnline;
   Store userStore;
+  ChatUser chatUser;
   Firestore firestore = Firestore.instance;
   Stream<List<Post>> userPost;
   List<Post> cartPost;
@@ -151,5 +153,14 @@ class ProviderController extends ChangeNotifier {
   void removeCart(Post post){
     cartPost.remove(post);
     notifyListeners();
+  }
+  //Get Chat User
+  Future<void> getChatUser(String uuid) async{
+    await firestore.collection('ChatUser').where('uuid', isEqualTo: uuid).getDocuments().then((value) => {
+      chatUser = ChatUser.fromSnapshot(value.documents[0])
+    }
+    );
+
+    print("Get Store");
   }
 }
