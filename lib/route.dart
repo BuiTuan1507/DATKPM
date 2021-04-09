@@ -189,7 +189,7 @@ class RouterNav {
         return MaterialPageRoute(builder: (context) => Search());
       case CHATITEM :
         var _agrument = settings.arguments as Map;
-        return MaterialPageRoute(builder: (context) => ChatItem(chatRoom: _agrument['ChatRoom'],));
+        return MaterialPageRoute(builder: (context) => ChatItem(chatRoom: _agrument['ChatRoom'],uuid: _agrument['uuid'],chatUser: _agrument['chatUser'],));
       case ANOTHERUSER :
         return MaterialPageRoute(builder: (context) => AnotherUserHomePage());
       default:

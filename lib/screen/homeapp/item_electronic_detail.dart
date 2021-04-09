@@ -1,4 +1,4 @@
-import 'dart:html';
+
 
 import 'package:app_giao_do_an/constant.dart';
 import 'package:app_giao_do_an/controller/provider_controller.dart';
@@ -37,16 +37,16 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
     } else
       return '1';
   }
-  void createChatRoom(String buyUuid, String sellUuid){
+  void createChatRoom(String buyUuid, String sellUuid, String nameProduct){
     String idChatRoom  = randomAlpha(20);
     bool isReading  = true;
-    String lastMessage = "";
+
     Timestamp lastTimeRead = Timestamp.fromDate(DateTime.now());
     List<dynamic> chatMessage = List<dynamic>();
     Firestore.instance.collection('ChatRoom').document(idChatRoom).setData({
       'idChatRoom':idChatRoom,
       'isReading':isReading,
-      'lastMessage':lastMessage,
+      'nameProduct':nameProduct,
       'lastTimeRead':lastTimeRead,
       'buyUuid':buyUuid,
       'sellUuid':sellUuid,
@@ -444,6 +444,7 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
               GestureDetector(
                 onTap: (){
                   bool kiemtra = false;
+
                   if(provider.chatUser != null){
                     if(provider.chatUser.chatRoom != null){
                       for (int  i = 0; i< provider.chatUser.chatRoom.length; i++){
@@ -455,14 +456,16 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
                     }
                   }
                   if(kiemtra == false) {
-                    createChatRoom(widget.uuid, widget.post.uuid);
+                    createChatRoom(widget.uuid, widget.post.uuid,widget.post.item.name);
                   }
+                  print('add chat room');
                 },
                 child: Container(
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:Colors.amber, ),
                   height: 50,
                   width: 100,
-                  color: Colors.amber,
-                  child: Text('Lien he'),
+
+                  child: Text('Lien he',textAlign: TextAlign.center,),
                 ),
               )
 

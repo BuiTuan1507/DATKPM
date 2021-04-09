@@ -6,16 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:random_string/random_string.dart';
 class ChatItem extends StatefulWidget {
   ChatRoom chatRoom;
-  ChatItem({Key key, this.chatRoom}) : super(key: key);
+  User chatUser;
+  String uuid;
+  ChatItem({Key key, this.chatRoom, this.chatUser, this.uuid}) : super(key: key);
   @override
   _ChatItemState createState() => _ChatItemState();
 }
 
 class _ChatItemState extends State<ChatItem> {
-  User chatUser;
-  String currentUser = "1";
-  String pairId = "2";
-  List<ChatMessage> chatItems = ChatMessage.list;
+
 
 
   String text= "";
@@ -23,8 +22,8 @@ class _ChatItemState extends State<ChatItem> {
   TextEditingController helpController = new  TextEditingController();
 
 
-  void sendMessage(String text, String sendUuid, String takeUuid){
-    String idChatMessage = randomAlpha(20);
+  void sendMessage(String text, String sendUuid, String takeUuid,String idChatMessage){
+
     Timestamp timestamp = Timestamp.fromDate(DateTime.now());
     //ChatMessage chatMessage = new ChatMessage(idChatMessage,sendUuid,takeUuid,text,timestamp);
     Firestore firestore = Firestore.instance;
@@ -45,6 +44,11 @@ class _ChatItemState extends State<ChatItem> {
   }
   @override
   Widget build(BuildContext context) {
+    String currentUser = widget.uuid;
+    String pairId = widget.chatUser.uuid;
+    List<String> chat = widget.chatRoom.chatMessage;
+    List<ChatMessage>chatItems = [];
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -69,10 +73,10 @@ class _ChatItemState extends State<ChatItem> {
           ),
         ],
         title: Text(
-          "${currentChat.buyUuid}",style: TextStyle(fontSize: 19, color:Colors.black ),),
+          "${widget.chatUser.name}",style: TextStyle(fontSize: 19, color:Colors.black ),),
         centerTitle: true,
       ),
-      body: Column(
+      body:(chatItems != null) ?  Column(
         children: <Widget>[
           Expanded(
             child: ListView.builder(
@@ -151,7 +155,7 @@ class _ChatItemState extends State<ChatItem> {
           ),
           _buildInput()
         ],
-      ),
+      ) : (_buildInput()),
 
     );
   }
@@ -198,8 +202,9 @@ class _ChatItemState extends State<ChatItem> {
               color: AppColors.blueColor,
             ),
             onPressed: (){
+              String idChatMessage = randomAlpha(20);
               helpController.clear();
-              sendMessage(text);
+              sendMessage(text,widget.uuid, widget.chatUser.uuid,idChatMessage);
             },
           ),
         ],

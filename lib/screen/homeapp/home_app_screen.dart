@@ -119,6 +119,11 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
         'chatRoom':chatRoom.toList()
       });
     }
+    void setChatUser(String uuid){
+      Firestore.instance.collection('User').document(uuid).updateData({
+        'isChatUser':true
+      });
+    }
 
     return Consumer<ProviderController>(
       builder: (context, provider, child){
@@ -178,6 +183,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                           if(provider.userOnline != null){
                             if(provider.userOnline.isChatUser == false){
                               createChatUser(provider.userOnline);
+                              setChatUser(provider.userOnline.uuid);
                             }
                           }
                           Navigator.pushNamed(context, CHAT);

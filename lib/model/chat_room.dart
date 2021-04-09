@@ -4,21 +4,21 @@ class ChatRoom{
   String idChatRoom; //id phong chat
   bool isReading ; //  da doc tin nhan cuoi hay chua
 
-  String lastMessage; // tin nhan cuoi cung
+  String nameProduct; // tin nhan cuoi cung
   Timestamp lastTimeRead; //  thoi gian doc tin cuoi cung
 
-  String buyUuid; //  nguoi 1
-  String sellUuid; //  nguoi 2
+  String buyUuid; //  nguoi dung app
+  String sellUuid; //  nguoi dinh nhan tin
 
   List<dynamic> chatMessage;
 
 
-   ChatRoom(this.idChatRoom, this.isReading, this.lastMessage, this.lastTimeRead,
+   ChatRoom(this.idChatRoom, this.isReading, this.nameProduct, this.lastTimeRead,
       this.buyUuid, this.sellUuid, this.chatMessage);
   ChatRoom.fromJson(Map<dynamic, dynamic> data)
       : idChatRoom = data['idChatRoom'],
         isReading = data['isReading'],
-        lastMessage = data['lastMessage'],
+        nameProduct = data['nameProduct'],
 
         lastTimeRead = data['lastTimeRead'],
         buyUuid = data['buyUuid'],
@@ -29,7 +29,7 @@ class ChatRoom{
   ChatRoom.fromSnapshot(DocumentSnapshot snapshot)
       : idChatRoom = snapshot['idChatRoom'],
         isReading = snapshot['isReading'],
-        lastMessage = snapshot['lastMessage'],
+        nameProduct = snapshot['nameProduct'],
         lastTimeRead = snapshot['lastTimeRead'],
         buyUuid = snapshot['buyUuid'],
 
@@ -40,7 +40,7 @@ class ChatRoom{
     return {
       "idChatRoom": idChatRoom,
       "isReading": isReading,
-      'lastMessage': lastMessage,
+      'nameProduct': nameProduct,
       "lastTimeRead": lastTimeRead,
       "buyUuid": buyUuid,
       "sellUuid": sellUuid,
