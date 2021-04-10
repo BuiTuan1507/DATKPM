@@ -1,3 +1,4 @@
+import 'package:app_giao_do_an/model/chat_message.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 class ChatRoom{
@@ -24,8 +25,8 @@ class ChatRoom{
         buyUuid = data['buyUuid'],
 
         sellUuid = data['sellUuid'],
-        chatMessage = data['chatMessage'];
-
+        chatMessage =(data['chatMessage'] != null) ?  List<ChatMessage>.from(data['chatMessage'].map((m) => ChatMessage.fromJson(m))) : null;
+  
   ChatRoom.fromSnapshot(DocumentSnapshot snapshot)
       : idChatRoom = snapshot['idChatRoom'],
         isReading = snapshot['isReading'],
@@ -34,7 +35,7 @@ class ChatRoom{
         buyUuid = snapshot['buyUuid'],
 
         sellUuid = snapshot['sellUuid'],
-        chatMessage = snapshot['chatMessage'];
+        chatMessage =(snapshot['chatMessage'] != null) ? List<ChatMessage>.from(snapshot['chatMessage'].map((m) => ChatMessage.fromSnapshot(m))) :null;
 
   toJson() {
     return {

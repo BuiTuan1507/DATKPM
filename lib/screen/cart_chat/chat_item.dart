@@ -21,33 +21,44 @@ class _ChatItemState extends State<ChatItem> {
   var timeNow = DateTime.now();
   TextEditingController helpController = new  TextEditingController();
 
-
-  void sendMessage(String text, String sendUuid, String takeUuid,String idChatMessage){
+  void sendMessage(String text, String sendUuid, String takeUuid,String idChatMessage,ChatRoom chatRoom){
 
     Timestamp timestamp = Timestamp.fromDate(DateTime.now());
-    //ChatMessage chatMessage = new ChatMessage(idChatMessage,sendUuid,takeUuid,text,timestamp);
+
     Firestore firestore = Firestore.instance;
-    firestore.collection('ChatMessage').document(idChatMessage).setData({
+    var chatMessage = [];
+    if(chatRoom.chatMessage != null){
+      chatMessage=chatRoom.chatMessage;
+    }
+
+    int lengthOfRoom ;
+    if(chatRoom.chatMessage != null) {
+      lengthOfRoom = chatRoom.chatMessage.length + 1;
+    }else{
+      lengthOfRoom = 0;
+    }
+    chatMessage.add({
       'idChatMessage':idChatMessage,
       'sendUuid':sendUuid,
       'takeUuid':takeUuid,
       'message':text,
-      'createMessage':timestamp
+      'createMessage':timestamp,
+      'lengthOfRoom':lengthOfRoom
     });
-    var x = widget.chatRoom.chatMessage;
-    x.add(idChatMessage);
 
-    firestore.collection('ChatRoom').document(widget.chatRoom.idChatRoom).updateData({
-      'chatMessage':x
-    });
-    print('add message');
+    print(chatMessage);
   }
+
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData;
+    queryData = MediaQuery.of(context);
     String currentUser = widget.uuid;
     String pairId = widget.chatUser.uuid;
-    List<String> chat = widget.chatRoom.chatMessage;
-    List<ChatMessage>chatItems = [];
+
+    List<ChatMessage>chatItems = widget.chatRoom.chatMessage;
+
+
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -76,88 +87,95 @@ class _ChatItemState extends State<ChatItem> {
           "${widget.chatUser.name}",style: TextStyle(fontSize: 19, color:Colors.black ),),
         centerTitle: true,
       ),
-      body:(chatItems != null) ?  Column(
-        children: <Widget>[
-          Expanded(
-            child: ListView.builder(
-              itemCount: chatItems.length,
-              reverse: true,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 6,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: chatItems[index].sendUuid == currentUser
-                        ? MainAxisAlignment.end
-                        : MainAxisAlignment.start,
-                    children: <Widget>[
-                      _isFirstMessage(chatItems, index) &&
-                          chatItems[index].sendUuid == pairId
-                          ? Container(
-                        width: 30,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: ExactAssetImage(
-                              "assets/h1.jpg",
+      body: (chatItems != null) ? GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: ListView.builder(
+                itemCount: chatItems.length,
+                reverse: true,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 6,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: chatItems[index].sendUuid == currentUser
+                          ? MainAxisAlignment.end
+                          : MainAxisAlignment.start,
+                      children: <Widget>[
+                        _isFirstMessage(chatItems, index) &&
+                            chatItems[index].sendUuid == pairId
+                            ? Container(
+                          width: 30,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: ExactAssetImage(
+                                "assets/h1.jpg",
+                              ),
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(100),
                             ),
                           ),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(100),
+                        )
+                            : Container(
+                          width: 30,
+                          height: 30,
+                        ),
+                        Container(
+                          constraints: BoxConstraints(
+                            maxWidth: MediaQuery.of(context).size.width * .7,
                           ),
-                        ),
-                      )
-                          : Container(
-                        width: 30,
-                        height: 30,
-                      ),
-                      Container(
-                        constraints: BoxConstraints(
-                          maxWidth: MediaQuery.of(context).size.width * .7,
-                        ),
-                        padding: EdgeInsets.symmetric(
-                          vertical: 6,
-                          horizontal: 12,
-                        ),
-                        margin: EdgeInsets.symmetric(
-                          vertical: 6,
-                          horizontal: 12,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
-                            topLeft: Radius.circular(
-                              _isFirstMessage(chatItems, index) ? 0 : 10,
+                          padding: EdgeInsets.symmetric(
+                            vertical: 6,
+                            horizontal: 12,
+                          ),
+                          margin: EdgeInsets.symmetric(
+                            vertical: 6,
+                            horizontal: 12,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                              topLeft: Radius.circular(
+                                _isFirstMessage(chatItems, index) ? 0 : 10,
+                              ),
+                              bottomLeft: Radius.circular(
+                                _isLastMessage(chatItems, index) ? 0 : 10,
+                              ),
                             ),
-                            bottomLeft: Radius.circular(
-                              _isLastMessage(chatItems, index) ? 0 : 10,
+                            color: chatItems[index].sendUuid == currentUser
+                                ? AppColors.blueColor
+                                : Colors.grey[400],
+                          ),
+                          child: Text(
+                            "${chatItems[index].message}",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
                             ),
                           ),
-                          color: chatItems[index].sendUuid == currentUser
-                              ? AppColors.blueColor
-                              : Colors.grey[400],
                         ),
-                        child: Text(
-                          "${chatItems[index].message}",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
-          _buildInput()
-        ],
-      ) : (_buildInput()),
 
+          ],
+        ) ,
+
+      ) : (Container(
+
+      )),
+      bottomNavigationBar: _buildInput(),
     );
+
   }
 
   Widget _buildInput() {
@@ -204,7 +222,8 @@ class _ChatItemState extends State<ChatItem> {
             onPressed: (){
               String idChatMessage = randomAlpha(20);
               helpController.clear();
-              sendMessage(text,widget.uuid, widget.chatUser.uuid,idChatMessage);
+
+              sendMessage(text,widget.uuid, widget.chatUser.uuid,idChatMessage,widget.chatRoom,);
             },
           ),
         ],
