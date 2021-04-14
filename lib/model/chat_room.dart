@@ -25,8 +25,8 @@ class ChatRoom{
         buyUuid = data['buyUuid'],
 
         sellUuid = data['sellUuid'],
-        chatMessage =(data['chatMessage'] != null) ?  List<ChatMessage>.from(data['chatMessage'].map((m) => ChatMessage.fromJson(m))) : null;
-  
+        chatMessage =(data['chatMessage'] != null) ? data.values.toList() : null;
+
   ChatRoom.fromSnapshot(DocumentSnapshot snapshot)
       : idChatRoom = snapshot['idChatRoom'],
         isReading = snapshot['isReading'],
@@ -35,7 +35,7 @@ class ChatRoom{
         buyUuid = snapshot['buyUuid'],
 
         sellUuid = snapshot['sellUuid'],
-        chatMessage =(snapshot['chatMessage'] != null) ? List<ChatMessage>.from(snapshot['chatMessage'].map((m) => ChatMessage.fromSnapshot(m))) :null;
+        chatMessage =(snapshot['chatMessage']);
 
   toJson() {
     return {
