@@ -50,7 +50,7 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
       'lastTimeRead':lastTimeRead,
       'buyUuid':buyUuid,
       'sellUuid':sellUuid,
-      'chatMesaage':chatMessage
+      'chatMessage':chatMessage
     });
   }
   @override

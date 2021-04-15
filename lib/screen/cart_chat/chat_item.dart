@@ -36,27 +36,32 @@ class _ChatItemState extends State<ChatItem> {
     Timestamp timestamp = Timestamp.fromDate(DateTime.now());
 
     Firestore firestore = Firestore.instance;
-    var chatMessage = [];
+    List<dynamic> chatMessage = [];
+    //firebase se tra ve 1 list tinh == > convert sang 1 list dong
     if (chatRoom.chatMessage != null) {
-      chatMessage = chatRoom.chatMessage;
+      for(int i =0 ; i<chatRoom.chatMessage.length; i++){
+        chatMessage.add(chatRoom.chatMessage[i]);
+      }
     }
 
     int lengthOfRoom;
     if (chatRoom.chatMessage != null) {
-      lengthOfRoom = chatRoom.chatMessage.length + 1;
+      lengthOfRoom = chatRoom.chatMessage.length ;
     } else {
       lengthOfRoom = 0;
     }
+
+    //ChatMessage _chat = new ChatMessage(idChatMessage, sendUuid, takeUuid, text, timestamp, lengthOfRoom);
     chatMessage.add({
-      'idChatMessage': idChatMessage,
-      'sendUuid': sendUuid,
-      'takeUuid': takeUuid,
-      'message': text,
-      'createMessage': timestamp,
-      'lengthOfRoom': lengthOfRoom
+      'idChatMessage':idChatMessage,
+      'sendUuid':sendUuid,
+      'takeUuid':takeUuid,
+      'message':text,
+      'createMessage':timestamp,
+      'lengthOfRoom':lengthOfRoom
     });
     firestore.collection('ChatRoom').document(chatRoom.idChatRoom).updateData({
-      'chatMesaage': FieldValue.arrayUnion(chatMessage)
+      'chatMessage': chatMessage.toList(growable: true)
     });
     print(chatMessage);
   }
@@ -267,7 +272,8 @@ class _ChatItemState extends State<ChatItem> {
               String idChatMessage = randomAlpha(20);
               helpController.clear();
                 printLengthChatRoom(_chatRoom);
-              //sendMessage(text, widget.uuid, widget.chatUser.uuid, idChatMessage, _chatRoom,);
+                print(_chatRoom.chatMessage);
+              sendMessage(text, widget.uuid, widget.chatUser.uuid, idChatMessage, _chatRoom,);
             },
           ),
         ],
