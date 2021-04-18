@@ -14,7 +14,7 @@ class _ChatState extends State<Chat> {
   Widget build(BuildContext context) {
     return Consumer<ProviderController>(builder: (context, provider, child){
       return DefaultTabController(
-        length: 3,
+        length: 2,
         child: Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.amber,
@@ -32,12 +32,7 @@ class _ChatState extends State<Chat> {
                           topRight: Radius.circular(10)),
                       color: Colors.white),
                   tabs: [
-                    Tab(
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Text("Tất cả" ,style: TextStyle(fontSize: 18),),
-                      ),
-                    ),
+
                     Tab(
                       child: Align(
                         alignment: Alignment.center,
@@ -57,9 +52,8 @@ class _ChatState extends State<Chat> {
             ),
             body: TabBarView(
               children: [
-                AllChat(uuid: provider.userOnline.uuid,),
-                BuyChat(),
-                SellChat()
+                BuyChat(uuid: provider.userOnline.uuid,),
+                SellChat(uuid: provider.userOnline.uuid,)
               ],
             )
         ),

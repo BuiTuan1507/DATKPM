@@ -2,6 +2,7 @@ import 'package:app_giao_do_an/model/chat_message.dart';
 import 'package:app_giao_do_an/model/chat_room.dart';
 import 'package:app_giao_do_an/model/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:emoji_picker/emoji_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:random_string/random_string.dart';
@@ -19,8 +20,23 @@ class ChatItem extends StatefulWidget {
 }
 
 class _ChatItemState extends State<ChatItem> {
+  bool isShowSticker ;
+  @override
+  void initState() {
+    super.initState();
+    isShowSticker = false;
+  }
+  Future<bool> onBackPress() {
+    if (isShowSticker) {
+      setState(() {
+        isShowSticker = false;
+      });
+    } else {
+      Navigator.pop(context);
+    }
 
-
+    return Future.value(false);
+  }
   String text = "";
   var timeNow = DateTime.now();
   TextEditingController helpController = new TextEditingController();
@@ -116,12 +132,13 @@ class _ChatItemState extends State<ChatItem> {
               style: TextStyle(fontSize: 19, color: Colors.black),),
             centerTitle: true,
           ),
-          body: StreamBuilder<QuerySnapshot>(
-            stream: Firestore.instance.collection('ChatRoom').where('idChatRoom',isEqualTo: widget.chatRoom.idChatRoom).snapshots(),
+          body: WillPopScope(
+            child: StreamBuilder<QuerySnapshot>(
+              stream: Firestore.instance.collection('ChatRoom').where('idChatRoom',isEqualTo: widget.chatRoom.idChatRoom).snapshots(),
 
-            builder: (context, snapshot) {
+              builder: (context, snapshot) {
 
-              var chatRoomBody = snapshot.data.documents[0];
+                var chatRoomBody = snapshot.data.documents[0];
                 return (snapshot.hasData != null) ? Column(
                   children: <Widget>[
                     Expanded(
@@ -210,6 +227,7 @@ class _ChatItemState extends State<ChatItem> {
                         },
                       ),
                     ),
+                    (isShowSticker ? buildSticker() : Container()),
 
                   ],
                 ) : Container(
@@ -220,6 +238,8 @@ class _ChatItemState extends State<ChatItem> {
 
               },
 
+            ),
+            onWillPop: onBackPress,
           ),
           bottomNavigationBar: _buildInput(),
     );
@@ -261,7 +281,24 @@ class _ChatItemState extends State<ChatItem> {
               ),
             ),
           ),
+          Material(
+            child: new Container(
+              margin: new EdgeInsets.symmetric(horizontal: 1.0),
+              child: new IconButton(
+                icon: new Icon(Icons.face, color: Colors.blue,),
+                onPressed: () {
+                  if(this.mounted){
+                    setState(() {
+                      isShowSticker = !isShowSticker;
+                    });
+                  }
 
+                },
+                color: Colors.blueGrey,
+              ),
+            ),
+            color: Colors.grey[400],
+          ),
           IconButton(
             icon: Icon(
               Icons.send,
@@ -273,6 +310,7 @@ class _ChatItemState extends State<ChatItem> {
                 helpController.clear();
 
                 sendMessage(text, widget.uuid, widget.chatUser.uuid, idChatMessage, _chatRoom,);
+                onBackPress();
               }
 
             },
@@ -293,6 +331,22 @@ class _ChatItemState extends State<ChatItem> {
     return (chatItems[index]['sendUuid'] !=
         chatItems[index + 1 > maxItem ? maxItem : index + 1]['sendUuid']) ||
         index == maxItem;
+  }
+  Widget buildSticker() {
+    return EmojiPicker(
+      rows: 3,
+      columns: 7,
+      buttonMode: ButtonMode.MATERIAL,
+      recommendKeywords: ["racing", "horse"],
+      numRecommended: 10,
+      onEmojiSelected: (emoji, category) {
+        setState(() {
+          helpController.text = helpController.text + emoji.emoji;
+          text = text +emoji.emoji;
+        });
+
+      },
+    );
   }
 }
 
