@@ -118,101 +118,100 @@ class _ChatItemState extends State<ChatItem> {
           ),
           body: StreamBuilder<QuerySnapshot>(
             stream: Firestore.instance.collection('ChatRoom').where('idChatRoom',isEqualTo: widget.chatRoom.idChatRoom).snapshots(),
+
             builder: (context, snapshot) {
-              var chatRoomItem = snapshot.data.documents;
-                return (!snapshot.hasData) ? GestureDetector(
-                  onTap: () => FocusScope.of(context).unfocus(),
-                  child: Column(
-                    children: <Widget>[
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: snapshot.data.documents.length,
-                          reverse: true,
-                          itemBuilder: (context, index) {
 
-                            return Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 6,
-                              ),
-                              child: Row(
-                                mainAxisAlignment: chatRoomItem[index]['sendUuid'] ==
-                                    currentUser
-                                    ? MainAxisAlignment.end
-                                    : MainAxisAlignment.start,
-                                children: <Widget>[
-                                  _isFirstMessage(chatRoomItem, index) &&
-                                      chatRoomItem[index]['sendUuid'] == pairId
-                                      ? Container(
-                                    width: 30,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: ExactAssetImage(
-                                          "assets/h1.jpg",
-                                        ),
+              var chatRoomBody = snapshot.data.documents[0];
+                return (snapshot.hasData != null) ? Column(
+                  children: <Widget>[
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: chatRoomBody['chatMessage'].length,
+                        reverse: false,
+                        itemBuilder: (context, index) {
+                          var chatRoomItem = chatRoomBody['chatMessage'][index];
+
+                          return Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 6,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: chatRoomItem['sendUuid'] ==
+                                  currentUser
+                                  ? MainAxisAlignment.end
+                                  : MainAxisAlignment.start,
+                              children: <Widget>[
+                                _isFirstMessage(chatRoomBody['chatMessage'], index) &&
+                                    chatRoomItem['sendUuid'] == pairId
+                                    ? Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: ExactAssetImage(
+                                        "assets/h1.jpg",
                                       ),
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(100),
-                                      ),
                                     ),
-                                  )
-                                      : Container(
-                                    width: 30,
-                                    height: 30,
-                                  ),
-                                  Container(
-                                    constraints: BoxConstraints(
-                                      maxWidth: MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width * .7,
-                                    ),
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: 6,
-                                      horizontal: 12,
-                                    ),
-                                    margin: EdgeInsets.symmetric(
-                                      vertical: 6,
-                                      horizontal: 12,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(10),
-                                        bottomRight: Radius.circular(10),
-                                        topLeft: Radius.circular(
-                                          _isFirstMessage(chatRoomItem, index)
-                                              ? 0
-                                              : 10,
-                                        ),
-                                        bottomLeft: Radius.circular(
-                                          _isLastMessage(chatRoomItem, index)
-                                              ? 0
-                                              : 10,
-                                        ),
-                                      ),
-                                      color: chatRoomItem[index]['sendUuid'] ==
-                                          currentUser
-                                          ? AppColors.blueColor
-                                          : Colors.grey[400],
-                                    ),
-                                    child: Text(
-                                      "${chatRoomItem[index]['message']}",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 16,
-                                      ),
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(100),
                                     ),
                                   ),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
+                                )
+                                    : Container(
+                                  width: 30,
+                                  height: 30,
+                                ),
+                                Container(
+                                  constraints: BoxConstraints(
+                                    maxWidth: MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width * .7,
+                                  ),
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: 6,
+                                    horizontal: 12,
+                                  ),
+                                  margin: EdgeInsets.symmetric(
+                                    vertical: 6,
+                                    horizontal: 12,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(10),
+                                      bottomRight: Radius.circular(10),
+                                      topLeft: Radius.circular(
+                                        _isFirstMessage(chatRoomBody['chatMessage'], index)
+                                            ? 0
+                                            : 10,
+                                      ),
+                                      bottomLeft: Radius.circular(
+                                        _isLastMessage(chatRoomBody['chatMessage'], index)
+                                            ? 0
+                                            : 10,
+                                      ),
+                                    ),
+                                    color: chatRoomItem['sendUuid'] ==
+                                        currentUser
+                                        ? AppColors.blueColor
+                                        : Colors.grey[400],
+                                  ),
+                                  child: Text(
+                                    "${chatRoomItem['message']}",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
                       ),
+                    ),
 
-                    ],
-                  ),
-
+                  ],
                 ) : Container(
                   height: queryData.size.height,
                   width: queryData.size.height,
@@ -269,11 +268,13 @@ class _ChatItemState extends State<ChatItem> {
               color: AppColors.blueColor,
             ),
             onPressed: () {
-              String idChatMessage = randomAlpha(20);
-              helpController.clear();
-                printLengthChatRoom(_chatRoom);
-                print(_chatRoom.chatMessage);
-              sendMessage(text, widget.uuid, widget.chatUser.uuid, idChatMessage, _chatRoom,);
+              if(text != null){
+                String idChatMessage = randomAlpha(20);
+                helpController.clear();
+
+                sendMessage(text, widget.uuid, widget.chatUser.uuid, idChatMessage, _chatRoom,);
+              }
+
             },
           ),
         ],
@@ -281,13 +282,13 @@ class _ChatItemState extends State<ChatItem> {
     );
   }
 
-  _isFirstMessage(List<DocumentSnapshot> chatItems, int index) {
+  _isFirstMessage(List<dynamic> chatItems, int index) {
     return (chatItems[index]['sendUuid'] !=
         chatItems[index - 1 < 0 ? 0 : index - 1]['sendUuid']) ||
         index == 0;
   }
 
-  _isLastMessage(List<DocumentSnapshot> chatItems, int index) {
+  _isLastMessage(List<dynamic>chatItems, int index) {
     int maxItem = chatItems.length - 1;
     return (chatItems[index]['sendUuid'] !=
         chatItems[index + 1 > maxItem ? maxItem : index + 1]['sendUuid']) ||
