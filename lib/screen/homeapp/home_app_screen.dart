@@ -21,6 +21,7 @@ class HomeAppScreen extends StatefulWidget {
 }
 
 class _HomeAppScreenState extends State<HomeAppScreen> {
+  static const defaultImageString  = "https://firebasestorage.googleapis.com/v0/b/appdoan-53f1b.appspot.com/o/postProductsach.jpg?alt=media&token=c1e791af-dae8-440b-a9af-816e536f98b1";
   ScrollController _scrollController = new ScrollController();
   ScrollController _scrollControllerGrid = new ScrollController();
   bool isFavorite;
@@ -37,74 +38,12 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
   Widget build(BuildContext context) {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
-    int down = 0;
-    List<Post> x = Provider.of<List<Post>>(context);
-    if(x != null){
-      for(int i = 0; i<3; i++){
-        loadPost.add(x[i]);
-      }
-    }
+
+    loadPost= Provider.of<List<Post>>(context);
 
 
-    int _count = 3;
 
 
-    List<Widget> _getItems(List<Post> p) {
-      var items = <Widget>[];
-      for (int i = _count; i < _count + 1; i++) {
-        var item = new Column(
-          children: <Widget>[
-            showItem(p[_count]),
-
-            Container(height: 20,),
-            new Divider(
-              height: 2.0,
-            )
-          ],
-        );
-
-        items.add(item);
-      }
-      return items;
-    }
-    Future<Null> _handleRefresh() async {
-      await new Future.delayed(new Duration(seconds: 2));
-
-      setState(() {
-       _count = _count + 2;
-      });
-
-      return null;
-    }
-
-    // pull down to load more
-    void load(){
-      print('load');
-      setState(() {
-        loadPost.clear();
-        for(int  i = _count; i< _count + 3; i++){
-          loadPost.add(x[i]);
-        }
-      });
-    }
-
-    Future<bool> _loadMore() async {
-      print("onLoadMore");
-
-      await Future.delayed(Duration(seconds: 0, milliseconds: 5000));
-      load();
-      return true;
-    }
-
-    Future<void> _refresh() async {
-      setState(() {
-        _count = _count + 4;
-      });
-      print('refresh');
-      await Future.delayed(Duration(seconds: 0, milliseconds: 2000));
-      loadPost.clear();
-      load();
-    }
     bool changeFavorite(bool isFavorite){
       setState(() {
         isFavorite = !isFavorite;
@@ -197,8 +136,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
 
               ],
             ),
-            body: RefreshIndicator(
-              child:  SingleChildScrollView(
+            body:  SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
                     SingleChildScrollView(
@@ -677,30 +615,25 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                     //  )
 
                     //  : CircularProgressIndicator(),
-                    LoadMore(
-                      isFinish: count >= 6,
-                      onLoadMore: _loadMore,
-                      child: ListView.builder(
+                    (loadPost != null) ?   ListView.builder(
                         // reverse: true,
                         controller: _scrollController,
                         shrinkWrap: true,
+
                         scrollDirection: Axis.vertical,
                         itemBuilder: (BuildContext context, int index) {
-                          return showItem(loadPost[index]);
+                          return showItem(loadPost[index],queryData);
                         },
-                        itemCount: count,
-                      ),
-
-                      whenEmptyLoad: false,
-                      delegate: DefaultLoadMoreDelegate(),
-                      textBuilder: DefaultLoadMoreTextBuilder.english,
+                        itemCount: loadPost.length,
+                      ) : Container(
+                      height: 0,
                     ),
+
 
                   ],
                 ),
               ),
-              onRefresh:  _refresh,
-            )
+
 
         );
       },
@@ -708,21 +641,21 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
 
   }
 
-  Widget showItem(Post post){
+  Widget showItem(Post post , MediaQueryData query){
     var timeJoinApp;
     var createTimeFormat = DateFormat('dd-MM-yyyy');
     timeJoinApp = createTimeFormat.format(post.timeCreate.toDate());
-    return Container(
+    return(post != null) ? Container(
       child: Row(
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
               borderRadius:BorderRadius.circular(10),
             ),
-            height: 150,
-            width: 150,
+            height: 120,
+            width: 120,
             padding: EdgeInsets.all(10),
-            child:Image.network(post.item.image[0], fit: BoxFit.cover,),
+            child:Image.network((post.item.image!= null) ? post.item.image[0] : defaultImageString, fit: BoxFit.cover,),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -746,15 +679,20 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
               Row(
                 children: <Widget>[
                   Container(
+
                     padding: EdgeInsets.all(10),
-                    child: Text(post.addressPost, overflow: TextOverflow.fade,style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
+                    child: Text(post.addressPost, overflow: TextOverflow.ellipsis,style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 10, bottom: 10, right: 10,left: 50),
-                    child: Text(timeJoinApp, overflow: TextOverflow.fade,style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
-                  )
+
+                    padding: EdgeInsets.all(10),
+                    child: Text(timeJoinApp, overflow: TextOverflow.ellipsis,style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
+                  ),
+
+
                 ],
               ),
+
               Row(
                 children: <Widget>[
                   Container(
@@ -783,6 +721,8 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
           )
         ],
       ),
+    ) : Container(
+      height: 0,
     );
   }
 }

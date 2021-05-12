@@ -216,7 +216,9 @@ class _ChatItemState extends State<ChatItem> {
                                   child: Text(
                                     "${chatRoomItem['message']}",
                                     style: TextStyle(
-                                      color: Colors.black,
+                                      color: (chatRoomItem['sendUuid'] ==
+                                          currentUser )
+                                          ?Colors.white : Colors.black,
                                       fontSize: 16,
                                     ),
                                   ),

@@ -90,8 +90,9 @@ class ProviderController extends ChangeNotifier {
 
   //Store User
   Future<void> getStoreUser(String uuid) async {
+
     await firestore.collection('Store').where('uuid', isEqualTo: uuid).getDocuments().then((value) => {
-      userStore = Store.fromSnapshot(value.documents[0])
+      userStore =((value.documents.isEmpty == false)) ? Store.fromSnapshot(value.documents[0])  : null
     }
     );
 
@@ -157,7 +158,7 @@ class ProviderController extends ChangeNotifier {
   //Get Chat User
   Future<void> getChatUser(String uuid) async{
     await firestore.collection('ChatUser').where('uuid', isEqualTo: uuid).getDocuments().then((value) => {
-      chatUser = ChatUser.fromSnapshot(value.documents[0])
+      chatUser =(value.documents != null) ? ChatUser.fromSnapshot(value.documents[0]) : null
     }
     );
 

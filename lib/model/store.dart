@@ -44,7 +44,7 @@ class Store {
         chatReturn = data['timeCreateStore'];
 
   Store.fromSnapshot(DocumentSnapshot snapshot)
-      : idStore = snapshot['idStore'],
+  : idStore = snapshot['idStore'],
         uuid = snapshot['uuid'],
         name = snapshot['name'],
         imageStore = snapshot['imageStore'],
