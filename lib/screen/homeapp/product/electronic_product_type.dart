@@ -26,7 +26,7 @@ class _ProductTypeState extends State<ProductType> {
   ScrollController _scrollController = new ScrollController();
   Item item1 = new Item('1', 'nha xa', ['assets/h1.jpg'], 20, 'Ha noi', 'hêlo',
       'hello', 'hee', true);
-
+  String defaultImage = 'https://firebasestorage.googleapis.com/v0/b/appdoan-53f1b.appspot.com/o/image_picker-518944437.jpg?alt=media&token=d2ffd65d-f088-4a04-a61d-816d66f7da6a';
   bool isFavorite = false;
   var catalogE = [
     'Đồ điện tử',
@@ -57,47 +57,50 @@ class _ProductTypeState extends State<ProductType> {
     return Consumer<ProviderController>(
       builder:(context,provider, child){
         List<Post> _product = [];
-        if(widget.catalogF == 0) {
-          print('do dien tu');
-          for (int  i = 0; i< x.length; i++ ){
-            if (x[i].item.type == 'Đồ điện tử'){
-              _product.add(x[i]);
+        if (x != null) {
+          if(widget.catalogF == 0) {
+            print('do dien tu');
+            for (int  i = 0; i< x.length; i++ ){
+              if (x[i].item.type == 'Đồ điện tử'){
+                _product.add(x[i]);
+              }
+            }
+          } else if (widget.catalogF != 0)
+          {
+            print('dien thoai');
+            for (int  i = 0; i<x.length;i++){
+              if (x[i].item.category == catalogE[widget.catalogF]){
+                _product.add(x[i]);
+              }
             }
           }
-        } else if (widget.catalogF != 0)
-        {
-          print('dien thoai');
-          for (int  i = 0; i<x.length;i++){
-            if (x[i].item.category == catalogE[widget.catalogF]){
+          if ((widget.costSearch != 0) && (widget.costSearch != null)){
+            print(widget.costSearch);
+            print('cost search');
+            _product.clear();
+            for (int i = 0; i<x.length; i++){
+              if(x[i].item.cost >= widget.costSearch){
+                _product.add(x[i]);
+              }
+            }
+          }
+          if ( (widget.priority != 0) && (widget.priority != null)) {
+            print('do uu tien');
+            _product.clear();
+            for(int  i = 0; i<x.length; i++){
+              if (x[i].isPriority == widget.priority){
+                _product.add(x[i]);
+              }
+            }
+          }
+          if(widget.priority == 0){
+            _product.clear();
+            for  (int i = 0; i< x.length; i++){
               _product.add(x[i]);
             }
           }
         }
-        if ((widget.costSearch != 0) && (widget.costSearch != null)){
-          print(widget.costSearch);
-          print('cost search');
-          _product.clear();
-          for (int i = 0; i<x.length; i++){
-            if(x[i].item.cost >= widget.costSearch){
-              _product.add(x[i]);
-            }
-          }
-        }
-        if ( (widget.priority != 0) && (widget.priority != null)) {
-          print('do uu tien');
-          _product.clear();
-          for(int  i = 0; i<x.length; i++){
-            if (x[i].isPriority == widget.priority){
-              _product.add(x[i]);
-            }
-          }
-        }
-        if(widget.priority == 0){
-          _product.clear();
-          for  (int i = 0; i< x.length; i++){
-            _product.add(x[i]);
-          }
-        }
+
         return Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: true,
@@ -354,6 +357,7 @@ class _ProductTypeState extends State<ProductType> {
                       shrinkWrap: true,
                       itemCount: _product.length,
                       itemBuilder: (context, index) {
+
                         return Container(
                           padding: EdgeInsets.all(12),
                           child: Row(
@@ -366,12 +370,19 @@ class _ProductTypeState extends State<ProductType> {
                                 child: Container(
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(6.0),
-                                    child: Image.network(
+                                    child: (_product[index].item.image != null) ? Image.network(
+
                                       _product[index].item.image[0],
                                       fit: BoxFit.cover,
                                       height: 120,
                                       width: 140,
-                                    ),
+                                    ) : Image.network(
+
+                                      defaultImage,
+                                      fit: BoxFit.cover,
+                                      height: 120,
+                                      width: 140,
+                                    ) ,
                                   ),
                                 ),
                               ),

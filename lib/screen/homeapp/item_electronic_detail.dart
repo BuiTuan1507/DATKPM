@@ -28,7 +28,7 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
 
   String _formatMoney(int costSearch) {
     if ((costSearch > 1000) && (costSearch < 1000000)) {
-      costSearch = (costSearch / 1000) as int;
+      costSearch = (costSearch / 1000).round();
       return costSearch.toString() + '.000';
     }
     if ((costSearch >= 1000000) && (costSearch < 1000000000)) {
