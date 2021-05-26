@@ -100,6 +100,7 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
                         child: Container(
                           margin: EdgeInsets.only(
                             left: kDefaultPadding,
+                            right: kDefaultPadding,
                             top: kDefaultPadding / 2,
                             bottom: kDefaultPadding / 2,
                           ),
@@ -444,10 +445,12 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
               GestureDetector(
                 onTap: (){
                   bool kiemtra = false;
+                  print(widget.post.uuid);
 
                   if(provider.chatUser != null){
                     if(provider.chatUser.chatRoom != null){
                       for (int  i = 0; i< provider.chatUser.chatRoom.length; i++){
+                        print(provider.chatUser.chatRoom[i]);
                         if (widget.post.uuid == provider.chatUser.chatRoom[i]){
                           kiemtra = true;
                           break;
@@ -455,20 +458,24 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
                       }
                     }
                   }
-                  if(kiemtra == false) {
-                    createChatRoom(widget.uuid, widget.post.uuid,widget.post.item.name);
-                  }
+
+                  Navigator.pushNamed(context, CHAT);
                   print('add chat room');
                 },
                 child: Container(
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:Colors.amber, ),
-                  height: 50,
-                  width: 100,
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color:Colors.amber, ),
+                  height: queryData.size.height/15,
+                  width: queryData.size.width/2,
 
-                  child: Text('Lien he',textAlign: TextAlign.center,),
+                  child: Container(
+                    padding: EdgeInsets.only(top: 10),
+                    child: Text('Liên hệ người mua',textAlign: TextAlign.center,style: TextStyle(fontSize: 18),),
+                  )
                 ),
+              ),
+              Container(
+                height: 70,
               )
-
             ],
           ),
         ),

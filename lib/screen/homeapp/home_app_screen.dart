@@ -24,101 +24,121 @@ class HomeAppScreen extends StatefulWidget {
 }
 
 class _HomeAppScreenState extends State<HomeAppScreen> {
-  static const defaultImageString = "https://firebasestorage.googleapis.com/v0/b/appdoan-53f1b.appspot.com/o/postProductsach.jpg?alt=media&token=c1e791af-dae8-440b-a9af-816e536f98b1";
+  static const defaultImageString =
+      "https://firebasestorage.googleapis.com/v0/b/appdoan-53f1b.appspot.com/o/postProductsach.jpg?alt=media&token=c1e791af-dae8-440b-a9af-816e536f98b1";
   ScrollController _scrollController = new ScrollController();
   ScrollController _scrollControllerGrid = new ScrollController();
   bool isFavorite;
 
-
   List<Post> post = [];
   List<Post> loadPost = [];
   int lengthOfPost;
-
+  List<bool> numberOfFavoritePost = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
+  List<bool> numberOfShoppingCart = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
   TextEditingController searchController;
-  Item item1 = new Item(
-      '1',
-      'nha xa',
-      ['assets/h1.jpg'],
-      20,
-      'Ha noi',
-      'hêlo',
-      'hello',
-      'hee',
-      true);
+  Item item1 = new Item('1', 'nha xa', ['assets/h1.jpg'], 20, 'Ha noi', 'hêlo',
+      'hello', 'hee', true);
 
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
 
-    post = Provider.of<List<Post>>(context);
-    if (post != null) {
-      lengthOfPost = post.length;
-      for (int i = 0; i < 7; i ++) {
-        loadPost.add(post[i]);
-      }
-    }
+    loadPost = Provider.of<List<Post>>(context);
 
-
-    bool changeFavorite(bool isFavorite) {
-      setState(() {
-        isFavorite = !isFavorite;
-      });
-    }
     void createChatUser(User user) {
       String idChatUser = randomAlpha(15);
-      List <dynamic> chatRoom = List<dynamic>();
+      List<dynamic> chatRoom = List<dynamic>();
       Firestore.instance.collection('ChatUser').document(idChatUser).setData({
         'idChatUser': idChatUser,
         'uuid': user.uuid,
         'chatRoom': chatRoom.toList()
       });
     }
+
     void setChatUser(String uuid) {
-      Firestore.instance.collection('User').document(uuid).updateData({
-        'isChatUser': true
-      });
+      Firestore.instance
+          .collection('User')
+          .document(uuid)
+          .updateData({'isChatUser': true});
     }
 
     return Consumer<ProviderController>(
       builder: (context, provider, child) {
         provider.getStoreUser(widget.uuid);
         provider.getUserOnline(widget.uuid);
+        if((provider.favoritePost != null ) && (loadPost != null)){
+          for(int i = 0 ; i< loadPost.length; i++) {
+            for (int j =0 ; j< provider.favoritePost.length ; i++){
+              if (loadPost[i] ==  provider.favoritePost[j] ) {
+
+                numberOfFavoritePost[i] = true;
+                break;
+              }
+            }
+          }
+        }
+        if(provider.cartPost != null ){
+          for(int i = 0 ; i< 8; i++) {
+            for (int j =0 ; j< provider.cartPost.length ; i++){
+              if (provider.cartPost[j] == loadPost[i]) {
+
+                numberOfShoppingCart[i] = true;
+                break;
+              }
+            }
+          }
+        }
+
         return Scaffold(
           appBar: AppBar(
-
             backgroundColor: Colors.amber,
             title: Container(
-
               margin: EdgeInsets.all(7),
               //padding: EdgeInsets.only(top: 5, bottom: 5, left: 10),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.black54, width: 0.5),
-                  color: Colors.white
-              ),
+                  color: Colors.white),
               child: TextField(
-
                 controller: searchController,
                 textAlign: TextAlign.left,
                 decoration: InputDecoration(
-
-                  prefixIcon: Icon(Icons.search, color: Colors.black,),
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: Colors.black,
+                  ),
                   hintText: 'Tìm kiếm',
-                  hintStyle: TextStyle(fontSize: 18,
+                  hintStyle: TextStyle(
+                      fontSize: 18,
                       color: Colors.black45,
                       fontWeight: FontWeight.w400),
                   focusedBorder: OutlineInputBorder(
-
                     borderSide: BorderSide(color: Colors.white),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.white),
                     borderRadius: BorderRadius.circular(10),
-
                   ),
-
                 ),
               ),
             ),
@@ -134,8 +154,10 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                   child: Container(
                     padding: EdgeInsets.only(right: 15, top: 5),
                     child: IconButton(
-                      icon: Icon(Icons.message, size: 28,),
-
+                      icon: Icon(
+                        Icons.message,
+                        size: 28,
+                      ),
                       onPressed: () {
                         if (provider.userOnline != null) {
                           if (provider.userOnline.isChatUser == false) {
@@ -147,11 +169,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                       },
                       color: Colors.black,
                     ),
-                  )
-
-              ),
-
-
+                  )),
             ],
           ),
           body: SingleChildScrollView(
@@ -218,16 +236,15 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                           ),
                         ),
                       ),
-                      Container(
-                          width: 15
-                      )
+                      Container(width: 15)
                     ],
                   ),
                 ),
-                Container(height: 15,),
+                Container(
+                  height: 15,
+                ),
                 SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
-
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
@@ -240,27 +257,29 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                                   Navigator.pushNamed(context, PROFILE);
                                 },
                                 child: Container(
-
                                     width: 40,
                                     height: 40,
                                     decoration: BoxDecoration(
                                         color: Colors.blue,
-                                        borderRadius: BorderRadius.circular(100)
-                                    ),
+                                        borderRadius:
+                                            BorderRadius.circular(100)),
                                     child: Center(
                                       child: Icon(
-                                        Icons.person, color: Colors.white,),
-                                    )
-
-                                ),
+                                        Icons.person,
+                                        color: Colors.white,
+                                      ),
+                                    )),
                               ),
-
                               Container(
-                                child: Text("Trang cá nhân", style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 18,
-                                  color: Colors.black,),
-                                  textAlign: TextAlign.center,),
+                                child: Text(
+                                  "Trang cá nhân",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 18,
+                                    color: Colors.black,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
                               )
                             ],
                           ),
@@ -274,26 +293,29 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                                   Navigator.pushNamed(context, USERFAVORITE);
                                 },
                                 child: Container(
-
                                     width: 40,
                                     height: 40,
                                     decoration: BoxDecoration(
                                         color: Colors.red,
-                                        borderRadius: BorderRadius.circular(100)
-                                    ),
+                                        borderRadius:
+                                            BorderRadius.circular(100)),
                                     child: Center(
                                       child: Icon(
-                                        Icons.favorite, color: Colors.white,),
-                                    )
-
-                                ),
+                                        Icons.favorite,
+                                        color: Colors.white,
+                                      ),
+                                    )),
                               ),
                               Container(
-                                child: Text("Tin đã lưu", style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 18,
-                                  color: Colors.black,),
-                                  textAlign: TextAlign.center,),
+                                child: Text(
+                                  "Tin đã lưu",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 18,
+                                    color: Colors.black,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
                               )
                             ],
                           ),
@@ -307,27 +329,29 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                                   Navigator.pushNamed(context, USERFRIEND);
                                 },
                                 child: Container(
-
                                     width: 40,
                                     height: 40,
                                     decoration: BoxDecoration(
                                         color: Colors.greenAccent,
-                                        borderRadius: BorderRadius.circular(100)
-                                    ),
+                                        borderRadius:
+                                            BorderRadius.circular(100)),
                                     child: Center(
                                       child: Icon(
-                                        Icons.person_add, color: Colors.white,),
-                                    )
-
-                                ),
-                              )
-                              ,
+                                        Icons.person_add,
+                                        color: Colors.white,
+                                      ),
+                                    )),
+                              ),
                               Container(
-                                child: Text("Bạn bè", style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 18,
-                                  color: Colors.black,),
-                                  textAlign: TextAlign.center,),
+                                child: Text(
+                                  "Bạn bè",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 18,
+                                    color: Colors.black,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
                               )
                             ],
                           ),
@@ -341,27 +365,29 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                                   Navigator.pushNamed(context, NOTIFICATION);
                                 },
                                 child: Container(
-
                                     width: 40,
                                     height: 40,
                                     decoration: BoxDecoration(
                                         color: Colors.amber,
-                                        borderRadius: BorderRadius.circular(100)
-                                    ),
+                                        borderRadius:
+                                            BorderRadius.circular(100)),
                                     child: Center(
                                       child: Icon(
-                                        Icons.save, color: Colors.white,),
-                                    )
-
-                                ),
+                                        Icons.save,
+                                        color: Colors.white,
+                                      ),
+                                    )),
                               ),
-
                               Container(
-                                child: Text("Đơn hàng", style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 18,
-                                  color: Colors.black,),
-                                  textAlign: TextAlign.center,),
+                                child: Text(
+                                  "Đơn hàng",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 18,
+                                    color: Colors.black,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
                               )
                             ],
                           ),
@@ -375,51 +401,61 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                                   Navigator.pushNamed(context, USERHELP);
                                 },
                                 child: Container(
-
                                     width: 40,
                                     height: 40,
                                     decoration: BoxDecoration(
                                         color: Colors.grey,
-                                        borderRadius: BorderRadius.circular(100)
-                                    ),
+                                        borderRadius:
+                                            BorderRadius.circular(100)),
                                     child: Center(
-                                      child: Icon(Icons.help_outline,
-                                        color: Colors.white,),
-                                    )
-
-                                ),
-                              )
-                              ,
+                                      child: Icon(
+                                        Icons.help_outline,
+                                        color: Colors.white,
+                                      ),
+                                    )),
+                              ),
                               Container(
-                                child: Text("Trợ giúp", style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 18,
-                                  color: Colors.black,),
-                                  textAlign: TextAlign.center,),
+                                child: Text(
+                                  "Trợ giúp",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 18,
+                                    color: Colors.black,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
                               )
                             ],
                           ),
                         ),
-
                       ],
-                    )
+                    )),
+                Container(
+                  height: 15,
                 ),
-                Container(height: 15,),
                 Divider(
                   indent: 15,
                   endIndent: 15,
                   thickness: 15,
                   color: Colors.grey[300],
                 ),
-                Container(height: 15,),
+                Container(
+                  height: 15,
+                ),
                 Container(
                   padding: EdgeInsets.only(left: 20),
-                  child: Text("Khám phá sản phẩm", style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black), textAlign: TextAlign.left,),
+                  child: Text(
+                    "Khám phá sản phẩm",
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                    textAlign: TextAlign.left,
+                  ),
                 ),
-                Container(height: 15,),
+                Container(
+                  height: 15,
+                ),
                 Container(
                   child: GridView.count(
                     // controller: _scrollControllerGrid,
@@ -434,7 +470,6 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                     children: <Widget>[
                       SizedBox(
                         width: 120,
-
                         child: Column(
                           children: <Widget>[
                             Container(
@@ -446,22 +481,25 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(20),
                                   child: Image.asset(
-                                    'assets/bds.jpg', fit: BoxFit.cover,),
-                                )
-
+                                    'assets/bds.jpg',
+                                    fit: BoxFit.cover,
+                                  ),
+                                )),
+                            Container(
+                              height: 7,
                             ),
-                            Container(height: 7,),
                             Container(
                               child: Text(
-                                "Phòng trọ", style: TextStyle(fontSize: 18),
-                                textAlign: TextAlign.center,),
+                                "Phòng trọ",
+                                style: TextStyle(fontSize: 18),
+                                textAlign: TextAlign.center,
+                              ),
                             )
                           ],
                         ),
                       ),
                       SizedBox(
                         width: 120,
-
                         child: Column(
                           children: <Widget>[
                             Container(
@@ -473,28 +511,33 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(20),
                                   child: Image.asset(
-                                    'assets/doan.jpg', fit: BoxFit.cover,),
-                                )
-
+                                    'assets/doan.jpg',
+                                    fit: BoxFit.cover,
+                                  ),
+                                )),
+                            Container(
+                              height: 7,
                             ),
-                            Container(height: 7,),
                             Container(
                               child: Text(
-                                "Đồ ăn", style: TextStyle(fontSize: 18),
-                                textAlign: TextAlign.center,),
+                                "Đồ ăn",
+                                style: TextStyle(fontSize: 18),
+                                textAlign: TextAlign.center,
+                              ),
                             )
                           ],
                         ),
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, PRODUCTTYPE,
-                              arguments: {'catalogF': 0, 'costSearch': 0,});
+                          Navigator.pushNamed(context, PRODUCTTYPE, arguments: {
+                            'catalogF': 0,
+                            'costSearch': 0,
+                          });
                           print(2);
                         },
                         child: SizedBox(
                           width: 120,
-
                           child: Column(
                             children: <Widget>[
                               Container(
@@ -505,27 +548,28 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                                 ),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(20),
-
                                   child: Image.asset(
-                                    'assets/dodientu.jpg', fit: BoxFit.cover,),
+                                    'assets/dodientu.jpg',
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                              Container(height: 7,),
+                              Container(
+                                height: 7,
+                              ),
                               Container(
                                 child: Text(
-                                  "Đồ điện tử", style: TextStyle(fontSize: 18),
-                                  textAlign: TextAlign.center,),
+                                  "Đồ điện tử",
+                                  style: TextStyle(fontSize: 18),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
-
-
                             ],
                           ),
                         ),
                       ),
-
                       SizedBox(
                         width: 120,
-
                         child: Column(
                           children: <Widget>[
                             Container(
@@ -537,22 +581,26 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20),
                                 child: Image.asset(
-                                  'assets/sach.jpg', fit: BoxFit.cover,),
-                              )
-                              ,
+                                  'assets/sach.jpg',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
-                            Container(height: 7,),
+                            Container(
+                              height: 7,
+                            ),
                             Container(
                               child: Text(
-                                "Giáo trình", style: TextStyle(fontSize: 18),
-                                textAlign: TextAlign.center,),
+                                "Giáo trình",
+                                style: TextStyle(fontSize: 18),
+                                textAlign: TextAlign.center,
+                              ),
                             )
                           ],
                         ),
                       ),
                       SizedBox(
                         width: 120,
-
                         child: Column(
                           children: <Widget>[
                             Container(
@@ -564,22 +612,26 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20),
                                 child: Image.asset(
-                                  'assets/thu.jpg', fit: BoxFit.cover,),
-                              )
-                              ,
+                                  'assets/thu.jpg',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
-                            Container(height: 7,),
+                            Container(
+                              height: 7,
+                            ),
                             Container(
                               child: Text(
-                                "Thú cưng", style: TextStyle(fontSize: 18),
-                                textAlign: TextAlign.center,),
+                                "Thú cưng",
+                                style: TextStyle(fontSize: 18),
+                                textAlign: TextAlign.center,
+                              ),
                             )
                           ],
                         ),
                       ),
                       SizedBox(
                         width: 120,
-
                         child: Column(
                           children: <Widget>[
                             Container(
@@ -590,23 +642,27 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                               ),
                               child: ClipRRect(
                                 child: Image.asset(
-                                  'assets/vieclam.jpg', fit: BoxFit.cover,),
+                                  'assets/vieclam.jpg',
+                                  fit: BoxFit.cover,
+                                ),
                                 borderRadius: BorderRadius.circular(20),
-                              )
-                              ,
+                              ),
                             ),
-                            Container(height: 7,),
+                            Container(
+                              height: 7,
+                            ),
                             Container(
                               child: Text(
-                                "Việc làm", style: TextStyle(fontSize: 18),
-                                textAlign: TextAlign.center,),
+                                "Việc làm",
+                                style: TextStyle(fontSize: 18),
+                                textAlign: TextAlign.center,
+                              ),
                             )
                           ],
                         ),
                       ),
                       SizedBox(
                         width: 120,
-
                         child: Column(
                           children: <Widget>[
                             Container(
@@ -617,22 +673,27 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                               ),
                               child: ClipRRect(
                                 child: Image.asset(
-                                  'assets/xe.jpg', fit: BoxFit.cover,),
+                                  'assets/xe.jpg',
+                                  fit: BoxFit.cover,
+                                ),
                                 borderRadius: BorderRadius.circular(20),
-                              )
-                              ,
+                              ),
                             ),
-                            Container(height: 7,),
                             Container(
-                              child: Text("Xe", style: TextStyle(fontSize: 18),
-                                textAlign: TextAlign.center,),
+                              height: 7,
+                            ),
+                            Container(
+                              child: Text(
+                                "Xe",
+                                style: TextStyle(fontSize: 18),
+                                textAlign: TextAlign.center,
+                              ),
                             )
                           ],
                         ),
                       ),
                       SizedBox(
                         width: 120,
-
                         child: Column(
                           children: <Widget>[
                             Container(
@@ -643,27 +704,30 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                               ),
                               child: ClipRRect(
                                 child: Image.asset(
-                                  'assets/dogiadung.jpg', fit: BoxFit.cover,),
+                                  'assets/dogiadung.jpg',
+                                  fit: BoxFit.cover,
+                                ),
                                 borderRadius: BorderRadius.circular(20),
-                              )
-                              ,
+                              ),
                             ),
-                            Container(height: 7,),
+                            Container(
+                              height: 7,
+                            ),
                             Container(
                               child: Text(
-                                "Đồ gia dụng", style: TextStyle(fontSize: 18),
-                                textAlign: TextAlign.center,),
+                                "Đồ gia dụng",
+                                style: TextStyle(fontSize: 18),
+                                textAlign: TextAlign.center,
+                              ),
                             )
                           ],
                         ),
                       ),
                     ],
-
                   ),
                 ),
                 Container(
                   height: 15,
-
                 ),
                 Divider(
                   indent: 5,
@@ -671,12 +735,16 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                   thickness: 15,
                   color: Colors.grey[300],
                 ),
-                Container(height: 15,),
+                Container(
+                  height: 15,
+                ),
                 Container(
                   child: Text(
-                    "Tin đăng mới", style: TextStyle(fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
+                    "Tin đăng mới",
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
                   ),
                 ),
                 // (x != null) ?
@@ -687,136 +755,212 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                 //  )
 
                 //  : CircularProgressIndicator(),
-                (loadPost != null) ? ListView.builder(
-                  // reverse: true,
-                  controller: _scrollController,
-                  shrinkWrap: true,
+                (loadPost != null)
+                    ? ListView.builder(
+                        // reverse: true,
+                        controller: _scrollController,
+                        shrinkWrap: true,
 
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (BuildContext context, int index) {
-                    return showItem(loadPost[index], queryData);
-                  },
-                  itemCount: loadPost.length,
-                ) : Container(
-                  height: 0,
-                ),
+                        scrollDirection: Axis.vertical,
+                        itemBuilder: (BuildContext context, int index) {
+                          var timeJoinApp;
+                          var createTimeFormat = DateFormat('dd-MM-yyyy');
 
+                          timeJoinApp = createTimeFormat
+                              .format(loadPost[index].timeCreate.toDate());
+                          return (loadPost[index] != null)
+                              ? Container(
+                                  child: Row(
+                                    children: <Widget>[
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.pushNamed(
+                                              context, ITEMELECTRONICDETAIL,
+                                              arguments: {
+                                                'post': loadPost[index],
+                                                'uuid': widget.uuid
+                                              });
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          height: 120,
+                                          width: 120,
+                                          padding: EdgeInsets.all(10),
+                                          child: Image.network(
+                                            (loadPost[index].item.image != null)
+                                                ? loadPost[index].item.image[0]
+                                                : defaultImageString,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                          height: 190,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Container(
+                                                  padding: EdgeInsets.only(
+                                                      top: 10,
+                                                      left: 10,
+                                                      bottom: 10,
+                                                      right: 10),
+                                                  child: Text(
+                                                    loadPost[index].item.name,
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 21,
+                                                    ),
+                                                  )),
+                                              Container(
+                                                  padding: EdgeInsets.all(10),
+                                                  child: RichText(
+                                                    text: TextSpan(children: <
+                                                        TextSpan>[
+                                                      TextSpan(
+                                                          text: 'Giá : ',
+                                                          style: TextStyle(
+                                                              fontSize: 18,
+                                                              color: Colors
+                                                                  .black)),
+                                                      TextSpan(
+                                                          text: loadPost[index]
+                                                              .item
+                                                              .cost
+                                                              .toString(),
+                                                          style: TextStyle(
+                                                              fontSize: 19,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              color:
+                                                                  Colors.red)),
+                                                      TextSpan(
+                                                          text: ' đ',
+                                                          style: TextStyle(
+                                                              fontSize: 18,
+                                                              color: Colors
+                                                                  .black)),
+                                                    ]),
+                                                  )),
+                                              Row(
+                                                children: <Widget>[
+                                                  Container(
+                                                    width:
+                                                        queryData.size.width /
+                                                            3,
+                                                    padding: EdgeInsets.all(10),
+                                                    child: Text(
+                                                        loadPost[index]
+                                                            .addressPost,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        style: TextStyle(
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w400)),
+                                                  ),
+                                                  Container(
+                                                      padding:
+                                                          EdgeInsets.all(10),
+                                                      child: Text(timeJoinApp,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          style: TextStyle(
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400))),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: <Widget>[
+                                                  Container(
+                                                    padding: EdgeInsets.only(
+                                                        left: 20, right: 20),
+                                                    child: IconButton(
+                                                      onPressed: () {
+                                                        if(numberOfFavoritePost[index] == false) {
+                                                          provider
+                                                              .addFavoritePost(
+                                                              loadPost[
+                                                              index]);
+                                                        }
 
+                                                        bool _x =
+                                                            numberOfFavoritePost[
+                                                                index];
+                                                        setState(() {
+                                                          numberOfFavoritePost[
+                                                              index] = !_x;
+                                                        });
+                                                        numberOfFavoritePost[
+                                                            index] = !_x;
+                                                      },
+                                                      icon: Icon(Icons
+                                                          .favorite_border),
+                                                      iconSize: 26,
+
+                                                      color:
+                                                          (numberOfFavoritePost[
+                                                                      index] ==
+                                                                  false
+                                                              ? Colors.black
+                                                              : Colors.red),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    padding: EdgeInsets.only(
+                                                        left: 50, right: 20),
+                                                    child: IconButton(
+                                                        onPressed: () {
+                                                          if(numberOfShoppingCart[index] == false){
+                                                            provider.addCart(
+                                                                loadPost[index]);
+                                                          }
+
+                                                          numberOfShoppingCart[
+                                                                  index] =
+                                                              !numberOfShoppingCart[
+                                                                  index];
+                                                        },
+                                                        icon: Icon(Icons
+                                                            .add_shopping_cart),
+                                                        iconSize: 26,
+                                                        color:
+                                                            (numberOfShoppingCart[
+                                                                        index] ==
+                                                                    false
+                                                                ? Colors.black
+                                                                : Colors.blue)),
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ))
+                                    ],
+                                  ),
+                                )
+                              : Container(
+                                  height: 0,
+                                );
+                        },
+                        itemCount: 8,
+                      )
+                    : Container(
+                        height: 0,
+                      ),
               ],
             ),
           ),
-
-
         );
       },
-    );
-  }
-
-  Widget showItem(Post post, MediaQueryData query) {
-    var timeJoinApp;
-    var createTimeFormat = DateFormat('dd-MM-yyyy');
-    timeJoinApp = createTimeFormat.format(post.timeCreate.toDate());
-    return (post != null) ? Container(
-      child: Row(
-        children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            height: 120,
-            width: 120,
-            padding: EdgeInsets.all(10),
-            child: Image.network((post.item.image != null)
-                ? post.item.image[0]
-                : defaultImageString, fit: BoxFit.cover,),
-          ),
-          SizedBox(
-            height: 190,
-            child:  Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                      padding: EdgeInsets.only(
-                          top: 10, left: 10, bottom: 10, right: 10),
-                      child: Text(post.item.name, style: TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 21,),)
-                  ),
-                  Container(
-                      padding: EdgeInsets.all(10),
-                      child: RichText(
-                        text: TextSpan(
-                            children: <TextSpan>[
-                              TextSpan(text: 'Giá : ',
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.black)),
-                              TextSpan(text: post.item.cost.toString(),
-                                  style: TextStyle(fontSize: 19,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.red)),
-                              TextSpan(text: ' đ',
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.black)),
-                            ]
-                        ),
-                      )
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Container(
-
-                        width: query.size.width / 3,
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                            post.addressPost, overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w400)),
-
-                      ),
-
-                      Container(
-
-                          padding: EdgeInsets.all(10),
-                          child: Text(timeJoinApp, overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w400))
-                      ),
-
-
-                    ],
-                  ),
-
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.only(left: 20, right: 20),
-                        child: IconButton(
-                          onPressed: () {
-
-                          },
-                          icon: Icon(Icons.favorite_border),
-                          iconSize: 26,
-
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(left: 50, right: 20),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.add_shopping_cart),
-                          iconSize: 26,
-
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-          )
-
-          )
-        ],
-      ),
-    ) : Container(
-      height: 0,
     );
   }
 }

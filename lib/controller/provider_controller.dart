@@ -14,7 +14,8 @@ class ProviderController extends ChangeNotifier {
   ChatUser chatUser;
   Firestore firestore = Firestore.instance;
   Stream<List<Post>> userPost;
-  List<Post> cartPost;
+  List<Post> cartPost = [];
+  List<Post> favoritePost = [];
 
 
   //Post
@@ -164,4 +165,14 @@ class ProviderController extends ChangeNotifier {
 
     print("Get Store");
   }
+  void addFavoritePost(Post post){
+
+    favoritePost.add(post);
+    notifyListeners();
+  }
+  void removeFavoritePost(Post post){
+    favoritePost.remove(post);
+    notifyListeners();
+  }
+  //
 }
