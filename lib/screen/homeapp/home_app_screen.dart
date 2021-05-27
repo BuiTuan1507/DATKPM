@@ -1,3 +1,5 @@
+
+
 import 'package:app_giao_do_an/controller/provider_controller.dart';
 import 'package:app_giao_do_an/model/item.dart';
 import 'package:app_giao_do_an/model/post.dart';
@@ -53,6 +55,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
     false,
     false,
   ];
+
   TextEditingController searchController;
   Item item1 = new Item('1', 'nha xa', ['assets/h1.jpg'], 20, 'Ha noi', 'hêlo',
       'hello', 'hee', true);
@@ -63,7 +66,11 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
     queryData = MediaQuery.of(context);
 
     loadPost = Provider.of<List<Post>>(context);
-
+    void change (bool x){
+      setState(() {
+        x = !x;
+      });
+    }
     void createChatUser(User user) {
       String idChatUser = randomAlpha(15);
       List<dynamic> chatRoom = List<dynamic>();
@@ -86,27 +93,9 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
         provider.getStoreUser(widget.uuid);
         provider.getUserOnline(widget.uuid);
         if((provider.favoritePost != null ) && (loadPost != null)){
-          for(int i = 0 ; i< loadPost.length; i++) {
-            for (int j =0 ; j< provider.favoritePost.length ; i++){
-              if (loadPost[i] ==  provider.favoritePost[j] ) {
 
-                numberOfFavoritePost[i] = true;
-                break;
-              }
-            }
-          }
         }
-        if(provider.cartPost != null ){
-          for(int i = 0 ; i< 8; i++) {
-            for (int j =0 ; j< provider.cartPost.length ; i++){
-              if (provider.cartPost[j] == loadPost[i]) {
 
-                numberOfShoppingCart[i] = true;
-                break;
-              }
-            }
-          }
-        }
 
         return Scaffold(
           appBar: AppBar(
@@ -763,6 +752,13 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
 
                         scrollDirection: Axis.vertical,
                         itemBuilder: (BuildContext context, int index) {
+                          if(loadPost[index].report != null) {
+                            for (int i = 0 ; i< loadPost[index].report.length ; i++){
+                              if(widget.uuid == loadPost[index].report[i]){
+                                numberOfFavoritePost[index] = true;
+                              }
+                            }
+                          }
                           var timeJoinApp;
                           var createTimeFormat = DateFormat('dd-MM-yyyy');
 
@@ -890,18 +886,22 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                                                           provider
                                                               .addFavoritePost(
                                                               loadPost[
-                                                              index]);
+                                                              index],widget.uuid);
+
+
+                                                          change(numberOfFavoritePost[index]);
+                                                          numberOfFavoritePost[index] = true;
+                                                          print(numberOfFavoritePost[index]);
+
+                                                        }else {
+                                                          provider.removeFavoritePost(loadPost[index],widget.uuid);
+
+                                                          change(numberOfFavoritePost[index]);
+                                                         numberOfFavoritePost[index] = false;
+                                                          print(numberOfFavoritePost[index]);
                                                         }
 
-                                                        bool _x =
-                                                            numberOfFavoritePost[
-                                                                index];
-                                                        setState(() {
-                                                          numberOfFavoritePost[
-                                                              index] = !_x;
-                                                        });
-                                                        numberOfFavoritePost[
-                                                            index] = !_x;
+
                                                       },
                                                       icon: Icon(Icons
                                                           .favorite_border),

@@ -165,13 +165,33 @@ class ProviderController extends ChangeNotifier {
 
     print("Get Store");
   }
-  void addFavoritePost(Post post){
+  void addFavoritePost(Post post, String idUser){
 
     favoritePost.add(post);
+    List<dynamic> favorite = new List();
+
+    for (int i = 0 ; i< post.report.length ; i++ ){
+      favorite.add(post.report[i]);
+    }
+    favorite.add(idUser);
+
+    firestore.collection('Post').document(post.idPost).updateData({
+      'report' : favorite
+    });
     notifyListeners();
   }
-  void removeFavoritePost(Post post){
+  void removeFavoritePost(Post post,String idUser){
     favoritePost.remove(post);
+    List<dynamic> _favorite = new List();
+
+    for (int i = 0 ; i< post.report.length ; i++ ){
+      _favorite.add(post.report[i]);
+    }
+    _favorite.remove(idUser);
+
+    firestore.collection('Post').document(post.idPost).updateData({
+      'report' : _favorite
+    });
     notifyListeners();
   }
   //
