@@ -27,7 +27,7 @@ class _OtherAppState extends State<OtherApp> {
                       ),
                       Center(
                         child:
-                        Text('Bạn đang rao bán ${widget.other.length}'),
+                        Text('Bạn đang rao bán ${widget.other.length}',style: TextStyle(fontSize: 19),),
                       ),
                       Container(
                         height: 20,
@@ -110,18 +110,7 @@ class _OtherAppState extends State<OtherApp> {
                                           ),
                                           Row(
                                             children: <Widget>[
-                                              Container(
-                                                  padding: EdgeInsets.only(
-                                                      left: 15),
-                                                  child: (widget.other[index]
-                                                      .isPriority ==
-                                                      1)
-                                                      ? (Icon(
-                                                    Icons.store,
-                                                    size: 25,
-                                                  ))
-                                                      : (Icon(
-                                                      Icons.person_pin))),
+
                                               Container(
                                                 padding: EdgeInsets.only(
                                                     left: 15, right: 10),

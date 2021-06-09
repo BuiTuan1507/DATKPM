@@ -31,7 +31,7 @@ class _OnSaleState extends State<OnSale> {
                         ),
                         Center(
                           child: Text(
-                              'Bạn đang rao bán ${widget.salePost.length}'),
+                              'Bạn đang rao bán ${widget.salePost.length}',style: TextStyle(fontSize: 19),),
                         ),
                         Container(
                           height: 20,
@@ -116,19 +116,7 @@ class _OnSaleState extends State<OnSale> {
                                             ),
                                             Row(
                                               children: <Widget>[
-                                                Container(
-                                                    padding: EdgeInsets.only(
-                                                        left: 15),
-                                                    child: (widget
-                                                                .salePost[index]
-                                                                .isPriority ==
-                                                            1)
-                                                        ? (Icon(
-                                                            Icons.store,
-                                                            size: 25,
-                                                          ))
-                                                        : (Icon(
-                                                            Icons.person_pin))),
+
                                                 Container(
                                                   padding: EdgeInsets.only(
                                                       left: 15, right: 70),

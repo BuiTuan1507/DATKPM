@@ -167,42 +167,8 @@ class _PersonalState extends State<Personal> {
                 ],
               ),
               Container(height: 10,),
-              Row(
-                children: <Widget>[
-                  Container(width: 15,),
-                  InkWell(
-                    onTap: (){
-                      Navigator.pushNamed(context,USERFRIEND);
-                    },
-                    child: Container(
 
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            color: Colors.greenAccent,
-                            borderRadius: BorderRadius.circular(100)
-                        ),
-                        child: Center(
-                          child:Icon(Icons.person_add,color: Colors.white,),
-                        )
 
-                    ),
-                  ),
-
-                  Container(width: 20,),
-                  InkWell(
-                    onTap: (){
-                      Navigator.pushNamed(context,USERFRIEND);
-                    },
-                    child:  Container(
-                      padding: EdgeInsets.only(top: 10, bottom: 10),
-                      child: Text("Bạn bè", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
-                    ),
-                  )
-
-                ],
-              ),
-              Container(height: 10,),
               Row(
                 children: <Widget>[
                   Container(width: 15,),
@@ -323,7 +289,10 @@ class _PersonalState extends State<Personal> {
                   Container(width: 15,),
                   InkWell(
                     onTap: (){
-                      Navigator.pushNamed(context, USERHELP);
+                      Navigator.pushNamed(context, USERHELP,arguments: {
+                        'imageUser': provider.imageUser
+
+                      });
                     },
                     child:  Container(
 
@@ -343,7 +312,10 @@ class _PersonalState extends State<Personal> {
                   Container(width: 20,),
                   InkWell(
                     onTap: (){
-                      Navigator.pushNamed(context, USERHELP);
+                      Navigator.pushNamed(context, USERHELP,arguments: {
+                        'imageUser': provider.imageUser
+
+                      });
                     },
                     child:  Container(
                       padding: EdgeInsets.only(top: 10, bottom: 10),

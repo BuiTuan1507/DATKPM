@@ -309,42 +309,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          width: 100,
-                          child: Column(
-                            children: <Widget>[
-                              InkWell(
-                                onTap: () {
-                                  Navigator.pushNamed(context, USERFRIEND);
-                                },
-                                child: Container(
-                                    width: 40,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                        color: Colors.greenAccent,
-                                        borderRadius:
-                                            BorderRadius.circular(100)),
-                                    child: Center(
-                                      child: Icon(
-                                        Icons.person_add,
-                                        color: Colors.white,
-                                      ),
-                                    )),
-                              ),
-                              Container(
-                                child: Text(
-                                  "Bạn bè",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 18,
-                                    color: Colors.black,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
+
                         SizedBox(
                           width: 100,
                           child: Column(
@@ -387,7 +352,10 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                             children: <Widget>[
                               InkWell(
                                 onTap: () {
-                                  Navigator.pushNamed(context, USERHELP);
+                                  Navigator.pushNamed(context, USERHELP,arguments: {
+                                    'imageUser': provider.imageUser
+
+                                  });
                                 },
                                 child: Container(
                                     width: 40,

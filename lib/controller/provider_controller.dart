@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:random_string/random_string.dart';
 
 class ProviderController extends ChangeNotifier {
-
+  String imageUser ;
   User userOnline;
   Store userStore;
   ChatUser chatUser;
@@ -16,7 +16,8 @@ class ProviderController extends ChangeNotifier {
   Stream<List<Post>> userPost;
   List<Post> cartPost = [];
   List<Post> favoritePost = [];
-
+  List<Post> shippingPost = [];
+  List<Post> shipedPost = [];
 
   //Post
   void addPost(Post post,Store store,String idStore) {
@@ -128,6 +129,7 @@ class ProviderController extends ChangeNotifier {
   Future<void> getUserOnline(String uuid) async {
     DocumentSnapshot snapshot = await firestore.collection('User').document(uuid).get();
     userOnline = User.fromSnapshot(snapshot);
+    imageUser = userOnline.imageUser;
     print("Get User Online");
 
   }

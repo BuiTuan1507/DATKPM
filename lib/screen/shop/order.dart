@@ -14,7 +14,8 @@ class Order extends StatefulWidget {
 }
 
 class _OrderState extends State<Order> {
-
+  static const defaultImageString =
+      "https://firebasestorage.googleapis.com/v0/b/appdoan-53f1b.appspot.com/o/postProductsach.jpg?alt=media&token=c1e791af-dae8-440b-a9af-816e536f98b1";
   @override
   Widget build(BuildContext context) {
     List<Post> x = Provider.of<List<Post>>(context);
@@ -127,14 +128,14 @@ class _OrderState extends State<Order> {
 
               ),
             ),
-            body:(store != null) ? Column(
+            body:(x != null) ? Column(
               children: <Widget>[
                 Row(
                   children: <Widget>[
                     Container(
                       padding: EdgeInsets.only(left: 15, right: 10, top: 15),
                       child: CircleAvatar(
-                        backgroundImage: NetworkImage(store.imageStore),
+                        backgroundImage: (store != null) ? NetworkImage(store.imageStore) : NetworkImage(defaultImageString),
                         radius: 40,
                       ),
                     ),
@@ -142,13 +143,13 @@ class _OrderState extends State<Order> {
                       child: Column(
                         children: <Widget>[
                           Container(
-                            child: Text(store.name),
+                            child: (store != null ) ? Text(store.name) : Text("Chưa có tên", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),textAlign: TextAlign.center,),
                           ),
                           Container(
                             height: 10,
                           ),
                           Container(
-                            child: Text(store.description),
+                            child: (store != null) ?  Text(store.description) : Text("Chưa có mô tả", textAlign: TextAlign.center,),
                           )
                         ],
                       ),
@@ -167,7 +168,10 @@ class _OrderState extends State<Order> {
                 ),
 
               ],
-            ) : Center(child: CircularProgressIndicator(),),
+            ) : Center(child: Container(
+              padding: EdgeInsets.only(top:80),
+              child:Text('Bạn chưa có bán sản phẩm nào', style: TextStyle(fontSize: 18,),textAlign: TextAlign.center,)
+            ),),
 
           ),
         );

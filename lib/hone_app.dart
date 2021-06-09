@@ -61,7 +61,7 @@ class _HomeAppState extends State<HomeApp> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart),
-              title: Text('Bán',style: TextStyle(color: Colors.black),),
+              title: Text('Bán hàng',style: TextStyle(color: Colors.black),),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.favorite_border),
@@ -69,7 +69,7 @@ class _HomeAppState extends State<HomeApp> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.notifications),
-              title: Text('Thông báo'),
+              title: Text('Mua hàng'),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),

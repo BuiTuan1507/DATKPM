@@ -61,7 +61,7 @@ class _NotificationAppState extends State<NotificationApp> {
                   Tab(
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("Đang giao" + " (${_tinMoi.toString()})",style: TextStyle(fontSize: 18)),
+                      child: Text("Đang giao" + "(${_tinMoi.toString()})",style: TextStyle(fontSize: 18)),
                     ),
                   ),
                   Tab(

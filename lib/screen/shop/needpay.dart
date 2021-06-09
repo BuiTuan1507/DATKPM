@@ -27,7 +27,7 @@ class _NeedPayState extends State<NeedPay> {
                   ),
                   Center(
                     child:
-                    Text('Bạn đang rao bán ${widget.needPay.length}'),
+                    Text('Bạn đang rao bán ${widget.needPay.length}',style: TextStyle(fontSize: 19),),
                   ),
                   Container(
                     height: 20,
@@ -110,18 +110,7 @@ class _NeedPayState extends State<NeedPay> {
                                       ),
                                       Row(
                                         children: <Widget>[
-                                          Container(
-                                              padding: EdgeInsets.only(
-                                                  left: 15),
-                                              child: (widget.needPay[index]
-                                                  .isPriority ==
-                                                  1)
-                                                  ? (Icon(
-                                                Icons.store,
-                                                size: 25,
-                                              ))
-                                                  : (Icon(
-                                                  Icons.person_pin))),
+
                                           Container(
                                             padding: EdgeInsets.only(
                                                 left: 15, right: 10),

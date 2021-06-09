@@ -178,7 +178,8 @@ class RouterNav {
       case USERFRIEND :
         return MaterialPageRoute(builder: (context) => UserFriend());
       case USERHELP :
-        return MaterialPageRoute(builder: (context) => UserHelp());
+        var _agrument = settings.arguments as Map;
+        return MaterialPageRoute(builder: (context) => UserHelp(imageUser: _agrument['imageUser'],));
       case USERSTORE :
         return MaterialPageRoute(builder: (context) => UserStore());
       case USERPROMOTION :

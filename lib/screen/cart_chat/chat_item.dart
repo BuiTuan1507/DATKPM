@@ -161,8 +161,8 @@ class _ChatItemState extends State<ChatItem> {
                                 _isFirstMessage(chatRoomBody['chatMessage'], index) &&
                                     chatRoomItem['sendUuid'] == pairId
                                     ? Container(
-                                  width: 30,
-                                  height: 30,
+                                  width: 40,
+                                  height: 40,
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
                                       image: ExactAssetImage(
