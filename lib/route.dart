@@ -18,6 +18,8 @@ import 'package:app_giao_do_an/screen/homeapp/cost_catalog.dart';
 import 'package:app_giao_do_an/screen/homeapp/electronic_catalog.dart';
 import 'package:app_giao_do_an/screen/homeapp/item_electronic_detail.dart';
 import 'package:app_giao_do_an/screen/homeapp/priority_catalog.dart';
+import 'package:app_giao_do_an/screen/homeapp/product/animal_product_type.dart';
+import 'package:app_giao_do_an/screen/homeapp/product/food_product_type.dart';
 import 'package:app_giao_do_an/screen/login_register/register_first.dart';
 import 'package:app_giao_do_an/screen/login_register/register_name.dart';
 import 'package:app_giao_do_an/screen/login_register/register_password.dart';
@@ -48,6 +50,8 @@ const String CHANGEINFO = '/changeInfo';
 const String PROFILE = '/profile';
 const String UPDATEPROFILE  = '/updateProfle';
 const String PRODUCTTYPE = '/productType';
+const String  ANIMAILPRODUCTTYPE = '/animalProductType';
+const String FOODPRODUCTTYPE = '/foodProductType';
 const String ELECTRONICCATALOG= '/electronicCatalog';
 const String COSTCATALOG = '/costCatalog';
 const String PRIORITYCATALOG = '/priorityCatalog';
@@ -119,7 +123,13 @@ class RouterNav {
       case PRODUCTTYPE :
         var argument1 = settings.arguments as Map;
         return MaterialPageRoute(builder: (context) => ProductType(catalogF: argument1['catalogF'], costSearch: argument1['costSearch'],priority: argument1['priority'],));
-      case ELECTRONICCATALOG :
+      case ANIMAILPRODUCTTYPE :
+        var argument1 = settings.arguments as Map;
+        return MaterialPageRoute(builder: (context) =>AnimalProductType(catalogF: argument1['catalogF'], costSearch: argument1['costSearch'],priority: argument1['priority'],));
+      case FOODPRODUCTTYPE :
+        var argument1 = settings.arguments as Map;
+        return MaterialPageRoute(builder: (context) => FoodProductType(catalogF: argument1['catalogF'], costSearch: argument1['costSearch'],priority: argument1['priority'],));
+        case ELECTRONICCATALOG :
         return MaterialPageRoute(builder: (context) => ElectronicCatalog());
       case COSTCATALOG :
         return MaterialPageRoute(builder: (context) => CostCatalog());

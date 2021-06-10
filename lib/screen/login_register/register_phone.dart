@@ -42,7 +42,7 @@ class _RegisterPhoneState extends State<RegisterPhone> {
       appBar: AppBar(
         title: Text('Số điện thoại',),
         centerTitle: true,
-        backgroundColor: Color(0xFF0C9869),
+        backgroundColor: Colors.amber,
       ),
       body: SignUpPhonePage(context, phoneController),
     );
@@ -91,7 +91,7 @@ class _RegisterPhoneState extends State<RegisterPhone> {
                   fontWeight: FontWeight.bold,
                   color: Colors.grey),
               focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green))),
+                  borderSide: BorderSide(color: Colors.amber))),
           validator: (value) => value.isEmpty ? 'Số điện thoại không thể trống' : null,
           onSaved: (value) => phone = value.trim(),
         ));
@@ -121,8 +121,8 @@ class _RegisterPhoneState extends State<RegisterPhone> {
 
         child: Material(
           borderRadius: BorderRadius.circular(10.0),
-          shadowColor: Colors.greenAccent,
-          color: Color(0xFF0C9869),
+
+          color: Colors.amber,
 
 
           child: Center(

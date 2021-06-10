@@ -27,7 +27,7 @@ class HomeAppScreen extends StatefulWidget {
 
 class _HomeAppScreenState extends State<HomeAppScreen> {
   static const defaultImageString =
-      "https://firebasestorage.googleapis.com/v0/b/appdoan-53f1b.appspot.com/o/postProductsach.jpg?alt=media&token=c1e791af-dae8-440b-a9af-816e536f98b1";
+      "https://firebasestorage.googleapis.com/v0/b/appdoan-53f1b.appspot.com/o/ramdom.jpg?alt=media&token=07e2217a-dd59-4eee-86ba-29b13a688d69";
   ScrollController _scrollController = new ScrollController();
   ScrollController _scrollControllerGrid = new ScrollController();
   bool isFavorite;
@@ -455,36 +455,46 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        width: 120,
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                                height: 80,
-                                width: 80,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
-                                  child: Image.asset(
-                                    'assets/doan.jpg',
-                                    fit: BoxFit.cover,
+                      InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, ANIMAILPRODUCTTYPE, arguments: {
+                            'catalogF': 0,
+                            'costSearch': 0,
+                          });
+                          print(2);
+                        },
+                        child: SizedBox(
+                          width: 120,
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                  height: 80,
+                                  width: 80,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
                                   ),
-                                )),
-                            Container(
-                              height: 7,
-                            ),
-                            Container(
-                              child: Text(
-                                "Đồ ăn",
-                                style: TextStyle(fontSize: 18),
-                                textAlign: TextAlign.center,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: Image.asset(
+                                      'assets/doan.jpg',
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )),
+                              Container(
+                                height: 7,
                               ),
-                            )
-                          ],
+                              Container(
+                                child: Text(
+                                  "Đồ ăn",
+                                  style: TextStyle(fontSize: 18),
+                                  textAlign: TextAlign.center,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
+
                       InkWell(
                         onTap: () {
                           Navigator.pushNamed(context, PRODUCTTYPE, arguments: {
@@ -556,37 +566,48 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        width: 120,
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              height: 80,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Image.asset(
-                                  'assets/thu.jpg',
-                                  fit: BoxFit.cover,
+                      InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, FOODPRODUCTTYPE, arguments: {
+                            'catalogF': 0,
+                            'costSearch': 0,
+                          });
+                          print(2);
+                        },
+                        child:SizedBox(
+                          width: 120,
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                height: 80,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image.asset(
+                                    'assets/thu.jpg',
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Container(
-                              height: 7,
-                            ),
-                            Container(
-                              child: Text(
-                                "Thú cưng",
-                                style: TextStyle(fontSize: 18),
-                                textAlign: TextAlign.center,
+                              Container(
+                                height: 7,
                               ),
-                            )
-                          ],
+                              Container(
+                                child: Text(
+                                  "Thú cưng",
+                                  style: TextStyle(fontSize: 18),
+                                  textAlign: TextAlign.center,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
+
                       ),
+
                       SizedBox(
                         width: 120,
                         child: Column(

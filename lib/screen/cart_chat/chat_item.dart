@@ -312,7 +312,7 @@ class _ChatItemState extends State<ChatItem> {
                 helpController.clear();
 
                 sendMessage(text, widget.uuid, widget.chatUser.uuid, idChatMessage, _chatRoom,);
-                onBackPress();
+               // onBackPress();
               }
 
             },

@@ -10,7 +10,7 @@ class UserHelp extends StatefulWidget {
 
 class _UserHelpState extends State<UserHelp> {
   static const defaultImageString =
-      "https://firebasestorage.googleapis.com/v0/b/appdoan-53f1b.appspot.com/o/postProductsach.jpg?alt=media&token=c1e791af-dae8-440b-a9af-816e536f98b1";
+      "https://firebasestorage.googleapis.com/v0/b/appdoan-53f1b.appspot.com/o/ramdom.jpg?alt=media&token=07e2217a-dd59-4eee-86ba-29b13a688d69";
   ChatModel currentChat = ChatModel.list.elementAt(0);
   String currentUser = "1";
   String pairId = "2";

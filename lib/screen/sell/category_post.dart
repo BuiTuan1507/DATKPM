@@ -39,7 +39,7 @@ class _CategoryPostState extends State<CategoryPost> {
         break;
       case 3 :
         selectCategory = _categoryAnimal;
-        selectedType = 'Thú cưng';
+        selectedType = 't';
         break;
       case 4:
         selectCategory = _categoryElectronic;
@@ -47,7 +47,7 @@ class _CategoryPostState extends State<CategoryPost> {
         break;
       case 5:
         selectCategory = _categoryFood;
-        selectedType = 'Đồ ăn';
+        selectedType = 'd';
         break;
       case 6:
         selectCategory = _categoryHouseware;
@@ -94,7 +94,7 @@ class _CategoryPostState extends State<CategoryPost> {
                           children: <Widget>[
 
                             Container(
-                              width: queryData.size.width*0.85,
+                              width: queryData.size.width*0.7,
                               padding: EdgeInsets.only(top: 10,bottom: 7),
                               child: Text(selectCategory[index],style: TextStyle(fontSize: 19, fontWeight: FontWeight.w500),),
                             ),

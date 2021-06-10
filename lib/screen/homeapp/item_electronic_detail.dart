@@ -133,7 +133,7 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(
-                    width: 150,
+                    width: 100,
                     child: Column(
                       children: <Widget>[
                         Container(
@@ -160,21 +160,21 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
                     ),
                   ),
                   Container(
-                    width: queryData.size.width * 0.3,
+                    width: queryData.size.width * 0.1,
                   ),
                   Container(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(6),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
                         border: Border.all(width: 1, color: Colors.red)),
                     child: Row(
                       children: <Widget>[
                         Container(
-                          padding: EdgeInsets.only(right: 10),
+                          padding: EdgeInsets.only(right: 6),
                           child: Text(
                             'Lưu tin',
                             style: TextStyle(
-                                fontSize: 17,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.red),
                           ),
@@ -201,23 +201,23 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
               Row(
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.all(12),
+                    padding: EdgeInsets.all(10),
                     child: CircleAvatar(
                       backgroundImage: AssetImage('assets/ramdom.jpg'),
                       radius: 25,
                     ),
                   ),
                   SizedBox(
-                    width: queryData.size.width * 0.55,
+                    width: queryData.size.width * 0.45,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Container(
                           padding: EdgeInsets.only(bottom: 6, right: 10),
                           child: Text(
-                            'Cửa hàng điện thoại bán đồ dởm ',
+                            'Chưa có ',
                             style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                                fontSize: 18, fontWeight: FontWeight.bold),
                             textAlign: TextAlign.left,
                           ),
                         ),
@@ -226,7 +226,7 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
                           child: Text(
                             'Hoạt động' + ' 1 ' + 'giờ trước',
                             style: TextStyle(
-                                fontSize: 17,
+                                fontSize: 15,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.grey[400]),
                           ),
@@ -248,7 +248,7 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
                           'Xem trang',
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
-                              fontSize: 17,
+                              fontSize: 16,
                               color: Colors.amber),
                         ),
                       ),
@@ -263,11 +263,11 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
                       children: <Widget>[
                         Container(
                           padding: EdgeInsets.only(
-                              left: 50, top: 12, bottom: 6, right: 50),
+                              left: 30, top: 12, bottom: 6, right: 30),
                           child: Text(
                             'Cửa hàng',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 18,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
@@ -275,7 +275,7 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
                         Container(
                           child: Icon(
                             Icons.business_center,
-                            size: 28,
+                            size: 24,
                           ),
                         )
                       ],
@@ -289,7 +289,7 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
                       children: <Widget>[
                         Container(
                           padding: EdgeInsets.only(
-                              left: 50, top: 12, bottom: 6, right: 50),
+                              left: 30, top: 12, bottom: 6, right: 30),
                           child: Text('Đánh giá',
                               style: TextStyle(
                                 fontSize: 20,
@@ -301,21 +301,21 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
                             Container(
                               child: Text('4.0 ',
                                   style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: 17,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.red)),
                             ),
                             Container(
                               child: Icon(
                                 Icons.star,
-                                size: 28,
+                                size: 24,
                                 color: Colors.amber,
                               ),
                             ),
                             Container(
                               child: Text(' (321)',
                                   style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 16,
                                     fontWeight: FontWeight.w400,
                                   )),
                             )
@@ -340,9 +340,9 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
                       padding: EdgeInsets.only(
                           top: 12, left: 12, right: 12, bottom: 12),
                       child: Text(
-                        'Chuyên bán đồ rởm, đồ kém chất lượng, hàng Trung quốc kém chất lượng. Ai có nhu cầu mua xin liên hệ 09xx.xxx.xxx',
+                        'Chuyen bán hàng tốt, đảm bảo uy tín',
                         style:
-                        TextStyle(fontSize: 19, fontWeight: FontWeight.w400),
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                         overflow: TextOverflow.fade,
                         textAlign: TextAlign.left,
                       ),
@@ -367,16 +367,16 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
                     child: Text(
                       'Thông tin sản phẩm',
                       style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.grey[400]),
                     ),
                   ),
                   Container(
                     padding:
-                    EdgeInsets.only(left: 15, top: 15, bottom: 10, right: 12),
+                    EdgeInsets.only(left: 10, top: 1, bottom: 10, right: 10),
                     child: Text(
-                      'Điện thoại IP 12, máy mới dùng 1 tháng, còn nguyên bảo hành, các thiết bị',
+                      widget.post.item.description,
                       style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
                     ),
                   ),
@@ -393,7 +393,7 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
                     child: Text(
                       'Khu vực',
                       style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.grey[400]),
                     ),
@@ -406,14 +406,14 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
                     padding: EdgeInsets.all(12),
                     child: Icon(
                       Icons.location_on,
-                      size: 28,
+                      size: 25
                     ),
                   ),
                   Flexible(
                     child: Container(
-                      child: Text('Phường Mai Động, Quận Hoàng Mai, Hà Nội',
+                      child: Text(widget.post.addressPost,
                           style: TextStyle(
-                              fontSize: 19,
+                              fontSize: 17,
                               fontWeight: FontWeight.w400,
                               color: Colors.black45)),
                     ),
@@ -444,20 +444,7 @@ class _ItemElectronicDetailState extends State<ItemElectronicDetail> {
               ),
               GestureDetector(
                 onTap: (){
-                  bool kiemtra = false;
-                  print(widget.post.uuid);
-
-                  if(provider.chatUser != null){
-                    if(provider.chatUser.chatRoom != null){
-                      for (int  i = 0; i< provider.chatUser.chatRoom.length; i++){
-                        print(provider.chatUser.chatRoom[i]);
-                        if (widget.post.uuid == provider.chatUser.chatRoom[i]){
-                          kiemtra = true;
-                          break;
-                        }
-                      }
-                    }
-                  }
+                  createChatRoom(widget.uuid, widget.post.uuid, widget.post.item.name);
 
                   Navigator.pushNamed(context, CHAT);
                   print('add chat room');

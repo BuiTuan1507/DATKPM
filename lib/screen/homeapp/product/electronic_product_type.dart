@@ -26,7 +26,8 @@ class _ProductTypeState extends State<ProductType> {
   ScrollController _scrollController = new ScrollController();
   Item item1 = new Item('1', 'nha xa', ['assets/h1.jpg'], 20, 'Ha noi', 'hêlo',
       'hello', 'hee', true);
-  String defaultImage = 'https://firebasestorage.googleapis.com/v0/b/appdoan-53f1b.appspot.com/o/image_picker-518944437.jpg?alt=media&token=d2ffd65d-f088-4a04-a61d-816d66f7da6a';
+  static const defaultImage =
+      "https://firebasestorage.googleapis.com/v0/b/appdoan-53f1b.appspot.com/o/ramdom.jpg?alt=media&token=07e2217a-dd59-4eee-86ba-29b13a688d69";
   bool isFavorite = false;
   var catalogE = [
     'Đồ điện tử',
@@ -50,10 +51,12 @@ class _ProductTypeState extends State<ProductType> {
   }
   @override
   Widget build(BuildContext context) {
+
     List<Post> x = Provider.of<List<Post>>(context);
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     TextEditingController _searchController;
+
     return Consumer<ProviderController>(
       builder:(context,provider, child){
         List<Post> _product = [];
@@ -309,7 +312,7 @@ class _ProductTypeState extends State<ProductType> {
                         child: Icon(
                           Icons.home,
                           color: Colors.amber,
-                          size: 28,
+                          size: 26,
                         ),
                       ),
                       Container(
@@ -319,11 +322,11 @@ class _ProductTypeState extends State<ProductType> {
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
                               color: Colors.amber,
-                              fontSize: 18),
+                              fontSize: 16),
                         ),
                       ),
                       Container(
-                        width: 50,
+                        width: 40,
                       ),
                       InkWell(
                         onTap: () {},
@@ -332,7 +335,7 @@ class _ProductTypeState extends State<ProductType> {
                           child: Text(
                             'Xem thông tin',
                             style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 15,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.amber),
                           ),
@@ -417,14 +420,7 @@ class _ProductTypeState extends State<ProductType> {
                                     ),
                                     Row(
                                       children: <Widget>[
-                                        Container(
-                                            padding: EdgeInsets.only(left: 15),
-                                            child: (item1.isStore == true)
-                                                ? (Icon(
-                                              Icons.store,
-                                              size: 25,
-                                            ))
-                                                : (Icon(Icons.person_pin))),
+
                                         Container(
                                           width: 150,
                                           padding:

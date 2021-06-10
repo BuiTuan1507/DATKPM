@@ -150,8 +150,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 Container(
                   padding: EdgeInsets.only(top: 25),
-                  height: 140,
-                  width: 180,
+                  height: 120,
+                  width: 140,
                   child: Image.asset("assets/loginLogo.jpg",fit: BoxFit.cover,),
                 )
               ],
